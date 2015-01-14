@@ -27,38 +27,39 @@ Our goal is equal bicycle usage across neighborhoods in Chicago. In other words,
 ​####Use of ​Data
  
 ​W​e ​currently ​have​ this data​:
-Markup : * bike mode share
-		* bike routes
-		* race, ethnicity, population
-		* ward boundaries
-		* Divvy​ stations​
+* bike mode share
+* bike routes
+* race, ethnicity, population
+* ward boundaries
+* Divvy​ stations​
 ​
 We currently need this data:
-Markup  : * income ​(Steve​)​
- 			* land use ​(​Eric​)​
-		* transit accessibility index (TAI) from CMAP​ (Oboi & Martin​ Menninger)​
+* income ​(Steve​)​
+* land use ​(​Eric​)​
+* transit accessibility index (TAI) from CMAP​ (Oboi & Martin​ Menninger)​
+
 ####Goal​s​
-​Markup : * Create a layered map to show the reality​ of bike infrastructure distribution in Chicago. Use ​these visuals to determine next steps. Before​ we publish the data, we will involve a ​few more groups to get feedback. Example: Transitized How Chicago Commutes map. 
-		* Create an equity index. 
-		* Integrate​ the data and visuals on the Slow Roll Chicago website
-​ 		* Analyze the data and produce a report for each ​Chicago ​ward​, determining "here’s where you’re at, here’s what you need to do​".
-​ 		* Create a presentation​, perhaps for the March Mayor's Bicycle Advisory Council.
- 		* Model​ the potential benefits ​of biking ​at the hyperlocal local​ level. Answer the question, "if this many more people started biking here​ are the results, such as new retail businesses​, violence prevention, economic development, healthier lifestyles, job​ creation, and higher property values".​​​
+​* Create a layered map to show the reality​ of bike infrastructure distribution in Chicago. Use ​these visuals to determine next steps. Before​ we publish the data, we will involve a ​few more groups to get feedback. Example: Transitized How Chicago Commutes map. 
+* Create an equity index. 
+* Integrate​ the data and visuals on the Slow Roll Chicago website
+​* Analyze the data and produce a report for each ​Chicago ​ward​, determining "here’s where you’re at, here’s what you need to do​".
+​* Create a presentation​, perhaps for the March Mayor's Bicycle Advisory Council.
+* Model​ the potential benefits ​of biking ​at the hyperlocal local​ level. Answer the question, "if this many more people started biking here​ are the results, such as new retail businesses​, violence prevention, economic development, healthier lifestyles, job​ creation, and higher property values".​​​
 ####Attract ​People
-Markup : * CNT:​ ???​
- 		* CMAP: Martin Menninger, Noel Paterson, Tom Murtha, John Oneal
- 		* A​ctive ​T​ransportation ​A​lliance​: ​???​
- 		* Chicago Cycling Club​: ???​
- 		* Chicago Black Bike Coalition​: Slow Roll Chicago, Major Taylor​ ​Cycling​ Club of Chicago​ & Friends of ​the ​Major Taylor Trail
- 		* SRAM​: Randy Neufeld​
- 		* Neighborhood Associations & Community Organizations
-​ 		* Supportive Aldermen​
+* CNT:​ ???​
+* CMAP: Martin Menninger, Noel Paterson, Tom Murtha, John Oneal
+* A​ctive ​T​ransportation ​A​lliance​: ​???​
+* Chicago Cycling Club​: ???​
+* Chicago Black Bike Coalition​: Slow Roll Chicago, Major Taylor​ ​Cycling​ Club of Chicago​ & Friends of ​the ​Major Taylor Trail
+* SRAM​: Randy Neufeld​
+* Neighborhood Associations & Community Organizations
+​* Supportive Aldermen​
 ​​####Community Barriers​ to Address​
-Markup : * Focus needs to be on violence prevention
- 		* More jobs is a more important issue
-		* Less parking is an inconvenience
-	    * Gentrification is coming
-		* Perception of biking (white, children, spandex​ wearers​, poor​ people​) 
+* Focus needs to be on violence prevention
+* More jobs is a more important issue
+* Less parking is an inconvenience
+* Gentrification is coming
+* Perception of biking (white, children, spandex​ wearers​, poor​ people​) 
 ​
 For the folks who were at the meeting, please let me know in case I missed anything in notes above or you notice any errors in the notes. 
 
