@@ -42,7 +42,7 @@ _We currently need this data:_
 
 ### Goal​s​
 
-​* Create a layered map to show the reality​ of bike infrastructure distribution in Chicago. Use ​these visuals to determine next steps. Before​ we publish the data, we will involve a ​few more groups to get feedback. Example: Transitized How Chicago Commutes map. 
+* Create a layered map to show the reality​ of bike infrastructure distribution in Chicago. Use ​these visuals to determine next steps. Before​ we publish the data, we will involve a ​few more groups to get feedback. Example: Transitized How Chicago Commutes map. 
 * Create an equity index. 
 * Integrate​ the data and visuals on the Slow Roll Chicago website
 ​* Analyze the data and produce a report for each ​Chicago ​ward​, determining "here’s where you’re at, here’s what you need to do​".
