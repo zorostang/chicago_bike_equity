@@ -1,0 +1,5 @@
+This folder has two GIS folders: 
+1. gis_data: 
+2. gis_original_data
+
+Untouched GIS data should go in "gis_original_data" and transformed (edited; new, derived shapefiles) GIS data should go in "gis_data". 
