@@ -20,6 +20,12 @@ _In Attendance_
 * Martin Menninger
 * Daniel Hertz
 * Arnold Kas
+* Michael
+* Anna
+* Nathan
+* Gino
+* Maggie
+* Tristan
 
 ### Problem
 
