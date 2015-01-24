@@ -44,16 +44,16 @@
               <ul class="dropdown-menu">
                 <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
                 <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;Show Legend</a></li>
-                <li class="divider hidden-xs"></li>
-                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="login-btn"><i class="fa fa-user"></i>&nbsp;&nbsp;Login</a></li>
+                <li class="divider hidden hidden-xs"></li>
+                <li class="hidden"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="login-btn"><i class="fa fa-user"></i>&nbsp;&nbsp;Login</a></li>
               </ul>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Download <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="data/boroughs.geojson" download="boroughs.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Boroughs</a></li>
-                  <li><a href="data/subways.geojson" download="subways.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Subway Lines</a></li>
-                  <li><a href="data/DOITT_THEATER_01_13SEPT2010.geojson" download="theaters.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Theaters</a></li>
+                  <li><a href="data/chicago_wards_2015.geojson" download="chicago_wards_2015.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Wards</a></li>
+                  <li><a href="data/bike_routes_12-19-14_excl_recommended.geojson" download="bike_routes_12-19-14_excl_recommended.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Bike Lanes</a></li>
+                  <li><a href="data/grocery_stores_2013.geojson" download="grocery_stores_2013.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Grocery Stores</a></li>
                   <li><a href="data/DOITT_MUSEUM_01_13SEPT2010.geojson" download="museums.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Museums</a></li>
                 </ul>
             </li>
@@ -133,7 +133,7 @@
                 <ul class="dropdown-menu">
                   <li><a href="#boroughs-tab" data-toggle="tab">Boroughs</a></li>
                   <li><a href="#subway-lines-tab" data-toggle="tab">Subway Lines</a></li>
-                  <li><a href="#theaters-tab" data-toggle="tab">Theaters</a></li>
+                  <li><a href="#groceries-tab" data-toggle="tab">Grocery Stores</a></li>
                   <li><a href="#museums-tab" data-toggle="tab">Museums</a></li>
                 </ul>
               </li>
@@ -194,8 +194,8 @@
               <div class="tab-pane fade" id="subway-lines-tab">
                 <p><a href="http://spatialityblog.com/2010/07/08/mta-gis-data-update/#datalinks" target="_blank">MTA Subway data</a> courtesy of the <a href="http://www.urbanresearch.org/about/cur-components/cuny-mapping-service" target="_blank">CUNY Mapping Service at the Center for Urban Research</a></p>
               </div>
-              <div class="tab-pane fade" id="theaters-tab">
-                <p>Theater data courtesy of <a href="https://data.cityofnewyork.us/Recreation/Theaters/kdu2-865w" target="_blank">NYC Department of Information & Telecommunications (DoITT)</a></p>
+              <div class="tab-pane fade" id="groceries-tab">
+                <p>Grocery store data courtesy of City of Chicago</p>
               </div>
               <div class="tab-pane fade" id="museums-tab">
                 <p>Museum data courtesy of <a href="https://data.cityofnewyork.us/Recreation/Museums-and-Galleries/sat5-adpb" target="_blank">NYC Department of Information & Telecommunications (DoITT)</a></p>
@@ -226,7 +226,7 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+    <div class="modal fade hidden" id="loginModal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
@@ -294,6 +294,7 @@
     <script src="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
+    <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js"></script>
     <script src="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.js"></script>
     <script src="assets/js/app.js"></script>
   </body>
