@@ -107,6 +107,11 @@ var bikelanesOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l
   attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
 });
 
+var populationOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l3621,stevevance.g49x1zin/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
+});
+
 var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
   maxZoom: 19,
   subdomains: ["otile1", "otile2", "otile3", "otile4"],
@@ -140,8 +145,8 @@ var wards = L.geoJson(null, {
     return {
       color: "gray",
       fill: "gray",
-      opacity: 0.8,
-      fillOpacity: 0.2,
+      opacity: 0.9,
+      fillOpacity: 0,
       weight: 2.0,
       clickable: false
     };
@@ -160,7 +165,7 @@ $.getJSON("data/chicago_wards_2015.geojson", function (data) {
 });
 
 var bikeLaneColors = {bikelane: "#00D624", trail: "#00570E", opacity: 0.8}
-var bikeLanes = L.geoJson(null, {
+var bikelanesLayer = L.geoJson(null, {
   style: function (feature) {
     if (feature.properties.TYPE === "1") {
     	// bike lane
@@ -205,7 +210,7 @@ var bikeLanes = L.geoJson(null, {
     if (feature.properties.TYPE === "9") {
     	// buffered bike lane
       return {
-        color: bikeLaneColors.trail,
+        color: bikeLaneColors.bikelane,
         weight: 5,
         opacity: bikeLaneColors.opacity
       };
@@ -236,13 +241,14 @@ var bikeLanes = L.geoJson(null, {
         }
       },
       mouseout: function (e) {
-        bikeLanes.resetStyle(e.target);
+        bikelanesLayer.resetStyle(e.target);
       }
     });
   }
 });
 $.getJSON("data/bike_routes_12-19-14_excl_recommended.geojson", function (data) {
-  bikeLanes.addData(data);
+  bikelanesLayer.addData(data);
+  map.addLayer(bikelanesLayer);
 });
 
 /* Single marker cluster layer to hold all clusters */
@@ -293,7 +299,7 @@ var groceries = L.geoJson(null, {
 });
 $.getJSON("data/grocery_stores_2013.geojson", function (data) {
   groceries.addData(data);
-  map.addLayer(groceriesLayer);
+  //map.addLayer(groceriesLayer);
 });
 
 /* Empty layer placeholder to add to layer control for listening when to add/remove museums to markerClusters layer */
@@ -341,7 +347,7 @@ $.getJSON("data/DOITT_MUSEUM_01_13SEPT2010.geojson", function (data) {
 map = L.map("map", {
   zoom: 12,
   center: [41.87982, -87.63161],
-  layers: [bikelanesOSM, wards, markerClusters, highlight],
+  layers: [populationOSM, bikelanesLayer, markerClusters, highlight],
   zoomControl: false,
   attributionControl: false
 });
@@ -395,20 +401,20 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a> | </span><a href='#' onclick='$(\"#attributionModal\").modal(\"show\"); return false;'>Attribution</a>";
+  div.innerHTML = "<span class='hidden-xs'>Map template developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a> | </span><a href='#' onclick='$(\"#attributionModal\").modal(\"show\"); return false;'>Attribution</a>";
   return div;
 };
 map.addControl(attributionControl);
 
 var zoomControl = L.control.zoom({
-  position: "bottomright"
+  position: "topleft"
 }).addTo(map);
 
 /* GPS enabled geolocation control set to follow the user's location */
 var locateControl = L.control.locate({
-  position: "bottomright",
+  position: "topleft",
   drawCircle: true,
-  follow: true,
+  follow: false,
   setView: true,
   keepCurrentZoomLevel: true,
   markerStyle: {
@@ -444,20 +450,22 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-
-  "Street Map": bikelanesOSM,
-  "Aerial Imagery": mapquestOAM,
-  "Imagery with Streets": mapquestHYB
+	"Population Density": populationOSM,
+	"Regional Bikeways": bikelanesOSM,
+	//"Satellite": mapquestOAM,
+	"Satellite": mapquestHYB
 };
 
 var groupedOverlays = {
-  "Points of Interest": {
-    "<img src='assets/img/grocery.png' width='24' height='28'>&nbsp;Grocery Stores": groceriesLayer
-  },
-  "Reference": {
-    "Wards": wards,
-    "Bike Lanes": bikeLanes
-  }
+	"Points of Interest": {
+	  "<img src='assets/img/grocery.png' width='24' height='28'>&nbsp;Grocery Stores": groceriesLayer
+	},
+	"Boundaries": {
+	  "Wards": wards
+	},
+	"References": {
+	  "Bike Lanes": bikelanesLayer
+	}
 };
 
 var layerControl = L.control.groupedLayers(baseLayers, groupedOverlays, {
@@ -483,8 +491,8 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
 /* Typeahead search functionality */
 $(document).one("ajaxStop", function () {
   $("#loading").hide();
-  /* Fit map to wards bounds */
-  map.fitBounds(wards.getBounds());
+  /* Fit map to bike lanes bounds */
+  map.fitBounds(bikelanesLayer.getBounds());
   featureList = new List("features", {valueNames: ["feature-name"]});
   featureList.sort("feature-name", {order:"asc"});
 
