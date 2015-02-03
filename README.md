@@ -1,6 +1,8 @@
 # Chicago Bike Lane Equity #
 Visualization and analysis of Chicago bike lanes. An effort to determine how the bike lane installations are divided among the entire city. Are they distributed equally or equitably?
 
+Map in progress: http://www.stevevance.net/slowrollchicago/
+
 ### Problem
 
 Bicycle infrastructure is inequitably distributed in Chicago. And, as a result, Black, Brown, and LMI communities/residents are cut-off from all the various, inherent benefits from the activity of cycling.
