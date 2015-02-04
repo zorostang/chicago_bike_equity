@@ -232,7 +232,7 @@ var bikelanesLayer = L.geoJson(null, {
       mouseover: function (e) {
         var layer = e.target;
         layer.setStyle({
-          weight: 4,
+          //weight: 4,
           color: "#e5f5f9",
           opacity: 0.9
         });
