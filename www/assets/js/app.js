@@ -616,7 +616,7 @@ $(document).one("ajaxStop", function () {
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
-    name: "Divvy Stations",
+    name: "DivvyStations",
     displayKey: "name",
     source: divvyStationsBH.ttAdapter(),
     templates: {
