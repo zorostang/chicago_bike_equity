@@ -1,4 +1,4 @@
-var map, featureList, wardsSearch = [], commAreaSearch = [], groceriesSearch = [], museumSearch = [];
+var map, featureList, wardsSearch = [], commAreaSearch = [], groceriesSearch = [], museumSearch = [], groceriesGeojson;
 
 $(document).on("click", ".feature-row", function(e) {
   $(document).off("mouseout", ".feature-row", clearHighlight);
@@ -299,6 +299,7 @@ var groceries = L.geoJson(null, {
 });
 $.getJSON("data/grocery_stores_2013.geojson", function (data) {
   groceries.addData(data);
+  groceriesGeojson = data;
   //map.addLayer(groceriesLayer);
 });
 
