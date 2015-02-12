@@ -1,3 +1,8 @@
+
+
+
+$( document ).ready(function(){ //document ready jquery wrapper
+
 var map, featureList, wardsSearch = [], commAreaSearch = [], groceriesSearch = [], museumSearch = [];
 
 $(document).on("click", ".feature-row", function(e) {
@@ -634,3 +639,5 @@ $(document).one("ajaxStop", function () {
   $(".twitter-typeahead").css("position", "static");
   $(".twitter-typeahead").css("display", "block");
 });
+
+}); //document ready close-bracket
