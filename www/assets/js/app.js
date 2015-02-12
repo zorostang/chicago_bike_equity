@@ -3,7 +3,7 @@
 
 $( document ).ready(function(){ //document ready jquery wrapper
 
-var map, featureList, wardsSearch = [], commAreaSearch = [], groceriesSearch = [], museumSearch = [];
+var map, featureList, divvyStationsSearch = [], wardsSearch = [], commAreaSearch = [], groceriesSearch = [], museumSearch = [], groceriesGeojson;
 
 $(document).on("click", ".feature-row", function(e) {
   $(document).off("mouseout", ".feature-row", clearHighlight);
@@ -144,7 +144,28 @@ var highlightStyle = {
   fillOpacity: 0.7,
   radius: 10
 };
-
+var divvyStations = L.geoJson(null, {
+  style: function(feature) {
+    return {
+      color: "blue",
+      fill: "blue",
+      opacity: 0.9,
+      fillOpacity: 0,
+      weight: 2.0,
+      clickable: false
+    };
+  },
+  onEachFeature: function (feature, layer) {
+    divvyStationsSearch.push({
+      name: layer.feature.properties.Address,
+      source: "DivvyStations",
+      id: L.stamp(layer)
+    });
+  }
+});
+$.getJSON("data/divvy_stations.geojson", function (data) {
+  divvyStations.addData(data);
+});
 var wards = L.geoJson(null, {
   style: function (feature) {
     return {
@@ -304,6 +325,7 @@ var groceries = L.geoJson(null, {
 });
 $.getJSON("data/grocery_stores_2013.geojson", function (data) {
   groceries.addData(data);
+  groceriesGeojson = data;
   //map.addLayer(groceriesLayer);
 });
 
@@ -469,7 +491,8 @@ var groupedOverlays = {
 	  "Wards": wards
 	},
 	"References": {
-	  "Bike Lanes": bikelanesLayer
+	  "Bike Lanes": bikelanesLayer,
+    "Divvy Stations": divvyStations
 	}
 };
 
@@ -508,6 +531,16 @@ $(document).one("ajaxStop", function () {
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     local: wardsSearch,
+    limit: 10
+  });
+
+  var divvyStationsBH = new Bloodhound({
+    name: "Divvy Stations",
+    datumTokenizer: function(d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: divvyStationsSearch,
     limit: 10
   });
 
@@ -563,6 +596,7 @@ $(document).one("ajaxStop", function () {
   });
   wardsBH.initialize();
   groceriesBH.initialize();
+  divvyStationsBH.initialize();
   museumsBH.initialize();
   geonamesBH.initialize();
 
@@ -587,6 +621,14 @@ $(document).one("ajaxStop", function () {
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
+    name: "DivvyStations",
+    displayKey: "name",
+    source: divvyStationsBH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'>Divvy Stations</h4>"
+    }
+  },
+   {
     name: "Museums",
     displayKey: "name",
     source: museumsBH.ttAdapter(),
