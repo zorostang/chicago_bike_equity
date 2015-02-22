@@ -1,9 +1,9 @@
 
-
+var groceriesGeojson; //make available outside of document.ready
 
 $( document ).ready(function(){ //document ready jquery wrapper
 
-var map, featureList, divvyStationsSearch = [], wardsSearch = [], commAreaSearch = [], groceriesSearch = [], museumSearch = [], groceriesGeojson;
+var map, featureList, divvyStationsSearch = [], wardsSearch = [], commAreaSearch = [], groceriesSearch = [], museumSearch = [];
 
 $(document).on("click", ".feature-row", function(e) {
   $(document).off("mouseout", ".feature-row", clearHighlight);
@@ -680,6 +680,16 @@ $(document).one("ajaxStop", function () {
   });
   $(".twitter-typeahead").css("position", "static");
   $(".twitter-typeahead").css("display", "block");
+
 });
 
+
+//console.log(groceriesGeojson.features[0].properties.LATITUDE);
+//console.log("g[0]: longitude" + groceriesGeojson.features[0].properties.LONGITUDE);
+
 }); //document ready close-bracket
+
+
+console.log("groceries geojson:" + groceriesGeojson);
+
+
