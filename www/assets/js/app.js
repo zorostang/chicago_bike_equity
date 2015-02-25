@@ -144,6 +144,17 @@ var highlightStyle = {
   fillOpacity: 0.7,
   radius: 10
 };
+//var divvyBuffers = [];
+var divvyBuffers = L.geoJson(null, {
+  style: function() {
+    return {
+      fill: "gray",
+      opacity: 0.5,
+      fillOpacity: 0.5,
+      clickable: false
+    };
+  }
+});
 var divvyStations = L.geoJson(null, {
   style: function(feature) {
     return {
@@ -165,7 +176,25 @@ var divvyStations = L.geoJson(null, {
 });
 $.getJSON("data/divvy_stations.geojson", function (data) {
   divvyStations.addData(data);
+  $.each(data, function(key, stations) {
+    if (key === 'features') {
+      stations.forEach(function(station) {
+        var buffered = turf.buffer(station, 0.2, 'miles');
+
+        var resultFeatures = buffered.features.concat(station);
+        divvyBuffers.addData({
+          "type": "FeatureCollection",
+          "features": resultFeatures
+        });
+      });
+      map.addLayer(divvyBuffers);
+    }
+
+  });
 });
+
+
+
 var wards = L.geoJson(null, {
   style: function (feature) {
     return {
