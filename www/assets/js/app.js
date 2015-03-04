@@ -140,11 +140,11 @@ var highlightStyle = {
 var divvyBuffers = L.geoJson(null, {
   style: function() {
     return {
-      fill: "gray",
-      opacity: 0.5,
-      fillOpacity: 0.5,
+      color: "blue",
+      opacity: 0.1,
+      fillOpacity: 0,
       clickable: false
-    };
+    }
   }
 });
 var divvyStations = L.geoJson(null, {
@@ -171,16 +171,17 @@ $.getJSON("data/divvy_stations.geojson", function (data) {
   $.each(data, function(key, stations) {
     if (key === 'features') {
       stations.forEach(function(station) {
-        var buffered = turf.buffer(station, 0.5, 'miles');
+        var buffered = turf.buffer(station, 0.25, 'miles');
 
         var resultFeatures = buffered.features;//.concat(station);
-        
+
         divvyBuffers.addData({
           "type": "FeatureCollection",
           "features": resultFeatures
         });
       });
-      map.addLayer(divvyBuffers);
+      mergedBuffers = turf.merge(divvyBuffers.toGeoJSON());
+      L.geoJson(mergedBuffers).addTo(map);
     }
 
   });
