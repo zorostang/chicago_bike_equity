@@ -354,8 +354,7 @@ map = L.map("map", {
   center: [41.87982, -87.63161],
   layers: [populationOSM, bikelanesLayer, markerClusters, highlight],
   zoomControl: false,
-  attributionControl: false,
-  crs: L.CRS.EPSG4326
+  attributionControl: false
 });
 
 /* Layer control listeners that allow for a single markerClusters layer */
