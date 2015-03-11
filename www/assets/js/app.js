@@ -1,5 +1,15 @@
 
-var groceriesGeojson; //make available outside of document.ready
+//global variables for mapping
+var groceriesGeojson; 
+var groceries; 
+var groceriesLayer; 
+
+//global variables for groceries near divvy stations function
+var groceriesNearDivvy; 
+var fcSuperBuffer;
+var divvySuperBufferArray;
+
+//Beginning of app
 
 $( document ).ready(function(){ //document ready jquery wrapper
 
@@ -136,6 +146,56 @@ var highlightStyle = {
   fillOpacity: 0.7,
   radius: 10
 };
+
+
+//establish the grocery store layer for mapping, point of interest searching
+//and divvy calculations
+
+ groceriesLayer = L.geoJson(null); //take out var
+ groceries = L.geoJson(null, { //take out var
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.icon({
+        iconUrl: "assets/img/grocery.png",
+        iconSize: [24, 28],
+        iconAnchor: [12, 28],
+        popupAnchor: [0, -25]
+      }),
+      title: feature.properties['STORE NAME'],
+      riseOnHover: true
+    });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties['STORE NAME'] + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.ADDRESS + "</td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties['STORE NAME']);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/grocery.png"></td><td class="feature-name">' + layer.feature.properties['STORE NAME'] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      groceriesSearch.push({
+        name: layer.feature.properties['STORE NAME'],
+        address: layer.feature.properties.ADDRESS,
+        source: "Groceries",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
+      });
+    }
+  }
+});
+$.getJSON("data/grocery_stores_2013.geojson", function (data) {
+  groceries.addData(data);
+  groceriesGeojson = data;
+  //map.addLayer(groceriesLayer);
+});
+
+///////////////////////Begin divvyBuffers/////////////////
+
 //var divvyBuffers = [];
 var divvyBuffers = L.geoJson(null, {
   style: function() {
@@ -170,21 +230,48 @@ $.getJSON("data/divvy_stations.geojson", function (data) {
   divvyStations.addData(data);
   $.each(data, function(key, stations) {
     if (key === 'features') {
-      stations.forEach(function(station) {
-        var buffered = turf.buffer(station, 0.25, 'miles');
+      stations.forEach(function(station) { //for every divvy station
+        var buffered = turf.buffer(station, 0.25, 'miles'); //.25 mi buffer around each div st.
 
-        var resultFeatures = buffered.features;//.concat(station);
+        var resultFeatures = buffered.features;//.concat(station); //add all features of 
 
-        divvyBuffers.addData({
+        divvyBuffers.addData({ //collection of divvyBuffers
           "type": "FeatureCollection",
-          "features": resultFeatures
+          "features": resultFeatures //data from each buffer is added to collection
         });
       });
-      mergedBuffers = turf.merge(divvyBuffers.toGeoJSON());
-      L.geoJson(mergedBuffers).addTo(map);
+
+	 //Create a Divvy Super Buffer (merges all buffers together)
+      divvySuperBuffer = turf.merge(divvyBuffers.toGeoJSON()); 
+	 //Add SuperBuffer to the map
+      L.geoJson(divvySuperBuffer).addTo(map); 
+
+
     }
 
   });
+
+	/* Function: Count the number of grocery stores within a 
+	*.25 mile of a Divvy Station.
+	*/
+
+	//create an array of one Divvy Super Buffer
+	divvySuperBufferArray = [divvySuperBuffer];
+	console.log(divvySuperBufferArray);
+
+	//make a feature collection of the one Super Buffer Array
+	fcSuperBuffer = turf.featurecollection(divvySuperBufferArray);
+	console.log(fcSuperBuffer);
+
+	//count the number of grocery stores within the feature collection
+	groceriesNearDivvy = turf.within(groceriesGeojson, fcSuperBuffer);
+
+	//print statements to confirm grocery count
+	console.log("groceries near divvy object is below:");
+	console.log(groceriesNearDivvy);
+	console.log("groceries near divvy count: " + groceriesNearDivvy.features.length);	
+
+
 });
 
 var wards = L.geoJson(null, {
@@ -307,8 +394,9 @@ var markerClusters = new L.MarkerClusterGroup({
 });
 
 /* Empty layer placeholder to add to layer control for listening when to add/remove grocery stores to markerClusters layer */
-var groceriesLayer = L.geoJson(null);
-var groceries = L.geoJson(null, {
+/*
+ groceriesLayer = L.geoJson(null); //take out var
+ groceries = L.geoJson(null, { //take out var
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
@@ -349,6 +437,8 @@ $.getJSON("data/grocery_stores_2013.geojson", function (data) {
   groceriesGeojson = data;
   //map.addLayer(groceriesLayer);
 });
+*/
+
 
 map = L.map("map", {
   zoom: 12,
