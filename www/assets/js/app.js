@@ -9,11 +9,16 @@ var groceriesNearDivvy;
 var fcSuperBuffer;
 var divvySuperBufferArray;
 
+//from conflict
+var divvyStations;
+var divvyBuffers;
+var map;
+
 //Beginning of app
 
 $( document ).ready(function(){ //document ready jquery wrapper
 
-var map, featureList, divvyStationsSearch = [], wardsSearch = [], commAreaSearch = [], groceriesSearch = [];
+var featureList, divvyStationsSearch = [], wardsSearch = [], commAreaSearch = [], groceriesSearch = [];
 
 $(document).on("click", ".feature-row", function(e) {
   $(document).off("mouseout", ".feature-row", clearHighlight);
@@ -197,7 +202,7 @@ $.getJSON("data/grocery_stores_2013.geojson", function (data) {
 ///////////////////////Begin divvyBuffers/////////////////
 
 //var divvyBuffers = [];
-var divvyBuffers = L.geoJson(null, {
+divvyBuffers = L.geoJson(null, {
   style: function() {
     return {
       color: "blue",
@@ -207,14 +212,14 @@ var divvyBuffers = L.geoJson(null, {
     }
   }
 });
-var divvyStations = L.geoJson(null, {
+divvyStations = L.geoJson(null, {
   style: function(feature) {
     return {
       color: "blue",
       fill: "blue",
-      opacity: 0.9,
-      fillOpacity: 0,
-      weight: 2.0,
+      opacity: 0.5,
+      fillOpacity: 0.5,
+      weight: 1.0,
       clickable: false
     };
   },
@@ -441,11 +446,20 @@ $.getJSON("data/grocery_stores_2013.geojson", function (data) {
 
 
 map = L.map("map", {
-  zoom: 12,
-  center: [41.87982, -87.63161],
-  layers: [populationOSM, bikelanesLayer, markerClusters, highlight],
-  zoomControl: false,
-  attributionControl: false
+	zoom: 12,
+	center: [41.87982, -87.63161],
+	layers: [populationOSM, bikelanesLayer, markerClusters, highlight],
+	zoomControl: false,
+	attributionControl: false,
+	contextmenu: true,
+	contextmenuWidth: 200,
+	contextmenuItems: [{
+		text: 'Show coordinates',
+		callback: showCoordinates
+	},{
+		text: "Find nearby Divvy stations",
+		callback: findNearbyDivvy
+	}]
 });
 
 /* Layer control listeners that allow for a single markerClusters layer */
