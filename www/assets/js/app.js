@@ -576,16 +576,6 @@ var layerControl = L.control.groupedLayers(baseLayers, groupedOverlays, {
 }).addTo(map);
 
 /* Highlight search box text on click */
-$("#searchbox").click(function () {
-  $(this).select();
-});
-
-/* Prevent hitting enter from refreshing the page */
-$("#searchbox").keypress(function (e) {
-  if (e.which == 13) {
-    e.preventDefault();
-  }
-});
 
 $("#featureModal").on("hidden.bs.modal", function (e) {
   $(document).on("mouseout", ".feature-row", clearHighlight);
