@@ -1,11 +1,11 @@
 
 //global variables for mapping
-var groceriesGeojson; 
-var groceries; 
-var groceriesLayer; 
+var groceriesGeojson;
+var groceries;
+var groceriesLayer;
 
 //global variables for groceries near divvy stations function
-var groceriesNearDivvy; 
+var groceriesNearDivvy;
 var fcSuperBuffer;
 var divvySuperBufferArray;
 
@@ -94,7 +94,7 @@ function sidebarClick(id) {
 
 function syncSidebar() {
 
- //  Empty sidebar features 
+ //  Empty sidebar features
 /*
   $("#feature-list tbody").empty();
 
@@ -107,7 +107,7 @@ function syncSidebar() {
       }
     }
  });
-  // Update list.js featureList 
+  // Update list.js featureList
   featureList = new List("features", {
     valueNames: ["feature-name"]
   });
@@ -125,10 +125,10 @@ var bikelanesOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l
   attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
 });
 
-var populationOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l3621,stevevance.g49x1zin/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
-});
+// var populationOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l3621,stevevance.g49x1zin/{z}/{x}/{y}.png", {
+//   maxZoom: 19,
+//   attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
+// });
 
 var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
   maxZoom: 19,
@@ -189,7 +189,7 @@ var highlightStyle = {
       });
 /*
       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/grocery.png"></td><td class="feature-name">' + layer.feature.properties['STORE NAME'] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-*/ 
+*/
      groceriesSearch.push({
         name: layer.feature.properties['STORE NAME'],
         address: layer.feature.properties.ADDRESS,
@@ -246,7 +246,7 @@ $.getJSON("data/divvy_stations.geojson", function (data) {
       stations.forEach(function(station) { //for every divvy station
         var buffered = turf.buffer(station, 0.25, 'miles'); //.25 mi buffer around each div st.
 
-        var resultFeatures = buffered.features;//.concat(station); //add all features of 
+        var resultFeatures = buffered.features;//.concat(station); //add all features of
 
         divvyBuffers.addData({ //collection of divvyBuffers
           "type": "FeatureCollection",
@@ -255,16 +255,16 @@ $.getJSON("data/divvy_stations.geojson", function (data) {
       });
 
 	 //Create a Divvy Super Buffer (merges all buffers together)
-      divvySuperBuffer = turf.merge(divvyBuffers.toGeoJSON()); 
+      divvySuperBuffer = turf.merge(divvyBuffers.toGeoJSON());
 	 //Add SuperBuffer to the map
-      L.geoJson(divvySuperBuffer).addTo(map); 
+      L.geoJson(divvySuperBuffer).addTo(map);
 
 
     }
 
   });
 
-	/* Function: Count the number of grocery stores within a 
+	/* Function: Count the number of grocery stores within a
 	*.25 mile of a Divvy Station.
 	*/
 
@@ -282,7 +282,7 @@ $.getJSON("data/divvy_stations.geojson", function (data) {
 	//print statements to confirm grocery count
 	console.log("groceries near divvy object is below:");
 	console.log(groceriesNearDivvy);
-	console.log("groceries near divvy count: " + groceriesNearDivvy.features.length);	
+	console.log("groceries near divvy count: " + groceriesNearDivvy.features.length);
 
 	$("#features").append("<div class='panel-heading'> Groceries Near a Divvy Station: " + groceriesNearDivvy.features.length  + "</div>");
 
@@ -456,8 +456,9 @@ $.getJSON("data/grocery_stores_2013.geojson", function (data) {
 
 map = L.map("map", {
 	zoom: 12,
+  maxZoom: 19,
 	center: [41.87982, -87.63161],
-	layers: [populationOSM, bikelanesLayer, markerClusters, highlight],
+	layers: [bikelanesLayer, markerClusters, highlight],
 	zoomControl: false,
 	attributionControl: false,
 	contextmenu: true,
@@ -561,7 +562,7 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-	"Population Density": populationOSM,
+	// "Population Density": populationOSM,
 	"Regional Bikeways": bikelanesOSM,
 	//"Satellite": mapquestOAM,
 	"Satellite": mapquestHYB
@@ -732,5 +733,83 @@ $(document).one("ajaxStop", function () {
 //console.log(groceriesGeojson.features[0].properties.LATITUDE);
 //console.log("g[0]: longitude" + groceriesGeojson.features[0].properties.LONGITUDE);
 
-}); //document ready close-bracket
+  /*
+   * Initializes the population layer.
+   */
 
+  var population = (function() {
+      'use strict';
+      var populationLayer;
+
+      function initPopulationLayer(map) {
+        populationLayer = L.geoJson(null, {
+          style: style,
+          onEachFeature: onEachFeature }).addTo(map);
+
+        $.getJSON("data/race_clipped.geojson", function (data) {
+          populationLayer.addData(data);
+        });
+      }
+
+      function style(feature) {
+        return {
+          fillColor: getColor('population', feature.properties.a_pop10),
+          weight: 2,
+          opacity: 1,
+          color: 'white',
+          dashArray: '3',
+          fillOpacity: 0.2
+        };
+      }
+
+      function getColor(category, d) {
+        if (category === 'population') {
+          return d > 1000 ? '#800026' :
+                 d > 500  ? '#BD0026' :
+                 d > 200  ? '#E31A1C' :
+                 d > 100  ? '#FC4E2A' :
+                 d > 50   ? '#FD8D3C' :
+                 d > 20   ? '#FEB24C' :
+                 d > 10   ? '#FED976' :
+                            '#FFEDA0';
+        }
+      }
+
+      function highlightFeature(e) {
+          var layer = e.target;
+
+          layer.setStyle({
+              weight: 5,
+              color: '#666',
+              dashArray: '',
+              fillOpacity: 0.7
+          });
+
+          if (!L.Browser.ie && !L.Browser.opera) {
+              layer.bringToFront();
+          }
+      }
+
+      function resetHighlight(e) {
+        populationLayer.resetStyle(e.target);
+      }
+
+      function zoomToFeature(e) {
+        map.fitBounds(e.target.getBounds());
+      }
+
+      function onEachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: zoomToFeature
+        });
+      }
+
+      return {
+        initPopulationLayer: initPopulationLayer
+      };
+    })();
+
+population.initPopulationLayer(map);
+}); //document ready close-bracket
