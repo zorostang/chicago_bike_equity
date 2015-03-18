@@ -44,5 +44,7 @@ var geojsonMarkerOptions = {
 }
 
 function showCoordinates (e) {
-	alert(e.latlng);
+	//remove the previous coordinate information, if it exists
+	$(".coordinate").remove();
+	$("#features").append("<div class='panel-heading coordinate'> Cooordinates: "  + e.latlng + "</div>");
 }
