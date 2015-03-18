@@ -93,23 +93,29 @@ function sidebarClick(id) {
 }
 
 function syncSidebar() {
-  /* Empty sidebar features */
+
+ //  Empty sidebar features 
+/*
   $("#feature-list tbody").empty();
-  /* Loop through grocery stores layer and add only features which are in the map bounds */
+
+  // Loop through grocery stores layer and add only features which are in the map bounds
+
   groceries.eachLayer(function (layer) {
     if (map.hasLayer(groceriesLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
         $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/grocery.png"></td><td class="feature-name">' + layer.feature.properties['STORE NAME'] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
-  });
-  /* Update list.js featureList */
+ });
+  // Update list.js featureList 
   featureList = new List("features", {
     valueNames: ["feature-name"]
   });
   featureList.sort("feature-name", {
     order: "asc"
   });
+
+*/
 }
 
 /* Basemap Layers */
@@ -181,8 +187,10 @@ var highlightStyle = {
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
+/*
       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/grocery.png"></td><td class="feature-name">' + layer.feature.properties['STORE NAME'] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-      groceriesSearch.push({
+*/ 
+     groceriesSearch.push({
         name: layer.feature.properties['STORE NAME'],
         address: layer.feature.properties.ADDRESS,
         source: "Groceries",
@@ -276,6 +284,7 @@ $.getJSON("data/divvy_stations.geojson", function (data) {
 	console.log(groceriesNearDivvy);
 	console.log("groceries near divvy count: " + groceriesNearDivvy.features.length);	
 
+	$("#features").append("<div class='panel-heading'> Groceries Near a Divvy Station: " + groceriesNearDivvy.features.length  + "</div>");
 
 });
 
