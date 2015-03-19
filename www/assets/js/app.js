@@ -744,16 +744,18 @@ $(document).one("ajaxStop", function () {
       function initPopulationLayer(map) {
         populationLayer = L.geoJson(null, {
           style: style,
-          onEachFeature: onEachFeature }).addTo(map);
+          onEachFeature: onEachFeature
+        }).addTo(map);
 
         $.getJSON("data/race_clipped.geojson", function (data) {
           populationLayer.addData(data);
+          addLegend();
         });
       }
 
       function style(feature) {
         return {
-          fillColor: getColor('population', feature.properties.a_pop10),
+          fillColor: getColor(feature.properties.a_pop10),
           weight: 2,
           opacity: 1,
           color: 'white',
@@ -762,8 +764,7 @@ $(document).one("ajaxStop", function () {
         };
       }
 
-      function getColor(category, d) {
-        if (category === 'population') {
+      function getColor(d) {
           return d > 1000 ? '#800026' :
                  d > 500  ? '#BD0026' :
                  d > 200  ? '#E31A1C' :
@@ -772,7 +773,6 @@ $(document).one("ajaxStop", function () {
                  d > 20   ? '#FEB24C' :
                  d > 10   ? '#FED976' :
                             '#FFEDA0';
-        }
       }
 
       function highlightFeature(e) {
@@ -788,6 +788,8 @@ $(document).one("ajaxStop", function () {
           if (!L.Browser.ie && !L.Browser.opera) {
               layer.bringToFront();
           }
+
+          // info.update(layer.feature.properties);
       }
 
       function resetHighlight(e) {
@@ -806,10 +808,34 @@ $(document).one("ajaxStop", function () {
         });
       }
 
+      function addLegend() {
+        var legend = L.control({position: 'bottomright'});
+
+        legend.onAdd = function (map) {
+
+            var div = L.DomUtil.create('div', 'info legend leaflet-control-layers leaflet-control-layers-expanded'),
+                grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+                labels = [];
+
+            div.innerHTML += "<p><strong>Population Density, per mi&#178;</strong></p>";
+
+            // loop through our density intervals and generate a label with a colored square for each interval
+            for (var i = 0; i < grades.length; i++) {
+                div.innerHTML +=
+                    '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+            }
+
+            return div;
+        };
+
+        legend.addTo(map);
+      }
+
       return {
         initPopulationLayer: initPopulationLayer
       };
     })();
 
-population.initPopulationLayer(map);
+  population.initPopulationLayer(map);
 }); //document ready close-bracket
