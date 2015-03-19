@@ -1,8 +1,12 @@
+/* jshint unused: false */
+/* global L, $, turf */
+
 /*
  * Initializes and populates the population overlay layer.
  */
 
-function Population(map) {
+function PopulationLayer(map) {
+  'use strict';
   var self = this;
   this.layer = L.geoJson(null, {
     style: style,
@@ -11,7 +15,7 @@ function Population(map) {
   this.info = L.control({position: 'bottomleft'});
   this.legend = L.control({position: 'bottomright'});
 
-  $.getJSON("data/race_clipped.geojson", function (data) {
+  $.getJSON('data/race_clipped.geojson', function (data) {
     self.layer.addData(data);
     addLegend();
     addInfoControl();
@@ -78,7 +82,7 @@ function Population(map) {
         var div = L.DomUtil.create('div', 'info legend leaflet-control-layers leaflet-control-layers-expanded'),
             grades = [0, 1000, 2000, 5000, 10000, 15000, 20000, 30000],
             labels = [];
-        div.innerHTML += "<p><strong>Population Density, per mi&#178;</strong></p>";
+        div.innerHTML += '<p><strong>Population Density, per mi&#178;</strong></p>';
 
         // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
@@ -118,4 +122,103 @@ function Population(map) {
     var areaInMi2 = areaInM2 / 2589988.11;
     return Math.round(feature.properties.a_pop10 / areaInMi2);
   }
+}
+
+function BikeLanesLayer(map) {
+  'use strict';
+  var self = this;
+  var bikeLaneColors = Object.freeze({
+    bikelane: '#00D624',
+    trail: '#00570E',
+    opacity: 0.8 }
+  );
+
+  var bikeLaneTypes = Object.freeze({
+    STANDARD: '1',
+    SHAREDLANE: ['2','13','3'],
+    GREENWAY: '45',
+    TRAIL: ['5','7'],
+    PROTECTED: '8',
+    BUFFERED: '9'
+  });
+
+  this.layer = L.geoJson(null, {
+    style: function (feature) {
+      if (feature.properties.TYPE === bikeLaneTypes.STANDARD) {
+        return {
+          color: bikeLaneColors.bikelane,
+          weight: 3,
+          opacity: bikeLaneColors.opacity
+        };
+      }
+      if ($.inArray(feature.properties.TYPE, bikeLaneTypes.SHAREDLANE)) {
+        return {
+          color: bikeLaneColors.bikelane,
+          weight: 2,
+          opacity: 0
+        };
+      }
+      if (feature.properties.TYPE === bikeLaneTypes.GREENWAY) {
+        return {
+          color: bikeLaneColors.bikelane,
+          weight: 4,
+          opacity: bikeLaneColors.opacity
+        };
+      }
+      if ($.inArray(feature.properties.TYPE, bikeLaneTypes.TRAIL)) {
+        return {
+          color: bikeLaneColors.trail,
+          weight: 6,
+          opacity: bikeLaneColors.opacity
+        };
+      }
+      if (feature.properties.TYPE === bikeLaneTypes.PROTECTED) {
+        return {
+          color: bikeLaneColors.trail,
+          weight: 6,
+          opacity: bikeLaneColors.opacity
+        };
+      }
+      if (feature.properties.TYPE === bikeLaneTypes.BUFFERED) {
+        return {
+          color: bikeLaneColors.bikelane,
+          weight: 5,
+          opacity: bikeLaneColors.opacity
+        };
+      }
+    },
+    onEachFeature: function (feature, layer) {
+      if (feature.properties) {
+        var content = '<table class="table table-striped table-bordered table-condensed">' + '<tr><th>Bikeway Type</th><td>' + feature.properties.BIKEROUTE + '</td></tr>' + '<tr><th>Street Name</th><td>' + feature.properties.STREET + '</td></tr>' + '<table>';
+        layer.on({
+          click: function (e) {
+            $('#feature-title').html(feature.properties.STREET);
+            $('#feature-info').html(content);
+            $('#featureModal').modal('show');
+
+          }
+        });
+      }
+      layer.on({
+        mouseover: function (e) {
+          var layer = e.target;
+          layer.setStyle({
+            //weight: 4,
+            color: '#e5f5f9',
+            opacity: 0.9
+          });
+          if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToFront();
+          }
+        },
+        mouseout: function (e) {
+          self.layer.resetStyle(e.target);
+        }
+      });
+    }
+  }).addTo(map);
+
+  $.getJSON('data/bike_routes_12-19-14_excl_recommended.geojson', function (data) {
+    self.layer.addData(data);
+  });
 }

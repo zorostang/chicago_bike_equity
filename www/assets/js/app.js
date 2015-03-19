@@ -308,93 +308,6 @@ $.getJSON("data/chicago_wards_2015.geojson", function (data) {
   wards.addData(data);
 });
 
-var bikeLaneColors = {bikelane: "#00D624", trail: "#00570E", opacity: 0.8}
-var bikelanesLayer = L.geoJson(null, {
-  style: function (feature) {
-    if (feature.properties.TYPE === "1") {
-    	// bike lane
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 3,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "2" || feature.properties.TYPE === "13" || feature.properties.TYPE === "3") {
-    	// shared lane
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 2,
-        opacity: 0
-      };
-    }
-    if (feature.properties.TYPE === "45") {
-    	// neighborhood greenway
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 4,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "5" || feature.properties.TYPE === "7") {
-    	// trail & access path
-      return {
-        color: bikeLaneColors.trail,
-        weight: 6,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "8") {
-    	// protected bike lane
-      return {
-        color: bikeLaneColors.trail,
-        weight: 6,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "9") {
-    	// buffered bike lane
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 5,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-  },
-  onEachFeature: function (feature, layer) {
-    if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Bikeway Type</th><td>" + feature.properties.BIKEROUTE + "</td></tr>" + "<tr><th>Street Name</th><td>" + feature.properties.STREET + "</td></tr>" + "<table>";
-      layer.on({
-        click: function (e) {
-          $("#feature-title").html(feature.properties.STREET);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
-
-        }
-      });
-    }
-    layer.on({
-      mouseover: function (e) {
-        var layer = e.target;
-        layer.setStyle({
-          //weight: 4,
-          color: "#e5f5f9",
-          opacity: 0.9
-        });
-        if (!L.Browser.ie && !L.Browser.opera) {
-          layer.bringToFront();
-        }
-      },
-      mouseout: function (e) {
-        bikelanesLayer.resetStyle(e.target);
-      }
-    });
-  }
-});
-$.getJSON("data/bike_routes_12-19-14_excl_recommended.geojson", function (data) {
-  bikelanesLayer.addData(data);
-  map.addLayer(bikelanesLayer);
-});
-
 /* Single marker cluster layer to hold all clusters */
 var markerClusters = new L.MarkerClusterGroup({
   spiderfyOnMaxZoom: true,
@@ -454,7 +367,7 @@ map = L.map("map", {
 	zoom: 12,
   maxZoom: 19,
 	center: [41.87982, -87.63161],
-	layers: [mapquestOSM, bikelanesLayer, markerClusters, highlight],
+	layers: [mapquestOSM, markerClusters, highlight],
 	zoomControl: false,
 	attributionControl: false,
 	contextmenu: true,
@@ -468,16 +381,17 @@ map = L.map("map", {
 	}]
 });
 
-population = new Population(map);
+var bikelanesLayer = new BikeLanesLayer(map);
+var populationLayer = new PopulationLayer(map);
 
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e) {
   if (e.layer === groceriesLayer) {
     markerClusters.addLayer(groceries);
     syncSidebar();
-  } else if (e.layer === population.layer) {
-    population.legend.addTo(this);
-    population.info.addTo(this);
+  } else if (e.layer === populationLayer.layer) {
+    populationLayer.legend.addTo(this);
+    populationLayer.info.addTo(this);
   }
 });
 
@@ -485,9 +399,9 @@ map.on("overlayremove", function(e) {
   if (e.layer === groceriesLayer) {
     markerClusters.removeLayer(groceries);
     syncSidebar();
-  } else if (e.layer === population.layer) {
-    this.removeControl(population.legend);
-    this.removeControl(population.info);
+  } else if (e.layer === populationLayer.layer) {
+    this.removeControl(populationLayer.legend);
+    this.removeControl(populationLayer.info);
   }
 });
 
@@ -580,9 +494,9 @@ var groupedOverlays = {
 	  "Wards": wards
 	},
 	"References": {
-	  "Bike Lanes": bikelanesLayer,
+	  "Bike Lanes": bikelanesLayer.layer,
     "Divvy Stations": divvyStations,
-    "Population Density": population.layer
+    "Population Density": populationLayer.layer
 	}
 };
 
@@ -600,7 +514,7 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
 $(document).one("ajaxStop", function () {
   $("#loading").hide();
   /* Fit map to bike lanes bounds */
-  map.fitBounds(bikelanesLayer.getBounds());
+  map.fitBounds(bikelanesLayer.layer.getBounds());
   featureList = new List("features", {valueNames: ["feature-name"]});
   featureList.sort("feature-name", {order:"asc"});
 
