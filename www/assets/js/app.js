@@ -125,11 +125,6 @@ var bikelanesOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l
   attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
 });
 
-// var populationOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l3621,stevevance.g49x1zin/{z}/{x}/{y}.png", {
-//   maxZoom: 19,
-//   attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
-// });
-
 var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
   maxZoom: 19,
   subdomains: ["otile1", "otile2", "otile3", "otile4"],
@@ -201,11 +196,12 @@ var highlightStyle = {
     }
   }
 });
-$.getJSON("data/grocery_stores_2013.geojson", function (data) {
-  groceries.addData(data);
-  groceriesGeojson = data;
-  //map.addLayer(groceriesLayer);
-});
+
+// $.getJSON("data/grocery_stores_2013.geojson", function (data) {
+//   groceries.addData(data);
+//   groceriesGeojson = data;
+//   //map.addLayer(groceriesLayer);
+// });
 
 ///////////////////////Begin divvyBuffers/////////////////
 
@@ -308,9 +304,9 @@ var wards = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/chicago_wards_2015.geojson", function (data) {
-  wards.addData(data);
-});
+// $.getJSON("data/chicago_wards_2015.geojson", function (data) {
+//   wards.addData(data);
+// });
 
 var bikeLaneColors = {bikelane: "#00D624", trail: "#00570E", opacity: 0.8}
 var bikelanesLayer = L.geoJson(null, {
@@ -394,10 +390,10 @@ var bikelanesLayer = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/bike_routes_12-19-14_excl_recommended.geojson", function (data) {
-  bikelanesLayer.addData(data);
-  map.addLayer(bikelanesLayer);
-});
+// $.getJSON("data/bike_routes_12-19-14_excl_recommended.geojson", function (data) {
+//   bikelanesLayer.addData(data);
+//   map.addLayer(bikelanesLayer);
+// });
 
 /* Single marker cluster layer to hold all clusters */
 var markerClusters = new L.MarkerClusterGroup({
@@ -461,7 +457,7 @@ map = L.map("map", {
 	layers: [bikelanesLayer, markerClusters, highlight],
 	zoomControl: false,
 	attributionControl: false,
-	contextmenu: true,
+	// contextmenu: true,
 	contextmenuWidth: 200,
 	contextmenuItems: [{
 		text: 'Show coordinates',
@@ -562,7 +558,6 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-	// "Population Density": populationOSM,
 	"Regional Bikeways": bikelanesOSM,
 	//"Satellite": mapquestOAM,
 	"Satellite": mapquestHYB
@@ -740,6 +735,7 @@ $(document).one("ajaxStop", function () {
   var population = (function() {
       'use strict';
       var populationLayer;
+      var info = L.control({position: 'bottomleft'});
 
       function initPopulationLayer(map) {
         populationLayer = L.geoJson(null, {
@@ -750,28 +746,29 @@ $(document).one("ajaxStop", function () {
         $.getJSON("data/race_clipped.geojson", function (data) {
           populationLayer.addData(data);
           addLegend();
+          addInfoControl();
         });
       }
 
       function style(feature) {
         return {
-          fillColor: getColor(feature.properties.a_pop10),
+          fillColor: getColor(getTotalDensity(feature)),
           weight: 2,
           opacity: 1,
           color: 'white',
           dashArray: '3',
-          fillOpacity: 0.2
+          fillOpacity: 0.7
         };
       }
 
       function getColor(d) {
-          return d > 1000 ? '#800026' :
-                 d > 500  ? '#BD0026' :
-                 d > 200  ? '#E31A1C' :
-                 d > 100  ? '#FC4E2A' :
-                 d > 50   ? '#FD8D3C' :
-                 d > 20   ? '#FEB24C' :
-                 d > 10   ? '#FED976' :
+          return d > 30000 ? '#800026' :
+                 d > 20000  ? '#BD0026' :
+                 d > 15000  ? '#E31A1C' :
+                 d > 10000  ? '#FC4E2A' :
+                 d > 5000   ? '#FD8D3C' :
+                 d > 2000   ? '#FEB24C' :
+                 d > 1000   ? '#FED976' :
                             '#FFEDA0';
       }
 
@@ -789,11 +786,12 @@ $(document).one("ajaxStop", function () {
               layer.bringToFront();
           }
 
-          // info.update(layer.feature.properties);
+          info.update(layer.feature);
       }
 
       function resetHighlight(e) {
         populationLayer.resetStyle(e.target);
+        info.update();
       }
 
       function zoomToFeature(e) {
@@ -812,11 +810,9 @@ $(document).one("ajaxStop", function () {
         var legend = L.control({position: 'bottomright'});
 
         legend.onAdd = function (map) {
-
             var div = L.DomUtil.create('div', 'info legend leaflet-control-layers leaflet-control-layers-expanded'),
-                grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+                grades = [0, 1000, 2000, 5000, 10000, 15000, 20000, 30000],
                 labels = [];
-
             div.innerHTML += "<p><strong>Population Density, per mi&#178;</strong></p>";
 
             // loop through our density intervals and generate a label with a colored square for each interval
@@ -825,11 +821,37 @@ $(document).one("ajaxStop", function () {
                     '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
                     grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
             }
-
             return div;
         };
 
         legend.addTo(map);
+      }
+
+      function addInfoControl() {
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+            this.update();
+            return this._div;
+        };
+
+        // method that we will use to update the control based on feature properties passed
+        info.update = function (feature) {
+          var html = '<h4>Chicago Population Density</h4>';
+            if (feature) {
+              html += '<strong>Census Block ID: ' + feature.properties.GEOID + '</strong><br /><br />Block density: ' + getTotalDensity(feature) + ' people / mi<sup>2</sup><br/>Total Population: ' + feature.properties.a_pop10;
+            } else {
+              html += 'Hover over a census block';
+            }
+            this._div.innerHTML = html;
+        };
+
+        info.addTo(map);
+      }
+
+      function getTotalDensity(feature) {
+        var areaInM2 = turf.area(feature);
+        var areaInMi2 = areaInM2 / 2589988.11;
+        return Math.round(feature.properties.a_pop10 / areaInMi2);
       }
 
       return {
