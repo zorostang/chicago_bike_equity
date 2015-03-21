@@ -1,11 +1,11 @@
 
 //global variables for mapping
-var groceriesGeojson; 
-var groceries; 
-var groceriesLayer; 
+var groceriesGeojson;
+var groceries;
+var groceriesLayer;
 
 //global variables for groceries near divvy stations function
-var groceriesNearDivvy; 
+var groceriesNearDivvy;
 var fcSuperBuffer;
 var divvySuperBufferArray;
 
@@ -94,7 +94,7 @@ function sidebarClick(id) {
 
 function syncSidebar() {
 
- //  Empty sidebar features 
+ //  Empty sidebar features
 /*
   $("#feature-list tbody").empty();
 
@@ -107,7 +107,7 @@ function syncSidebar() {
       }
     }
  });
-  // Update list.js featureList 
+  // Update list.js featureList
   featureList = new List("features", {
     valueNames: ["feature-name"]
   });
@@ -121,11 +121,6 @@ function syncSidebar() {
 /* Basemap Layers */
 // examples.map-i86l3621
 var bikelanesOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l3621,stevevance.c2k1og3k/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
-});
-
-var populationOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l3621,stevevance.g49x1zin/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
 });
@@ -189,7 +184,7 @@ var highlightStyle = {
       });
 /*
       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/grocery.png"></td><td class="feature-name">' + layer.feature.properties['STORE NAME'] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-*/ 
+*/
      groceriesSearch.push({
         name: layer.feature.properties['STORE NAME'],
         address: layer.feature.properties.ADDRESS,
@@ -201,7 +196,8 @@ var highlightStyle = {
     }
   }
 });
-$.getJSON("data/grocery_stores_2013.geojson", function (data) {
+
+var groceryStoresCall = $.getJSON("data/grocery_stores_2013.geojson", function (data) {
   groceries.addData(data);
   groceriesGeojson = data;
   //map.addLayer(groceriesLayer);
@@ -239,14 +235,14 @@ divvyStations = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/divvy_stations.geojson", function (data) {
+var divvyStationsCall = $.getJSON("data/divvy_stations.geojson", function (data) {
   divvyStations.addData(data);
   $.each(data, function(key, stations) {
     if (key === 'features') {
       stations.forEach(function(station) { //for every divvy station
         var buffered = turf.buffer(station, 0.25, 'miles'); //.25 mi buffer around each div st.
 
-        var resultFeatures = buffered.features;//.concat(station); //add all features of 
+        var resultFeatures = buffered.features;//.concat(station); //add all features of
 
         divvyBuffers.addData({ //collection of divvyBuffers
           "type": "FeatureCollection",
@@ -255,37 +251,33 @@ $.getJSON("data/divvy_stations.geojson", function (data) {
       });
 
 	 //Create a Divvy Super Buffer (merges all buffers together)
-      divvySuperBuffer = turf.merge(divvyBuffers.toGeoJSON()); 
+      divvySuperBuffer = turf.merge(divvyBuffers.toGeoJSON());
 	 //Add SuperBuffer to the map
-      L.geoJson(divvySuperBuffer).addTo(map); 
+      divvyStations.addData(divvySuperBuffer);
 
 
     }
 
   });
 
-	/* Function: Count the number of grocery stores within a 
+	/* Function: Count the number of grocery stores within a
 	*.25 mile of a Divvy Station.
 	*/
 
 	//create an array of one Divvy Super Buffer
 	divvySuperBufferArray = [divvySuperBuffer];
-	console.log(divvySuperBufferArray);
 
 	//make a feature collection of the one Super Buffer Array
 	fcSuperBuffer = turf.featurecollection(divvySuperBufferArray);
-	console.log(fcSuperBuffer);
 
 	//count the number of grocery stores within the feature collection
-	groceriesNearDivvy = turf.within(groceriesGeojson, fcSuperBuffer);
-
-	//print statements to confirm grocery count
-	console.log("groceries near divvy object is below:");
-	console.log(groceriesNearDivvy);
-	console.log("groceries near divvy count: " + groceriesNearDivvy.features.length);	
-
-	$("#features").append("<div class='panel-heading'> Groceries Near a Divvy Station: " + groceriesNearDivvy.features.length  + "</div>");
-
+  $.when( groceryStoresCall, divvyStationsCall ).done(function () {
+    groceriesNearDivvy = turf.within(groceriesGeojson, fcSuperBuffer);
+  	console.log("groceries near divvy object is below:");
+  	console.log(groceriesNearDivvy);
+  	console.log("groceries near divvy count: " + groceriesNearDivvy.features.length);
+  	$("#features").append("<div class='panel-heading'> Groceries Near a Divvy Station: " + groceriesNearDivvy.features.length  + "</div>");
+  });
 });
 
 var wards = L.geoJson(null, {
@@ -312,93 +304,6 @@ $.getJSON("data/chicago_wards_2015.geojson", function (data) {
   wards.addData(data);
 });
 
-var bikeLaneColors = {bikelane: "#00D624", trail: "#00570E", opacity: 0.8}
-var bikelanesLayer = L.geoJson(null, {
-  style: function (feature) {
-    if (feature.properties.TYPE === "1") {
-    	// bike lane
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 3,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "2" || feature.properties.TYPE === "13" || feature.properties.TYPE === "3") {
-    	// shared lane
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 2,
-        opacity: 0
-      };
-    }
-    if (feature.properties.TYPE === "45") {
-    	// neighborhood greenway
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 4,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "5" || feature.properties.TYPE === "7") {
-    	// trail & access path
-      return {
-        color: bikeLaneColors.trail,
-        weight: 6,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "8") {
-    	// protected bike lane
-      return {
-        color: bikeLaneColors.trail,
-        weight: 6,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "9") {
-    	// buffered bike lane
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 5,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-  },
-  onEachFeature: function (feature, layer) {
-    if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Bikeway Type</th><td>" + feature.properties.BIKEROUTE + "</td></tr>" + "<tr><th>Street Name</th><td>" + feature.properties.STREET + "</td></tr>" + "<table>";
-      layer.on({
-        click: function (e) {
-          $("#feature-title").html(feature.properties.STREET);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
-
-        }
-      });
-    }
-    layer.on({
-      mouseover: function (e) {
-        var layer = e.target;
-        layer.setStyle({
-          //weight: 4,
-          color: "#e5f5f9",
-          opacity: 0.9
-        });
-        if (!L.Browser.ie && !L.Browser.opera) {
-          layer.bringToFront();
-        }
-      },
-      mouseout: function (e) {
-        bikelanesLayer.resetStyle(e.target);
-      }
-    });
-  }
-});
-$.getJSON("data/bike_routes_12-19-14_excl_recommended.geojson", function (data) {
-  bikelanesLayer.addData(data);
-  map.addLayer(bikelanesLayer);
-});
-
 /* Single marker cluster layer to hold all clusters */
 var markerClusters = new L.MarkerClusterGroup({
   spiderfyOnMaxZoom: true,
@@ -407,57 +312,11 @@ var markerClusters = new L.MarkerClusterGroup({
   disableClusteringAtZoom: 16
 });
 
-/* Empty layer placeholder to add to layer control for listening when to add/remove grocery stores to markerClusters layer */
-/*
- groceriesLayer = L.geoJson(null); //take out var
- groceries = L.geoJson(null, { //take out var
-  pointToLayer: function (feature, latlng) {
-    return L.marker(latlng, {
-      icon: L.icon({
-        iconUrl: "assets/img/grocery.png",
-        iconSize: [24, 28],
-        iconAnchor: [12, 28],
-        popupAnchor: [0, -25]
-      }),
-      title: feature.properties['STORE NAME'],
-      riseOnHover: true
-    });
-  },
-  onEachFeature: function (feature, layer) {
-    if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties['STORE NAME'] + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.ADDRESS + "</td></tr>" + "<table>";
-      layer.on({
-        click: function (e) {
-          $("#feature-title").html(feature.properties['STORE NAME']);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
-          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-        }
-      });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/grocery.png"></td><td class="feature-name">' + layer.feature.properties['STORE NAME'] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-      groceriesSearch.push({
-        name: layer.feature.properties['STORE NAME'],
-        address: layer.feature.properties.ADDRESS,
-        source: "Groceries",
-        id: L.stamp(layer),
-        lat: layer.feature.geometry.coordinates[1],
-        lng: layer.feature.geometry.coordinates[0]
-      });
-    }
-  }
-});
-$.getJSON("data/grocery_stores_2013.geojson", function (data) {
-  groceries.addData(data);
-  groceriesGeojson = data;
-  //map.addLayer(groceriesLayer);
-});
-*/
-
-
 map = L.map("map", {
 	zoom: 12,
+  maxZoom: 19,
 	center: [41.87982, -87.63161],
-	layers: [populationOSM, bikelanesLayer, markerClusters, highlight],
+	layers: [mapquestOSM, markerClusters, highlight],
 	zoomControl: false,
 	attributionControl: false,
 	contextmenu: true,
@@ -471,11 +330,17 @@ map = L.map("map", {
 	}]
 });
 
+var bikelanesLayer = new BikeLanesLayer(map);
+var populationLayer = new PopulationLayer(map);
+
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e) {
   if (e.layer === groceriesLayer) {
     markerClusters.addLayer(groceries);
     syncSidebar();
+  } else if (e.layer === populationLayer.layer) {
+    populationLayer.legend.addTo(this);
+    populationLayer.info.addTo(this);
   }
 });
 
@@ -483,6 +348,9 @@ map.on("overlayremove", function(e) {
   if (e.layer === groceriesLayer) {
     markerClusters.removeLayer(groceries);
     syncSidebar();
+  } else if (e.layer === populationLayer.layer) {
+    this.removeControl(populationLayer.legend);
+    this.removeControl(populationLayer.info);
   }
 });
 
@@ -561,7 +429,7 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-	"Population Density": populationOSM,
+  "Street Map": mapquestOSM,
 	"Regional Bikeways": bikelanesOSM,
 	//"Satellite": mapquestOAM,
 	"Satellite": mapquestHYB
@@ -575,8 +443,9 @@ var groupedOverlays = {
 	  "Wards": wards
 	},
 	"References": {
-	  "Bike Lanes": bikelanesLayer,
-    "Divvy Stations": divvyStations
+	  "Bike Lanes": bikelanesLayer.layer,
+    "Divvy Stations": divvyStations,
+    "Population Density": populationLayer.layer
 	}
 };
 
@@ -594,7 +463,7 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
 $(document).one("ajaxStop", function () {
   $("#loading").hide();
   /* Fit map to bike lanes bounds */
-  map.fitBounds(bikelanesLayer.getBounds());
+  map.fitBounds(bikelanesLayer.layer.getBounds());
   featureList = new List("features", {valueNames: ["feature-name"]});
   featureList.sort("feature-name", {order:"asc"});
 
@@ -728,9 +597,4 @@ $(document).one("ajaxStop", function () {
   $(".twitter-typeahead").css("display", "block");
 
 });
-
-//console.log(groceriesGeojson.features[0].properties.LATITUDE);
-//console.log("g[0]: longitude" + groceriesGeojson.features[0].properties.LONGITUDE);
-
 }); //document ready close-bracket
-
