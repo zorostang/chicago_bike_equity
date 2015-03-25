@@ -1,4 +1,24 @@
-var map, featureList, wardsSearch = [], commAreaSearch = [], groceriesSearch = [], museumSearch = [];
+
+//global variables for mapping
+var groceriesGeojson;
+var groceries;
+var groceriesLayer;
+
+//global variables for groceries near divvy stations function
+var groceriesNearDivvy;
+var fcSuperBuffer;
+var divvySuperBufferArray;
+
+//from conflict
+var divvyStations;
+var divvyBuffers;
+var map;
+
+//Beginning of app
+
+$( document ).ready(function(){ //document ready jquery wrapper
+
+var featureList, divvyStationsSearch = [], wardsSearch = [], commAreaSearch = [], groceriesSearch = [];
 
 $(document).on("click", ".feature-row", function(e) {
   $(document).off("mouseout", ".feature-row", clearHighlight);
@@ -73,41 +93,34 @@ function sidebarClick(id) {
 }
 
 function syncSidebar() {
-  /* Empty sidebar features */
+
+ //  Empty sidebar features
+/*
   $("#feature-list tbody").empty();
-  /* Loop through grocery stores layer and add only features which are in the map bounds */
+
+  // Loop through grocery stores layer and add only features which are in the map bounds
+
   groceries.eachLayer(function (layer) {
     if (map.hasLayer(groceriesLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
         $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/grocery.png"></td><td class="feature-name">' + layer.feature.properties['STORE NAME'] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
-  });
-  /* Loop through museums layer and add only features which are in the map bounds */
-  museums.eachLayer(function (layer) {
-    if (map.hasLayer(museumLayer)) {
-      if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/museum.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-      }
-    }
-  });
-  /* Update list.js featureList */
+ });
+  // Update list.js featureList
   featureList = new List("features", {
     valueNames: ["feature-name"]
   });
   featureList.sort("feature-name", {
     order: "asc"
   });
+
+*/
 }
 
 /* Basemap Layers */
 // examples.map-i86l3621
 var bikelanesOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l3621,stevevance.c2k1og3k/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
-});
-
-var populationOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-i86l3621,stevevance.g49x1zin/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution: 'Map data, including bike lanes, (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
 });
@@ -140,6 +153,133 @@ var highlightStyle = {
   radius: 10
 };
 
+
+//establish the grocery store layer for mapping, point of interest searching
+//and divvy calculations
+
+ groceriesLayer = L.geoJson(null); //take out var
+ groceries = L.geoJson(null, { //take out var
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.icon({
+        iconUrl: "assets/img/grocery.png",
+        iconSize: [24, 28],
+        iconAnchor: [12, 28],
+        popupAnchor: [0, -25]
+      }),
+      title: feature.properties['STORE NAME'],
+      riseOnHover: true
+    });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties['STORE NAME'] + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.ADDRESS + "</td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties['STORE NAME']);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+/*
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/grocery.png"></td><td class="feature-name">' + layer.feature.properties['STORE NAME'] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+*/
+     groceriesSearch.push({
+        name: layer.feature.properties['STORE NAME'],
+        address: layer.feature.properties.ADDRESS,
+        source: "Groceries",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
+      });
+    }
+  }
+});
+
+var groceryStoresCall = $.getJSON("data/grocery_stores_2013.geojson", function (data) {
+  groceries.addData(data);
+  groceriesGeojson = data;
+  //map.addLayer(groceriesLayer);
+});
+
+///////////////////////Begin divvyBuffers/////////////////
+
+//var divvyBuffers = [];
+divvyBuffers = L.geoJson(null, {
+  style: function() {
+    return {
+      color: "blue",
+      opacity: 0.1,
+      fillOpacity: 0,
+      clickable: false
+    }
+  }
+});
+divvyStations = L.geoJson(null, {
+  style: function(feature) {
+    return {
+      color: "blue",
+      fill: "blue",
+      opacity: 0.5,
+      fillOpacity: 0.5,
+      weight: 1.0,
+      clickable: false
+    };
+  },
+  onEachFeature: function (feature, layer) {
+    divvyStationsSearch.push({
+      name: layer.feature.properties.Address,
+      source: "DivvyStations",
+      id: L.stamp(layer)
+    });
+  }
+});
+var divvyStationsCall = $.getJSON("data/divvy_stations.geojson", function (data) {
+  divvyStations.addData(data);
+  $.each(data, function(key, stations) {
+    if (key === 'features') {
+      stations.forEach(function(station) { //for every divvy station
+        var buffered = turf.buffer(station, 0.25, 'miles'); //.25 mi buffer around each div st.
+
+        var resultFeatures = buffered.features;//.concat(station); //add all features of
+
+        divvyBuffers.addData({ //collection of divvyBuffers
+          "type": "FeatureCollection",
+          "features": resultFeatures //data from each buffer is added to collection
+        });
+      });
+
+	 //Create a Divvy Super Buffer (merges all buffers together)
+      divvySuperBuffer = turf.merge(divvyBuffers.toGeoJSON());
+	 //Add SuperBuffer to the map
+      divvyStations.addData(divvySuperBuffer);
+
+
+    }
+
+  });
+
+	/* Function: Count the number of grocery stores within a
+	*.25 mile of a Divvy Station.
+	*/
+
+	//create an array of one Divvy Super Buffer
+	divvySuperBufferArray = [divvySuperBuffer];
+
+	//make a feature collection of the one Super Buffer Array
+	fcSuperBuffer = turf.featurecollection(divvySuperBufferArray);
+
+	//count the number of grocery stores within the feature collection
+  $.when( groceryStoresCall, divvyStationsCall ).done(function () {
+    groceriesNearDivvy = turf.within(groceriesGeojson, fcSuperBuffer);
+  	console.log("groceries near divvy object is below:");
+  	console.log(groceriesNearDivvy);
+  	console.log("groceries near divvy count: " + groceriesNearDivvy.features.length);
+  	$("#features").append("<div class='panel-heading'> Groceries Within .5 Miles of a Divvy Station: " + groceriesNearDivvy.features.length  + "</div>");
+  });
+});
+
 var wards = L.geoJson(null, {
   style: function (feature) {
     return {
@@ -164,93 +304,6 @@ $.getJSON("data/chicago_wards_2015.geojson", function (data) {
   wards.addData(data);
 });
 
-var bikeLaneColors = {bikelane: "#00D624", trail: "#00570E", opacity: 0.8}
-var bikelanesLayer = L.geoJson(null, {
-  style: function (feature) {
-    if (feature.properties.TYPE === "1") {
-    	// bike lane
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 3,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "2" || feature.properties.TYPE === "13" || feature.properties.TYPE === "3") {
-    	// shared lane
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 2,
-        opacity: 0
-      };
-    }
-    if (feature.properties.TYPE === "45") {
-    	// neighborhood greenway
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 4,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "5" || feature.properties.TYPE === "7") {
-    	// trail & access path
-      return {
-        color: bikeLaneColors.trail,
-        weight: 6,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "8") {
-    	// protected bike lane
-      return {
-        color: bikeLaneColors.trail,
-        weight: 6,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-    if (feature.properties.TYPE === "9") {
-    	// buffered bike lane
-      return {
-        color: bikeLaneColors.bikelane,
-        weight: 5,
-        opacity: bikeLaneColors.opacity
-      };
-    }
-  },
-  onEachFeature: function (feature, layer) {
-    if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Bikeway Type</th><td>" + feature.properties.BIKEROUTE + "</td></tr>" + "<tr><th>Street Name</th><td>" + feature.properties.STREET + "</td></tr>" + "<table>";
-      layer.on({
-        click: function (e) {
-          $("#feature-title").html(feature.properties.STREET);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
-
-        }
-      });
-    }
-    layer.on({
-      mouseover: function (e) {
-        var layer = e.target;
-        layer.setStyle({
-          //weight: 4,
-          color: "#e5f5f9",
-          opacity: 0.9
-        });
-        if (!L.Browser.ie && !L.Browser.opera) {
-          layer.bringToFront();
-        }
-      },
-      mouseout: function (e) {
-        bikelanesLayer.resetStyle(e.target);
-      }
-    });
-  }
-});
-$.getJSON("data/bike_routes_12-19-14_excl_recommended.geojson", function (data) {
-  bikelanesLayer.addData(data);
-  map.addLayer(bikelanesLayer);
-});
-
 /* Single marker cluster layer to hold all clusters */
 var markerClusters = new L.MarkerClusterGroup({
   spiderfyOnMaxZoom: true,
@@ -259,108 +312,41 @@ var markerClusters = new L.MarkerClusterGroup({
   disableClusteringAtZoom: 16
 });
 
-/* Empty layer placeholder to add to layer control for listening when to add/remove grocery stores to markerClusters layer */
-var groceriesLayer = L.geoJson(null);
-var groceries = L.geoJson(null, {
-  pointToLayer: function (feature, latlng) {
-    return L.marker(latlng, {
-      icon: L.icon({
-        iconUrl: "assets/img/grocery.png",
-        iconSize: [24, 28],
-        iconAnchor: [12, 28],
-        popupAnchor: [0, -25]
-      }),
-      title: feature.properties['STORE NAME'],
-      riseOnHover: true
-    });
-  },
-  onEachFeature: function (feature, layer) {
-    if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties['STORE NAME'] + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.ADDRESS + "</td></tr>" + "<table>";
-      layer.on({
-        click: function (e) {
-          $("#feature-title").html(feature.properties['STORE NAME']);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
-          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-        }
-      });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/grocery.png"></td><td class="feature-name">' + layer.feature.properties['STORE NAME'] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-      groceriesSearch.push({
-        name: layer.feature.properties['STORE NAME'],
-        address: layer.feature.properties.ADDRESS,
-        source: "Groceries",
-        id: L.stamp(layer),
-        lat: layer.feature.geometry.coordinates[1],
-        lng: layer.feature.geometry.coordinates[0]
-      });
-    }
-  }
-});
-$.getJSON("data/grocery_stores_2013.geojson", function (data) {
-  groceries.addData(data);
-  //map.addLayer(groceriesLayer);
-});
-
-/* Empty layer placeholder to add to layer control for listening when to add/remove museums to markerClusters layer */
-var museumLayer = L.geoJson(null);
-var museums = L.geoJson(null, {
-  pointToLayer: function (feature, latlng) {
-    return L.marker(latlng, {
-      icon: L.icon({
-        iconUrl: "assets/img/museum.png",
-        iconSize: [24, 28],
-        iconAnchor: [12, 28],
-        popupAnchor: [0, -25]
-      }),
-      title: feature.properties.NAME,
-      riseOnHover: true
-    });
-  },
-  onEachFeature: function (feature, layer) {
-    if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Phone</th><td>" + feature.properties.TEL + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.ADRESS1 + "</td></tr>" + "<tr><th>Website</th><td><a class='url-break' href='" + feature.properties.URL + "' target='_blank'>" + feature.properties.URL + "</a></td></tr>" + "<table>";
-      layer.on({
-        click: function (e) {
-          $("#feature-title").html(feature.properties.NAME);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
-          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-        }
-      });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/museum.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-      museumSearch.push({
-        name: layer.feature.properties.NAME,
-        address: layer.feature.properties.ADRESS1,
-        source: "Museums",
-        id: L.stamp(layer),
-        lat: layer.feature.geometry.coordinates[1],
-        lng: layer.feature.geometry.coordinates[0]
-      });
-    }
-  }
-});
-$.getJSON("data/DOITT_MUSEUM_01_13SEPT2010.geojson", function (data) {
-  museums.addData(data);
-});
-
 map = L.map("map", {
-  zoom: 12,
-  center: [41.87982, -87.63161],
-  layers: [populationOSM, bikelanesLayer, markerClusters, highlight],
-  zoomControl: false,
-  attributionControl: false
+	zoom: 12,
+  maxZoom: 19,
+	center: [41.87982, -87.63161],
+	layers: [mapquestOSM, markerClusters, highlight],
+	zoomControl: false,
+	attributionControl: false,
+	contextmenu: true,
+	contextmenuWidth: 200,
+	contextmenuItems: [{
+		text: 'Show coordinates',
+		callback: showCoordinates
+	},{
+		text: "Find nearby Divvy stations",
+		callback: findNearbyDivvy
+  },{
+    text: "Show Address",
+    callback: showAddress 
+  },{
+    text: "Clear Comparison",
+    callback: clearComparison
+	}]
 });
+
+var bikelanesLayer = new BikeLanesLayer(map);
+var populationLayer = new PopulationLayer(map);
 
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e) {
   if (e.layer === groceriesLayer) {
     markerClusters.addLayer(groceries);
     syncSidebar();
-  }
-  if (e.layer === museumLayer) {
-    markerClusters.addLayer(museums);
-    syncSidebar();
+  } else if (e.layer === populationLayer.layer) {
+    populationLayer.legend.addTo(this);
+    populationLayer.info.addTo(this);
   }
 });
 
@@ -368,10 +354,9 @@ map.on("overlayremove", function(e) {
   if (e.layer === groceriesLayer) {
     markerClusters.removeLayer(groceries);
     syncSidebar();
-  }
-  if (e.layer === museumLayer) {
-    markerClusters.removeLayer(museums);
-    syncSidebar();
+  } else if (e.layer === populationLayer.layer) {
+    this.removeControl(populationLayer.legend);
+    this.removeControl(populationLayer.info);
   }
 });
 
@@ -450,7 +435,7 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-	"Population Density": populationOSM,
+  "Street Map": mapquestOSM,
 	"Regional Bikeways": bikelanesOSM,
 	//"Satellite": mapquestOAM,
 	"Satellite": mapquestHYB
@@ -464,7 +449,9 @@ var groupedOverlays = {
 	  "Wards": wards
 	},
 	"References": {
-	  "Bike Lanes": bikelanesLayer
+	  "Bike Lanes": bikelanesLayer.layer,
+    "Divvy Stations": divvyStations,
+    "Population Density": populationLayer.layer
 	}
 };
 
@@ -473,16 +460,6 @@ var layerControl = L.control.groupedLayers(baseLayers, groupedOverlays, {
 }).addTo(map);
 
 /* Highlight search box text on click */
-$("#searchbox").click(function () {
-  $(this).select();
-});
-
-/* Prevent hitting enter from refreshing the page */
-$("#searchbox").keypress(function (e) {
-  if (e.which == 13) {
-    e.preventDefault();
-  }
-});
 
 $("#featureModal").on("hidden.bs.modal", function (e) {
   $(document).on("mouseout", ".feature-row", clearHighlight);
@@ -492,7 +469,7 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
 $(document).one("ajaxStop", function () {
   $("#loading").hide();
   /* Fit map to bike lanes bounds */
-  map.fitBounds(bikelanesLayer.getBounds());
+  map.fitBounds(bikelanesLayer.layer.getBounds());
   featureList = new List("features", {valueNames: ["feature-name"]});
   featureList.sort("feature-name", {order:"asc"});
 
@@ -506,6 +483,16 @@ $(document).one("ajaxStop", function () {
     limit: 10
   });
 
+  var divvyStationsBH = new Bloodhound({
+    name: "Divvy Stations",
+    datumTokenizer: function(d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: divvyStationsSearch,
+    limit: 10
+  });
+
   var groceriesBH = new Bloodhound({
     name: "GroceryStores",
     datumTokenizer: function (d) {
@@ -513,16 +500,6 @@ $(document).one("ajaxStop", function () {
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     local: groceriesSearch,
-    limit: 10
-  });
-
-  var museumsBH = new Bloodhound({
-    name: "Museums",
-    datumTokenizer: function (d) {
-      return Bloodhound.tokenizers.whitespace(d.name);
-    },
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: museumSearch,
     limit: 10
   });
 
@@ -558,7 +535,7 @@ $(document).one("ajaxStop", function () {
   });
   wardsBH.initialize();
   groceriesBH.initialize();
-  museumsBH.initialize();
+  divvyStationsBH.initialize();
   geonamesBH.initialize();
 
   /* instantiate the typeahead UI */
@@ -582,14 +559,14 @@ $(document).one("ajaxStop", function () {
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
-    name: "Museums",
+    name: "DivvyStations",
     displayKey: "name",
-    source: museumsBH.ttAdapter(),
+    source: divvyStationsBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/museum.png' width='24' height='28'>&nbsp;Museums</h4>",
-      suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
+      header: "<h4 class='typeahead-header'>Divvy Stations</h4>"
     }
-  }, {
+  },
+    {
     name: "GeoNames",
     displayKey: "name",
     source: geonamesBH.ttAdapter(),
@@ -603,15 +580,6 @@ $(document).one("ajaxStop", function () {
     if (datum.source === "GroceryStores") {
       if (!map.hasLayer(groceriesLayer)) {
         map.addLayer(groceriesLayer);
-      }
-      map.setView([datum.lat, datum.lng], 17);
-      if (map._layers[datum.id]) {
-        map._layers[datum.id].fire("click");
-      }
-    }
-    if (datum.source === "Museums") {
-      if (!map.hasLayer(museumLayer)) {
-        map.addLayer(museumLayer);
       }
       map.setView([datum.lat, datum.lng], 17);
       if (map._layers[datum.id]) {
@@ -633,4 +601,6 @@ $(document).one("ajaxStop", function () {
   });
   $(".twitter-typeahead").css("position", "static");
   $(".twitter-typeahead").css("display", "block");
+
 });
+}); //document ready close-bracket
