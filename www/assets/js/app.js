@@ -276,7 +276,7 @@ var divvyStationsCall = $.getJSON("data/divvy_stations.geojson", function (data)
   	console.log("groceries near divvy object is below:");
   	console.log(groceriesNearDivvy);
   	console.log("groceries near divvy count: " + groceriesNearDivvy.features.length);
-  	$("#features").append("<div class='panel-heading'> Groceries Near a Divvy Station: " + groceriesNearDivvy.features.length  + "</div>");
+  	$("#features").append("<div class='panel-heading'> Groceries Within .5 Miles of a Divvy Station: " + groceriesNearDivvy.features.length  + "</div>");
   });
 });
 
