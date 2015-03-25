@@ -71,6 +71,18 @@ function setDistanceLabel(line) {
 function showCoordinates (e) {
 	'use strict';
 	//remove the previous coordinate information, if it exists
-	$('.coordinate').remove();
+	$('.coordinate').remove(); //comment this out in the future to do comparison
 	$('#features').append('<div class="panel-heading coordinate"> Cooordinates: '  + e.latlng + '</div>');
 }
+
+//show address reverse geocoding
+function showAddress (e) {
+  var geocodeService = new L.esri.Geocoding.Services.Geocoding();
+
+    geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
+      L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup();
+    });
+
+}
+
+

@@ -327,6 +327,9 @@ map = L.map("map", {
 	},{
 		text: "Find nearby Divvy stations",
 		callback: findNearbyDivvy
+  },{
+    text: "Show Address",
+    callback: showAddress 
 	}]
 });
 
