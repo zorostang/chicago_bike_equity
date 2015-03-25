@@ -330,6 +330,9 @@ map = L.map("map", {
   },{
     text: "Show Address",
     callback: showAddress 
+  },{
+    text: "Clear Comparison",
+    callback: clearComparison
 	}]
 });
 
