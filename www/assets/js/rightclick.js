@@ -70,7 +70,28 @@ function setDistanceLabel(line) {
 
 function showCoordinates (e) {
 	'use strict';
-	//remove the previous coordinate information, if it exists
-	$('.coordinate').remove();
 	$('#features').append('<div class="panel-heading coordinate"> Cooordinates: '  + e.latlng + '</div>');
 }
+
+//showAddress: uses reverse geocoding to shows address of coordinates clicked
+//				utilizes "Esri Leaflet" plug-in
+//				TODO: get rid of pop-up?
+function showAddress (e) {
+  var geocodeService = new L.esri.Geocoding.Services.Geocoding();
+
+    geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
+      //append address of coordinates to the "Access Index" sidebar
+      $('#features').append('<div class="panel-heading coordinate"> Address: '  + result.address.Match_addr + '</div>');
+      //place marker & popup with address on coordinates selected
+      L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup();
+    });
+
+}
+
+//clearComparison: removes information on coordinates from "Access Index" sidebar
+function clearComparison(e) {
+	//remove information on the previous coordinate(s), if they exist
+	$('.coordinate').remove(); 
+}
+
+
