@@ -66,6 +66,19 @@ input[type="radio"], input[type="checkbox"] {
   bottom: 0px;
   overflow: auto;
 }
+
+.clear-access-button-wrapper {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.clear-access-button {
+    position: relative;
+    width: 110px;
+    left: 30%;
+}
+
 .leaflet-control-layers label {
   font-weight: normal;
   margin-bottom: 0px;

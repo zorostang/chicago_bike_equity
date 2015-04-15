@@ -68,10 +68,14 @@ function setDistanceLabel(line) {
 	return line.bindLabel(Math.round(dist * 100) / 100 + ' mi');
 }
 
+/*
 function showCoordinates (e) {
 	'use strict';
 	$('#features').append('<div class="panel-heading coordinate"> Cooordinates: '  + e.latlng + '</div>');
 }
+*/
+
+var marker_array = [];
 
 //showAddress: uses reverse geocoding to shows address of coordinates clicked
 //				utilizes "Esri Leaflet" plug-in
@@ -79,19 +83,57 @@ function showCoordinates (e) {
 function showAddress (e) {
   var geocodeService = new L.esri.Geocoding.Services.Geocoding();
 
+  	//Todo: figure out what happens when error is thrown by esri.
     geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
-      //append address of coordinates to the "Access Index" sidebar
+
+      //enclose here, if result is undefined,
+      //else 
+      //If error shown,
+      //Print error: try again
+      console.log("error: " + error + "," + "result: " + result);
+
       $('#features').append('<div class="panel-heading coordinate"> Address: '  + result.address.Match_addr + '</div>');
       //place marker & popup with address on coordinates selected
-      L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup();
+      //L.marker([50.505, 30.57], {icon: myIcon}).addTo(map);
+      //add a class here.
+      //bindPopup(add a class here)
+
+      var marker = L.marker(result.latlng);
+      marker.addTo(map);
+      marker.bindPopup(result.address.Match_addr);
+      marker.openPopup();
+
+      marker_array.push(marker);
+      console.log(marker_array.length);
+      console.log(marker_array);
+
+      //add to marker arrays
+
+      //chaining, can do one at a time
+      //var marker = L.marker(result.latlng);
+      // marker.  
+
+      //
+      //L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup();
+
+      //can I group all of these pop-ups together and then erase them at the same time?
     });
 
 }
 
-//clearComparison: removes information on coordinates from "Access Index" sidebar
-function clearComparison(e) {
-	//remove information on the previous coordinate(s), if they exist
-	$('.coordinate').remove(); 
-}
+//Q: Should I move this to the app.js file?
+//Clear Access Index comparison when clear-access-index button is clicked
+$("#clear-access-index").click(function() {
+  $('.coordinate').remove(); 
+
+  for (var i = marker_array.length - 1; i >= 0; i--) {
+  	map.removeLayer(marker_array[i]); 
+  };
+  //add in remove popups
+
+  //Q: do I need a return
+  //return false;
+});
+
 
 

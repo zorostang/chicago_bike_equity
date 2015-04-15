@@ -276,7 +276,7 @@ var divvyStationsCall = $.getJSON("data/divvy_stations.geojson", function (data)
   	console.log("groceries near divvy object is below:");
   	console.log(groceriesNearDivvy);
   	console.log("groceries near divvy count: " + groceriesNearDivvy.features.length);
-  	$("#features").append("<div class='panel-heading'> Groceries Within .5 Miles of a Divvy Station: " + groceriesNearDivvy.features.length  + "</div>");
+  	$("#features").append("<div class='panel-heading'> Right Click on the Map to Compare Access Indices! </div>");
   });
 });
 
@@ -322,18 +322,12 @@ map = L.map("map", {
 	contextmenu: true,
 	contextmenuWidth: 200,
 	contextmenuItems: [{
-		text: 'Show coordinates',
-		callback: showCoordinates
-	},{
 		text: "Find nearby Divvy stations",
 		callback: findNearbyDivvy
   },{
-    text: "Show Address",
+    text: "Show Access Index",
     callback: showAddress 
-  },{
-    text: "Clear Comparison",
-    callback: clearComparison
-	}]
+  }]
 });
 
 var bikelanesLayer = new BikeLanesLayer(map);
