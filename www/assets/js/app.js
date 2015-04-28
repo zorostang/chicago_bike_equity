@@ -314,7 +314,7 @@ var markerClusters = new L.MarkerClusterGroup({
 
 map = L.map("map", {
 	zoom: 12,
-  maxZoom: 19,
+  maxZoom: 12,
 	center: [41.87982, -87.63161],
 	layers: [mapquestOSM, markerClusters, highlight],
 	zoomControl: false,
@@ -420,7 +420,7 @@ var locateControl = L.control.locate({
     outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
   },
   locateOptions: {
-    maxZoom: 18,
+    maxZoom: 12,
     watch: true,
     enableHighAccuracy: true,
     maximumAge: 10000,

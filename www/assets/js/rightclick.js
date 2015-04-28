@@ -62,6 +62,60 @@ function findNearbyDivvy(e) {
 	map.fitBounds(nearestLayer);
 }
 
+function findNearbyDivvyWithoutRed(e) {
+	'use strict';
+
+	console.log(e.latlng);
+	console.log(e);
+
+	if(map.hasLayer(nearestLayer) ) {
+		map.removeLayer(nearestLayer);
+	}
+
+	point = {
+		  'type': 'Feature',
+		  'properties': {
+		    'marker-color': '#0f0'
+		  },
+		  'geometry': {
+		    'type': 'Point',
+		    'coordinates': [e.latlng.lng, e.latlng.lat]
+		  }
+		};
+	console.log('Point: ');
+	console.log(point);
+
+	var divvyStationsFC = divvyStations.toGeoJSON();
+
+
+	if (initialMarker) {
+		initialMarker.setLatLng([e.latlng.lat, e.latlng.lng]);
+		initialMarker.update();
+	} else {
+		initialMarker = L.marker([e.latlng.lat, e.latlng.lng]);
+		initialMarker.addTo(map);
+	}
+
+	nearestLayer = L.geoJson(null);
+
+	for (var x = 0; x < 5; x++) {
+		var nextNearest = turf.nearest( point, divvyStationsFC );
+		var id = nextNearest.properties.ID;
+		divvyStationsFC = turf.remove(divvyStationsFC, 'ID', id);
+		nearestLayer.addData(nextNearest);
+
+		if (lines[x]) {
+			lines[x].setLatLngs([[nextNearest.geometry.coordinates[1], nextNearest.geometry.coordinates[0]], [e.latlng.lat, e.latlng.lng]]);
+			setDistanceLabel(lines[x]);
+		} else {
+			lines[x] = L.polyline([[nextNearest.geometry.coordinates[1], nextNearest.geometry.coordinates[0]], [e.latlng.lat, e.latlng.lng]]);
+			setDistanceLabel(lines[x]).addTo(map);
+		}
+	}
+	nearestLayer.addTo(map);
+	map.fitBounds(nearestLayer);
+}
+
 function setDistanceLabel(line) {
 	'use strict';
 	var dist = turf.lineDistance(line.toGeoJSON(), 'miles');
@@ -118,6 +172,8 @@ function showAddress (e) {
 
       //can I group all of these pop-ups together and then erase them at the same time?
     });
+
+	findNearbyDivvyWithoutRed(e);
 
 }
 
