@@ -314,7 +314,7 @@ var markerClusters = new L.MarkerClusterGroup({
 
 map = L.map("map", {
 	zoom: 12,
-  maxZoom: 19,
+  maxZoom: 12,
 	center: [41.87982, -87.63161],
 	layers: [mapquestOSM, markerClusters, highlight],
 	zoomControl: false,
@@ -326,12 +326,13 @@ map = L.map("map", {
 		callback: findNearbyDivvy
   },{
     text: "Show Access Index",
-    callback: showAddress 
+    callback: showAddress
   }]
 });
 
 var bikelanesLayer = new BikeLanesLayer(map);
 var populationLayer = new PopulationLayer(map);
+var hypertensionLayer = new HypertensionLayer(map);
 
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e) {
@@ -341,6 +342,9 @@ map.on("overlayadd", function(e) {
   } else if (e.layer === populationLayer.layer) {
     populationLayer.legend.addTo(this);
     populationLayer.info.addTo(this);
+  } else if (e.layer === hypertensionLayer.layer) {
+    hypertensionLayer.legend.addTo(this);
+    hypertensionLayer.info.addTo(this);
   }
 });
 
@@ -351,6 +355,9 @@ map.on("overlayremove", function(e) {
   } else if (e.layer === populationLayer.layer) {
     this.removeControl(populationLayer.legend);
     this.removeControl(populationLayer.info);
+  } else if (e.layer === hypertensionLayer.layer) {
+    this.removeControl(hypertensionLayer.legend);
+    this.removeControl(hypertensionLayer.info);
   }
 });
 
@@ -413,7 +420,7 @@ var locateControl = L.control.locate({
     outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
   },
   locateOptions: {
-    maxZoom: 18,
+    maxZoom: 12,
     watch: true,
     enableHighAccuracy: true,
     maximumAge: 10000,
@@ -445,7 +452,8 @@ var groupedOverlays = {
 	"References": {
 	  "Bike Lanes": bikelanesLayer.layer,
     "Divvy Stations": divvyStations,
-    "Population Density": populationLayer.layer
+    "Population Density": populationLayer.layer,
+    "Hypertension Levels": hypertensionLayer.layer
 	}
 };
 
