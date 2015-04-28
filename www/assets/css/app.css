@@ -39,6 +39,8 @@ input[type="radio"], input[type="checkbox"] {
   -webkit-box-shadow: none;
     box-shadow: none;
 }
+
+
 #sidebar-hide-btn {
   margin-top: -2px;
 }
