@@ -26,5 +26,25 @@
   			"femalePM": 232
 	    }
     }]
+  },
+  {
+    "location": "Jackson at Halsted",
+    "latitude": "41.877955",
+    "longitude": "-87.647233"
+  },
+  {
+    "location": "King at 31st",
+    "latitude": "41.838430",
+    "longitude": "-87.617309"
+  },
+  {
+    "location": "Lake at Damen",
+    "latitude": "41.884987",
+    "longitude": "-87.676732"
+  },
+  {
+    "location": "Milwaukee at Elston",
+    "latitude": "41.896989",
+    "longitude": "-87.656559"
   }]
 }
