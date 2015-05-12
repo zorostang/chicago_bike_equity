@@ -2,7 +2,7 @@
 /* global console, map, divvyStations, L, turf, $ */
 
 	var lines = [];
-	var nearestLayer, nearest, point, initialMarker;
+	var nearestLayer, nearest, point, initialMarker, iteration = 0, bikeLanesData;
 
 function findNearbyDivvy(e) {
 	'use strict';
@@ -138,7 +138,8 @@ var marker_array = [];
 
 
 function showAddress (e) {
-  var geocodeService = new L.esri.Geocoding.Services.Geocoding();
+	iteration++; // keep track of the number of times the user has requested an Access Index this session
+	var geocodeService = new L.esri.Geocoding.Services.Geocoding();
 
   	//Todo: figure out what happens when error is thrown by esri.
     geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
@@ -157,23 +158,24 @@ function showAddress (e) {
 		*/
 		//var address_error = result.address.Match_addr;
 
-	   if (result === undefined) {
-	   		console.log("error in match address");
-	   	    $('#features').append('<div class="panel-heading error" style="background-color: red;"> No Address Found :( Try Again! </div>');
-	   		//add div here
-	   } else {
-  		$('.error').remove(); 
-		$('#features').append('<div class="panel-heading coordinate"> Address: '  + result.address.Match_addr + '</div>');
-  		var marker = L.marker(result.latlng);
-      	marker.addTo(map);
-      	marker.bindPopup(result.address.Match_addr);
-      	marker.openPopup();
-
-      	marker_array.push(marker);
-      	console.log(marker_array.length);
-      	console.log(marker_array);
-
-  		}
+		if (result === undefined) {
+			console.log("error in match address");
+			$('#features').append('<div class="panel-heading error" style="background-color: red;"> No Address Found :( Try Again! </div>');
+			//add div here
+		} else {
+			$(".right_click_instructions").hide();
+			$('.error').remove(); 
+			$('#features').append('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + result.address.Match_addr + '</h4></div>');
+			var marker = L.marker(result.latlng);
+			marker.addTo(map);
+			marker.bindPopup(result.address.Match_addr);
+			marker.openPopup();
+			
+			marker_array.push(marker);
+			console.log(marker_array.length);
+			console.log(marker_array);
+			
+		}
       //place marker & popup with address on coordinates selected
       //L.marker([50.505, 30.57], {icon: myIcon}).addTo(map);
       //add a class here.
@@ -192,8 +194,60 @@ function showAddress (e) {
       //can I group all of these pop-ups together and then erase them at the same time?
     });
 
-	findNearbyDivvyWithoutRed(e);
 
+	// Other Access Index functions
+	findNearbyDivvyWithoutRed(e);
+	findNearestBikeLanes(e);
+
+}
+
+function findNearestBikeLanes(e) {
+	console.log("Going to find nearest bike lanes");
+	bikelane_query_url = "https://stevevance.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT *, st_distance(st_transform(st_setsrid(st_makepoint(" + e.latlng.lng + ", " + e.latlng.lat + "), 4326), 3435), st_transform(the_geom, 3435)) as distance FROM bike_routes_12_19_14_excl_recommended b where st_dwithin(st_transform(st_setsrid(st_makepoint(" + e.latlng.lng + ", " + e.latlng.lat + "), 4326), 3435), st_transform(the_geom, 3435), 2640)";
+
+	$.getJSON(bikelane_query_url, function (data) {
+	    	console.log("Cartodb: Working to retrieve bikelane_query_url");
+		})
+		.done(function(data) {
+			console.log("Cartodb: Retrieved bikelane_query_url: " + bikelane_query_url);
+			console.log(data);
+			bikeLanesData = data;
+			
+			// count the bike lanes
+			var bikeLanesCount = {};
+			bikeLanesCount.total = data.features.length;
+			bikeLanesCount.protected = 0;
+			bikeLanesCount.buffered = 0;
+			
+			// print the number of bike lanes nearby
+			if(bikeLanesCount.total > 0) {
+				$(".iteration_" + iteration).append("<p>There are " + bikeLanesCount.total + " bike lanes within 1/2 mile</p><ul class='iteration_" + iteration + " bike_lanes_count'></ul>");
+			}
+			
+			// see if any of them are protected or buffered bike lanes
+			$.each(data.features, function(i, v) {
+				if(v.properties.type == "8") {
+					bikeLanesCount.protected++;
+				}
+				if(v.properties.type == "9") {
+					bikeLanesCount.buffered++;
+				}
+			});
+			
+			// if there are protected/buffered, print the counts
+			if(bikeLanesCount.protected > 0) {
+				$("ul.iteration_" + iteration + ".bike_lanes_count").append("<li>" + bikeLanesCount.protected + " protected bike lanes</li>");
+			}
+			if(bikeLanesCount.buffered > 0) {
+				$("ul.iteration_" + iteration + ".bike_lanes_count").append("<li>" + bikeLanesCount.buffered + " buffered bike lanes</li>");
+			}
+			
+			
+			
+		})
+		.fail(function() {
+			console.log("Cartodb: There was an error retrieving bikelane_query_url");
+		});
 }
 
 //Q: Should I move this to the app.js file?
