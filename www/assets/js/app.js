@@ -325,9 +325,6 @@ map = L.map("map", {
 	contextmenuItems: [{
 		    text: "Get Access Index",
 		    callback: showAddress
-	  },{
-			text: "Find nearby Divvy stations",
-			callback: findNearbyDivvy
 	  }]
 });
 

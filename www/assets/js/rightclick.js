@@ -2,7 +2,7 @@
 /* global console, map, divvyStations, L, turf, $ */
 
 	var lines = [];
-	var nearestLayer, nearest, point, initialMarker, iteration = 0, bikeLanesData;
+	var nearestLayer, nearest, point, initialMarker, iteration = 0, bikeLanesData, nearbyBikeLanesLayer, hypertensionData;
 
 function findNearbyDivvy(e) {
 	'use strict';
@@ -117,7 +117,7 @@ function findNearbyDivvyWithoutRed(e) {
 		}
 	}
 	nearestLayer.addTo(map);
-	map.fitBounds(nearestLayer);
+	//map.fitBounds(nearestLayer);
 }
 
 function onEachDivvyStation(feature, layer) {
@@ -177,7 +177,7 @@ function showAddress (e) {
 		} else {
 			$(".right_click_instructions").hide();
 			$('.error').remove(); 
-			$('#features').append('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + result.address.Match_addr + '</h4></div>');
+			$('#features').append('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + result.address.Match_addr + '</h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div></div>');
 			var marker = L.marker(result.latlng);
 			marker.addTo(map);
 			marker.bindPopup(result.address.Match_addr);
@@ -210,6 +210,7 @@ function showAddress (e) {
 	// Other Access Index functions
 	findNearbyDivvyWithoutRed(e);
 	findNearestBikeLanes(e);
+	findHypertension(e);
 
 }
 
@@ -222,7 +223,7 @@ function findNearestBikeLanes(e) {
 		})
 		.done(function(data) {
 			console.log("Cartodb: Retrieved bikelane_query_url: " + bikelane_query_url);
-			console.log(data);
+			//console.log(data);
 			bikeLanesData = data;
 			
 			// count the bike lanes
@@ -233,8 +234,22 @@ function findNearestBikeLanes(e) {
 			
 			// print the number of bike lanes nearby
 			if(bikeLanesCount.total > 0) {
-				$(".iteration_" + iteration).append("<p>There are " + bikeLanesCount.total + " bike lanes within 1/2 mile</p><ul class='iteration_" + iteration + " bike_lanes_count'></ul>");
+				var content = "<p>There are " + bikeLanesCount.total + " bike lanes within 1/2 mile</p><ul class='iteration_" + iteration + " bike_lanes_list'></ul>";
+				if(map.hasLayer(nearbyBikeLanesLayer)) {
+					nearbyBikeLanesLayer.clearLayers();
+				}
+				nearbyBikeLanesLayer = L.geoJson(bikeLanesData, {
+					style: function (feature) {
+				        return {color: "#ff0084", weight: 9};
+				    },
+				    onEachFeature: function (feature, layer) {
+				        layer.bindLabel(feature.properties.street);
+				    }
+				}).addTo(map);
+			} else {
+				var content = "<p>There are no bike lanes within 1/2 mile</p>";
 			}
+			$(".iteration_" + iteration + "_bike_lanes").append(content);
 			
 			// see if any of them are protected or buffered bike lanes
 			$.each(data.features, function(i, v) {
@@ -248,17 +263,43 @@ function findNearestBikeLanes(e) {
 			
 			// if there are protected/buffered, print the counts
 			if(bikeLanesCount.protected > 0) {
-				$("ul.iteration_" + iteration + ".bike_lanes_count").append("<li>" + bikeLanesCount.protected + " protected bike lanes</li>");
+				$("ul.iteration_" + iteration + ".bike_lanes_list").append("<li>" + bikeLanesCount.protected + " are protected bike lanes</li>");
 			}
 			if(bikeLanesCount.buffered > 0) {
-				$("ul.iteration_" + iteration + ".bike_lanes_count").append("<li>" + bikeLanesCount.buffered + " buffered bike lanes</li>");
+				$("ul.iteration_" + iteration + ".bike_lanes_list").append("<li>" + bikeLanesCount.buffered + " are buffered bike lanes</li>");
 			}
-			
-			
 			
 		})
 		.fail(function() {
 			console.log("Cartodb: There was an error retrieving bikelane_query_url");
+		});
+}
+
+function findHypertension(e) {
+	var hypertension_url = "https://stevevance.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM chronic_disease_hypertension b where st_intersects(st_transform(st_setsrid(st_makepoint(" + e.latlng.lng + ", " + e.latlng.lat + "), 4326), 3435), st_transform(the_geom, 3435))";
+	
+	$.getJSON(hypertension_url, function (data) {
+	    	console.log("Cartodb: Working to retrieve hypertension_url: " + hypertension_url);
+		})
+		.done(function(data) {
+			hypertensionData = data;
+
+			// Create a narrative for the data			
+			var value = data.features[0].properties.condition_value;
+			value = JSON.parse(value);
+			value = value["2006"];
+			var zip_code = data.features[0].properties.name;
+			
+			console.log(value);
+			var extra = (value < 20 ? "(this is comparatively low)" : "(this is comparatively high)");
+			var content = "<p>The estimated hypertension prevalence in ZIP code " + zip_code + " for 2006-2012 is " + value + " percent " + extra + "</p>";
+			$('.iteration_' + iteration + '_bike_lanes').append(content);
+			
+			// Turn on the hypertension layer
+			
+		})
+		.fail(function() {
+			console.log("Cartodb: There was an error retrieving hypertension_url");
 		});
 }
 
