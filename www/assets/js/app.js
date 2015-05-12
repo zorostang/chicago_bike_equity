@@ -323,12 +323,12 @@ map = L.map("map", {
 	contextmenu: true,
 	contextmenuWidth: 200,
 	contextmenuItems: [{
-		text: "Find nearby Divvy stations",
-		callback: findNearbyDivvy
-  },{
-    text: "Show Access Index",
-    callback: showAddress
-  }]
+		    text: "Get Access Index",
+		    callback: showAddress
+	  },{
+			text: "Find nearby Divvy stations",
+			callback: findNearbyDivvy
+	  }]
 });
 
 var bikelanesLayer = new BikeLanesLayer(map);
