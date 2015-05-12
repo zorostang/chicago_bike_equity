@@ -11,7 +11,7 @@ function PopulationLayer(map) {
   this.layer = L.geoJson(null, {
     style: style,
     onEachFeature: onEachFeature
-  }).addTo(map);
+  });
   this.info = L.control({position: 'bottomleft'});
   this.legend = L.control({position: 'bottomright'});
 
@@ -93,7 +93,7 @@ function PopulationLayer(map) {
         return div;
     };
 
-    self.legend.addTo(map);
+    //self.legend.addTo(map);
   }
 
   function addInfoControl() {
@@ -114,7 +114,7 @@ function PopulationLayer(map) {
         this._div.innerHTML = html;
     };
 
-    self.info.addTo(map);
+    //self.info.addTo(map);
   }
 
 }
@@ -131,7 +131,7 @@ function HypertensionLayer(map) {
   this.layer = L.geoJson(null, {
     style: style,
     onEachFeature: onEachFeature
-  }).addTo(map);
+  });
   this.info = L.control({position: 'bottomleft'});
   this.legend = L.control({position: 'bottomright'});
 
@@ -209,7 +209,7 @@ function HypertensionLayer(map) {
         return div;
     };
 
-    self.legend.addTo(map);
+    //self.legend.addTo(map);
   }
 
   function addInfoControl() {
@@ -229,7 +229,7 @@ function HypertensionLayer(map) {
         }
         this._div.innerHTML = html;
     };
-    self.info.addTo(map);
+    //self.info.addTo(map);
   }
 }
 
