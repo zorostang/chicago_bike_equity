@@ -1,0 +1,50 @@
+{
+  "locations": [{
+		"location": "18th at Canal",
+    "latitude": "41.857655",
+    "longitude": "-87.638935",
+    "dateCounts": [{
+      "date": "20140909",
+  		"counts": {
+  			"maleAM": 80,
+  			"malePM": 132,
+  			"femaleAM": 33,
+  			"femalePM": 46
+  		}
+  	}]
+  },
+  {
+		"location": "Clark at Lincoln",
+    "latitude": "41.915614",
+    "longitude": "-87.634344",
+    "dateCounts": [{
+      "date": "20140909",
+  		"count": {
+  			"maleAM": 290,
+  			"malePM": 538,
+  			"femaleAM": 114,
+  			"femalePM": 232
+	    }
+    }]
+  },
+  {
+    "location": "Jackson at Halsted",
+    "latitude": "41.877955",
+    "longitude": "-87.647233"
+  },
+  {
+    "location": "King at 31st",
+    "latitude": "41.838430",
+    "longitude": "-87.617309"
+  },
+  {
+    "location": "Lake at Damen",
+    "latitude": "41.884987",
+    "longitude": "-87.676732"
+  },
+  {
+    "location": "Milwaukee at Elston",
+    "latitude": "41.896989",
+    "longitude": "-87.656559"
+  }]
+}

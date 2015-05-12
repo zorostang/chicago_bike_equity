@@ -1,0 +1,1010 @@
+[
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"1/9/2013",
+    "DURATION":2,
+    "MALE":51,
+    "FEMALE":28
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"1/9/2013",
+    "DURATION":2,
+    "MALE":262,
+    "FEMALE":102
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"1/9/2013",
+    "DURATION":2,
+    "MALE":125,
+    "FEMALE":43
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"1/9/2013",
+    "DURATION":2,
+    "MALE":21,
+    "FEMALE":5
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"1/9/2013",
+    "DURATION":2,
+    "MALE":75,
+    "FEMALE":26
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"1/9/2013",
+    "DURATION":2,
+    "MALE":570,
+    "FEMALE":260
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"2/13/2013",
+    "DURATION":2,
+    "MALE":50,
+    "FEMALE":31
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"2/13/2013",
+    "DURATION":2,
+    "MALE":215,
+    "FEMALE":78
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"2/13/2013",
+    "DURATION":2,
+    "MALE":113,
+    "FEMALE":37
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"2/13/2013",
+    "DURATION":2,
+    "MALE":20,
+    "FEMALE":2
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"2/13/2013",
+    "DURATION":2,
+    "MALE":70,
+    "FEMALE":23
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"2/13/2013",
+    "DURATION":2,
+    "MALE":416,
+    "FEMALE":167
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"3/15/2013",
+    "DURATION":2,
+    "MALE":66,
+    "FEMALE":40
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"3/15/2013",
+    "DURATION":2,
+    "MALE":162,
+    "FEMALE":71
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"3/15/2013",
+    "DURATION":2,
+    "MALE":101,
+    "FEMALE":33
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"3/15/2013",
+    "DURATION":2,
+    "MALE":14,
+    "FEMALE":0
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"3/15/2013",
+    "DURATION":2,
+    "MALE":63,
+    "FEMALE":28
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"3/15/2013",
+    "DURATION":2,
+    "MALE":374,
+    "FEMALE":128
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"4/17/2013",
+    "DURATION":2,
+    "MALE":24,
+    "FEMALE":24
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"4/17/2013",
+    "DURATION":2,
+    "MALE":48,
+    "FEMALE":48
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"4/17/2013",
+    "DURATION":2,
+    "MALE":24,
+    "FEMALE":24
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"4/17/2013",
+    "DURATION":2,
+    "MALE":3,
+    "FEMALE":3
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"4/17/2013",
+    "DURATION":2,
+    "MALE":17,
+    "FEMALE":17
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"4/17/2013",
+    "DURATION":2,
+    "MALE":88,
+    "FEMALE":88
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"5/15/2013",
+    "DURATION":2,
+    "MALE":181,
+    "FEMALE":71
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"5/15/2013",
+    "DURATION":2,
+    "MALE":750,
+    "FEMALE":388
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"5/15/2013",
+    "DURATION":2,
+    "MALE":207,
+    "FEMALE":87
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"5/15/2013",
+    "DURATION":2,
+    "MALE":102,
+    "FEMALE":35
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"5/15/2013",
+    "DURATION":2,
+    "MALE":243,
+    "FEMALE":122
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"5/15/2013",
+    "DURATION":2,
+    "MALE":1325,
+    "FEMALE":622
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"6/13/2013",
+    "DURATION":2,
+    "MALE":150,
+    "FEMALE":67
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"6/13/2013",
+    "DURATION":2,
+    "MALE":820,
+    "FEMALE":389
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"6/13/2013",
+    "DURATION":2,
+    "MALE":316,
+    "FEMALE":138
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"6/13/2013",
+    "DURATION":2,
+    "MALE":125,
+    "FEMALE":48
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"6/13/2013",
+    "DURATION":2,
+    "MALE":220,
+    "FEMALE":116
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"6/13/2013",
+    "DURATION":2,
+    "MALE":1368,
+    "FEMALE":639
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"7/10/2013",
+    "DURATION":2,
+    "MALE":237,
+    "FEMALE":104
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"7/10/2013",
+    "DURATION":2,
+    "MALE":722,
+    "FEMALE":338
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"7/10/2013",
+    "DURATION":2,
+    "MALE":385,
+    "FEMALE":143
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"7/10/2013",
+    "DURATION":2,
+    "MALE":148,
+    "FEMALE":61
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"7/10/2013",
+    "DURATION":2,
+    "MALE":263,
+    "FEMALE":131
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"7/10/2013",
+    "DURATION":2,
+    "MALE":1419,
+    "FEMALE":643
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"8/14/2013",
+    "DURATION":2,
+    "MALE":164,
+    "FEMALE":73
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"8/14/2013",
+    "DURATION":2,
+    "MALE":901,
+    "FEMALE":428
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"8/14/2013",
+    "DURATION":2,
+    "MALE":315,
+    "FEMALE":144
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"8/14/2013",
+    "DURATION":2,
+    "MALE":150,
+    "FEMALE":68
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"8/14/2013",
+    "DURATION":2,
+    "MALE":130,
+    "FEMALE":68
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"8/14/2013",
+    "DURATION":2,
+    "MALE":1437,
+    "FEMALE":661
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"9/10/2013",
+    "DURATION":2,
+    "MALE":153,
+    "FEMALE":60
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"9/10/2013",
+    "DURATION":2,
+    "MALE":687,
+    "FEMALE":281
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"9/10/2013",
+    "DURATION":2,
+    "MALE":291,
+    "FEMALE":125
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"9/10/2013",
+    "DURATION":2,
+    "MALE":132,
+    "FEMALE":26
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"9/10/2013",
+    "DURATION":2,
+    "MALE":257,
+    "FEMALE":105
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"9/10/2013",
+    "DURATION":2,
+    "MALE":1094,
+    "FEMALE":507
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"10/8/2013",
+    "DURATION":2,
+    "MALE":155,
+    "FEMALE":64
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"10/8/2013",
+    "DURATION":2,
+    "MALE":779,
+    "FEMALE":377
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"10/8/2013",
+    "DURATION":2,
+    "MALE":307,
+    "FEMALE":132
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"10/8/2013",
+    "DURATION":2,
+    "MALE":102,
+    "FEMALE":22
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"10/8/2013",
+    "DURATION":2,
+    "MALE":133,
+    "FEMALE":63
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"10/8/2013",
+    "DURATION":2,
+    "MALE":1498,
+    "FEMALE":694
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"11/12/2013",
+    "DURATION":2,
+    "MALE":32,
+    "FEMALE":12
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"11/12/2013",
+    "DURATION":2,
+    "MALE":139,
+    "FEMALE":57
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"11/12/2013",
+    "DURATION":2,
+    "MALE":65,
+    "FEMALE":25
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"11/12/2013",
+    "DURATION":2,
+    "MALE":21,
+    "FEMALE":4
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"11/12/2013",
+    "DURATION":2,
+    "MALE":46,
+    "FEMALE":24
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"11/12/2013",
+    "DURATION":2,
+    "MALE":190,
+    "FEMALE":77
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"12/10/2013",
+    "DURATION":1,
+    "MALE":14,
+    "FEMALE":3
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"12/10/2013",
+    "DURATION":1,
+    "MALE":51,
+    "FEMALE":13
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"12/10/2013",
+    "DURATION":1,
+    "MALE":33,
+    "FEMALE":14
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"12/10/2013",
+    "DURATION":1,
+    "MALE":2,
+    "FEMALE":0
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"12/10/2013",
+    "DURATION":1,
+    "MALE":14,
+    "FEMALE":3
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"12/10/2013",
+    "DURATION":1,
+    "MALE":124,
+    "FEMALE":37
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"1/21/2014",
+    "DURATION":2,
+    "MALE":7,
+    "FEMALE":2
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"1/21/2014",
+    "DURATION":2,
+    "MALE":25,
+    "FEMALE":9
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"1/21/2014",
+    "DURATION":2,
+    "MALE":20,
+    "FEMALE":4
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"1/21/2014",
+    "DURATION":2,
+    "MALE":3,
+    "FEMALE":0
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"1/21/2014",
+    "DURATION":2,
+    "MALE":18,
+    "FEMALE":9
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"1/21/2014",
+    "DURATION":2,
+    "MALE":88,
+    "FEMALE":31
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"2/18/2014",
+    "DURATION":1,
+    "MALE":15,
+    "FEMALE":8
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"2/18/2014",
+    "DURATION":1,
+    "MALE":61,
+    "FEMALE":26
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"2/18/2014",
+    "DURATION":1,
+    "MALE":32,
+    "FEMALE":7
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"2/18/2014",
+    "DURATION":1,
+    "MALE":0,
+    "FEMALE":0
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"2/18/2014",
+    "DURATION":1,
+    "MALE":6,
+    "FEMALE":6
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"2/18/2014",
+    "DURATION":1,
+    "MALE":111,
+    "FEMALE":27
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"3/18/2014",
+    "DURATION":2,
+    "MALE":75,
+    "FEMALE":25
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"3/18/2014",
+    "DURATION":2,
+    "MALE":398,
+    "FEMALE":168
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"3/18/2014",
+    "DURATION":2,
+    "MALE":103,
+    "FEMALE":41
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"3/18/2014",
+    "DURATION":2,
+    "MALE":11,
+    "FEMALE":3
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"3/18/2014",
+    "DURATION":2,
+    "MALE":110,
+    "FEMALE":42
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"3/18/2014",
+    "DURATION":2,
+    "MALE":548,
+    "FEMALE":221
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"4/15/2014",
+    "DURATION":2,
+    "MALE":87,
+    "FEMALE":27
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"4/15/2014",
+    "DURATION":2,
+    "MALE":175,
+    "FEMALE":89
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"4/15/2014",
+    "DURATION":2,
+    "MALE":101,
+    "FEMALE":31
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"4/15/2014",
+    "DURATION":2,
+    "MALE":24,
+    "FEMALE":6
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"4/15/2014",
+    "DURATION":2,
+    "MALE":101,
+    "FEMALE":40
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"4/15/2014",
+    "DURATION":2,
+    "MALE":374,
+    "FEMALE":128
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"5/20/2014",
+    "DURATION":2,
+    "MALE":207,
+    "FEMALE":83
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"5/20/2014",
+    "DURATION":2,
+    "MALE":911,
+    "FEMALE":432
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"5/20/2014",
+    "DURATION":2,
+    "MALE":241,
+    "FEMALE":97
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"5/20/2014",
+    "DURATION":2,
+    "MALE":148,
+    "FEMALE":41
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"5/20/2014",
+    "DURATION":2,
+    "MALE":170,
+    "FEMALE":78
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"5/20/2014",
+    "DURATION":2,
+    "MALE":1183,
+    "FEMALE":495
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"6/10/2014",
+    "DURATION":2,
+    "MALE":178,
+    "FEMALE":59
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"6/10/2014",
+    "DURATION":2,
+    "MALE":807,
+    "FEMALE":341
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"6/10/2014",
+    "DURATION":2,
+    "MALE":216,
+    "FEMALE":78
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"6/10/2014",
+    "DURATION":2,
+    "MALE":127,
+    "FEMALE":33
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"6/10/2014",
+    "DURATION":2,
+    "MALE":120,
+    "FEMALE":58
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"6/10/2014",
+    "DURATION":2,
+    "MALE":1179,
+    "FEMALE":437
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"8/1/2014",
+    "DURATION":2,
+    "MALE":192,
+    "FEMALE":71
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"8/1/2014",
+    "DURATION":2,
+    "MALE":1024,
+    "FEMALE":507
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"8/1/2014",
+    "DURATION":2,
+    "MALE":308,
+    "FEMALE":118
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"8/1/2014",
+    "DURATION":2,
+    "MALE":133,
+    "FEMALE":45
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"8/1/2014",
+    "DURATION":2,
+    "MALE":271,
+    "FEMALE":132
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"8/1/2014",
+    "DURATION":2,
+    "MALE":1390,
+    "FEMALE":605
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"8/7/2014",
+    "DURATION":2,
+    "MALE":219,
+    "FEMALE":78
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"8/7/2014",
+    "DURATION":2,
+    "MALE":683,
+    "FEMALE":306
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"8/7/2014",
+    "DURATION":2,
+    "MALE":326,
+    "FEMALE":138
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"8/7/2014",
+    "DURATION":2,
+    "MALE":127,
+    "FEMALE":48
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"8/7/2014",
+    "DURATION":2,
+    "MALE":95,
+    "FEMALE":34
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"8/7/2014",
+    "DURATION":2,
+    "MALE":1463,
+    "FEMALE":748
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"9/9/2014",
+    "DURATION":2,
+    "MALE":211,
+    "FEMALE":79
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"9/9/2014",
+    "DURATION":2,
+    "MALE":884,
+    "FEMALE":346
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"9/9/2014",
+    "DURATION":2,
+    "MALE":218,
+    "FEMALE":93
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"9/9/2014",
+    "DURATION":2,
+    "MALE":110,
+    "FEMALE":35
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"9/9/2014",
+    "DURATION":2,
+    "MALE":263,
+    "FEMALE":121
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"9/9/2014",
+    "DURATION":2,
+    "MALE":1556,
+    "FEMALE":713
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"10/21/2014",
+    "DURATION":2,
+    "MALE":130,
+    "FEMALE":51
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"10/21/2014",
+    "DURATION":2,
+    "MALE":587,
+    "FEMALE":259
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"10/21/2014",
+    "DURATION":2,
+    "MALE":208,
+    "FEMALE":80
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"10/21/2014",
+    "DURATION":2,
+    "MALE":56,
+    "FEMALE":16
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"10/21/2014",
+    "DURATION":2,
+    "MALE":51,
+    "FEMALE":51
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"10/21/2014",
+    "DURATION":2,
+    "MALE":1115,
+    "FEMALE":458
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"11/25/2014",
+    "DURATION":2,
+    "MALE":25,
+    "FEMALE":10
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"11/25/2014",
+    "DURATION":2,
+    "MALE":87,
+    "FEMALE":31
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"11/25/2014",
+    "DURATION":2,
+    "MALE":57,
+    "FEMALE":13
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"11/25/2014",
+    "DURATION":2,
+    "MALE":8,
+    "FEMALE":2
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"11/25/2014",
+    "DURATION":2,
+    "MALE":33,
+    "FEMALE":13
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"11/25/2014",
+    "DURATION":2,
+    "MALE":232,
+    "FEMALE":105
+  },
+  {
+    "LOCATION":"18th at Canal",
+    "DATE":"12/16/2014",
+    "DURATION":2,
+    "MALE":32,
+    "FEMALE":10
+  },
+  {
+    "LOCATION":"Clark at Lincoln",
+    "DATE":"12/16/2014",
+    "DURATION":2,
+    "MALE":81,
+    "FEMALE":23
+  },
+  {
+    "LOCATION":"Jackson at Halsted",
+    "DATE":"12/16/2014",
+    "DURATION":2,
+    "MALE":70,
+    "FEMALE":26
+  },
+  {
+    "LOCATION":"King at 31st",
+    "DATE":"12/16/2014",
+    "DURATION":2,
+    "MALE":6,
+    "FEMALE":2
+  },
+  {
+    "LOCATION":"Lake at Damen",
+    "DATE":"12/16/2014",
+    "DURATION":2,
+    "MALE":41,
+    "FEMALE":16
+  },
+  {
+    "LOCATION":"Milwaukee at Elston",
+    "DATE":"12/16/2014",
+    "DURATION":2,
+    "MALE":281,
+    "FEMALE":92
+  }
+]
