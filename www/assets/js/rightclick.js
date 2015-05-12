@@ -96,7 +96,11 @@ function findNearbyDivvyWithoutRed(e) {
 		initialMarker.addTo(map);
 	}
 
-	nearestLayer = L.geoJson(null);
+	nearestLayer = L.geoJson(null, {
+		onEachFeature: onEachDivvyStation
+	});
+	
+	
 
 	for (var x = 0; x < 5; x++) {
 		var nextNearest = turf.nearest( point, divvyStationsFC );
@@ -114,6 +118,14 @@ function findNearbyDivvyWithoutRed(e) {
 	}
 	nearestLayer.addTo(map);
 	map.fitBounds(nearestLayer);
+}
+
+function onEachDivvyStation(feature, layer) {
+	console.log(feature);
+    // does this feature have a property named popupContent?
+    if (feature.properties && feature.properties["Station Name"]) {
+        layer.bindPopup(feature.properties["Station Name"]);
+    }
 }
 
 function setDistanceLabel(line) {
