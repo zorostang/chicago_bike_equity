@@ -3,13 +3,86 @@
 		"location": "18th at Canal",
     "latitude": "41.857655",
     "longitude": "-87.638935",
-    "dateCounts": [{
-      "date": "20140909",
+    "dateCounts": [
+    	{
+    		"date": "20140909",
   		"counts": {
   			"maleAM": 80,
   			"malePM": 132,
   			"femaleAM": 33,
   			"femalePM": 46
+  		}
+  	},{
+  		"date": "20140801",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20141021",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20140415",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20130814",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20130417",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20141125",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20140610",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20141216",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20140708",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
   		}
   	}]
   },
