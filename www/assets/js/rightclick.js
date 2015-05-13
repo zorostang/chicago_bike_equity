@@ -171,13 +171,16 @@ function showAddress (e) {
 		//var address_error = result.address.Match_addr;
 
 		if (result === undefined) {
+			/*We will not be using ESRI so this can be disabled*/
 			console.log("error in match address");
+			/*
 			$('#features').append('<div class="panel-heading error" style="background-color: red;"> No Address Found :( Try Again! </div>');
+			*/
 			//add div here
 		} else {
 			$(".right_click_instructions").hide();
 			$('.error').remove(); 
-			$('#features').append('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + result.address.Match_addr + '</h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div></div>');
+			$('#features .sidebar-table').append('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + result.address.Match_addr + '</h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div></div>');
 			var marker = L.marker(result.latlng);
 			marker.addTo(map);
 			marker.bindPopup(result.address.Match_addr);

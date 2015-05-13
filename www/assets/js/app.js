@@ -276,7 +276,7 @@ var divvyStationsCall = $.getJSON("data/divvy_stations.geojson", function (data)
   	console.log("groceries near divvy object is below:");
   	console.log(groceriesNearDivvy);
   	console.log("groceries near divvy count: " + groceriesNearDivvy.features.length);
-  	$("#features").append("<div class='panel-heading right_click_instructions'>Right-click on the map to get an Access Index</div>");
+  	$("#features .sidebar-table").append("<div class='panel-heading right_click_instructions'>Right-click on the map to get an Access Index</div>");
   });
 });
 
