@@ -23,179 +23,180 @@
   	},{
   		"date": "20141021",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 74,
+  			"malePM": 79,
+  			"femaleAM": 28,
+  			"femalePM": 23
   		}
   	},{
   		"date": "20140415",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 20,
+  			"malePM": 60,
+  			"femaleAM": 6,
+  			"femalePM": 21
   		}
   	},{
   		"date": "20130814",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 75,
+  			"malePM": 91,
+  			"femaleAM": 34,
+  			"femalePM": 39
   		}
   	},{
   		"date": "20130417",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
-  		}
+  			"maleAM": 33,
+  			"malePM": null,
+  			"femaleAM": 24,
+  			"femalePM": null
+  		},
+  		"note": "AM only"
   	},{
   		"date": "20141125",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 30,
+  			"malePM": 15,
+  			"femaleAM": 4,
+  			"femalePM": 6
   		}
   	},{
   		"date": "20140610",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
+  			"maleAM": 49,
+  			"malePM": 119,
   			"femaleAM": 18,
-  			"femalePM": 53
+  			"femalePM": 41
   		}
   	},{
   		"date": "20141216",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 5,
+  			"malePM": 22,
+  			"femaleAM": 5,
+  			"femalePM": 5
   		}
   	},{
   		"date": "20140708",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 65,
+  			"malePM": 141,
+  			"femaleAM": 23,
+  			"femalePM": 55
   		}
   	},{
   		"date": "20140218",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 9,
+  			"malePM": 7,
+  			"femaleAM": 3,
+  			"femalePM": 5
   		},
   		"note": "1 hour count"
   	},{
   		"date": "20140520",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 68,
+  			"malePM": 124,
+  			"femaleAM": 28,
+  			"femalePM": 55
   		}
   	},{
   		"date": "20140121",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 4,
+  			"malePM": 5,
+  			"femaleAM": 1,
+  			"femalePM": 1
   		}
   	},{
   		"date": "20130910",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 81,
+  			"malePM": 93,
+  			"femaleAM": 32,
+  			"femalePM": 28
   		}
   	},{
   		"date": "20140318",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 25,
+  			"malePM": 50,
+  			"femaleAM": 11,
+  			"femalePM": 14
   		}
   	},{
   		"date": "20130710",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 74,
+  			"malePM": 133,
+  			"femaleAM": 41,
+  			"femalePM": 63
   		}
   	},{
   		"date": "20130213",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 28,
+  			"malePM": 19,
+  			"femaleAM": 13,
+  			"femalePM": 18
   		}
   	},{
   		"date": "20130613",
   		"counts": {
   			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"malePM": 83,
+  			"femaleAM": 27,
+  			"femalePM": 40
   		}
   	},{
   		"date": "20131112",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 20,
+  			"malePM": 20,
+  			"femaleAM": 7,
+  			"femalePM": 5
   		}
   	},{
   		"date": "20130315",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 20,
+  			"malePM": 26,
+  			"femaleAM": 19,
+  			"femalePM": 21
   		}
   	},{
   		"date": "20131008",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 69,
+  			"malePM": 91,
+  			"femaleAM": 29,
+  			"femalePM": 35
   		}
   	},{
   		"date": "20130109",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 33,
+  			"malePM": 23,
+  			"femaleAM": 16,
+  			"femalePM": 12
   		}
   	},{
   		"date": "20130515",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 60,
+  			"malePM": 110,
+  			"femaleAM": 25,
+  			"femalePM": 46
   		}
   	},{
   		"date": "20131210",
   		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
+  			"maleAM": 6,
+  			"malePM": 11,
+  			"femaleAM": 1,
+  			"femalePM": 2
   		},
   		"note": "1 hour count"
   	}]
