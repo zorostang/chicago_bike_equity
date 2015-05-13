@@ -84,6 +84,120 @@
   			"femaleAM": 18,
   			"femalePM": 53
   		}
+  	},{
+  		"date": "20140218",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		},
+  		"note": "1 hour count"
+  	},{
+  		"date": "20140520",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20140121",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20130910",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20140318",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20130710",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20130213",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20130613",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20131112",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20130315",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20131008",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20130109",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20130515",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		}
+  	},{
+  		"date": "20131210",
+  		"counts": {
+  			"maleAM": 57,
+  			"malePM": 121,
+  			"femaleAM": 18,
+  			"femalePM": 53
+  		},
+  		"note": "1 hour count"
   	}]
   },
   {
