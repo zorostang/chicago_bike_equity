@@ -292,7 +292,7 @@ function findHypertension(e) {
 			
 			console.log(value);
 			var extra = (value < 20 ? "(this is comparatively low)" : "(this is comparatively high)");
-			var content = "<p>The estimated hypertension prevalence in ZIP code " + zip_code + " for 2006-2012 is " + value + " percent " + extra + "</p>";
+			var content = "<p>The estimated hypertension prevalence in ZIP code " + zip_code + " for 2006-2012 is <b>" + value + " percent</b> " + extra + "</p>";
 			$('.iteration_' + iteration + '_bike_lanes').append(content);
 			
 			// Turn on the hypertension layer
