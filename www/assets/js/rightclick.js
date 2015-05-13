@@ -180,8 +180,10 @@ function showAddress (e) {
 		} else {
 			$(".right_click_instructions").hide();
 			$('.error').remove(); 
-			$('#features .sidebar-table').append('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + result.address.Match_addr + '</h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div></div>');
-			var marker = L.marker(result.latlng);
+
+			$('#features .sidebar-table').append('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + result.address.Match_addr + '</h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div><div class="iteration_' + iteration + '_bike_racks"></div></div>');
+			
+               var marker = L.marker(result.latlng);
 			marker.addTo(map);
 			marker.bindPopup(result.address.Match_addr);
 			marker.openPopup();
@@ -214,7 +216,7 @@ function showAddress (e) {
 	findNearbyDivvyWithoutRed(e);
 	findNearestBikeLanes(e);
 	findHypertension(e);
-
+	countRacksWithinOneMileSquareOfLocation(e);
 }
 
 function findNearestBikeLanes(e) {
@@ -295,7 +297,7 @@ function findHypertension(e) {
 			
 			console.log(value);
 			var extra = (value < 20 ? "(this is comparatively low)" : "(this is comparatively high)");
-			var content = "<p>The estimated hypertension prevalence in ZIP code " + zip_code + " for 2006-2012 is " + value + " percent " + extra + "</p>";
+			var content = "<p>The estimated hypertension prevalence in ZIP code " + zip_code + " for 2006-2012 is <b>" + value + " percent</b> " + extra + "</p>";
 			$('.iteration_' + iteration + '_bike_lanes').append(content);
 			
 			// Turn on the hypertension layer
@@ -320,5 +322,35 @@ $("#clear-access-index").click(function() {
   //return false;
 });
 
+function countRacksWithinOneMileSquareOfLocation(location){
 
+	var count = 0;
 
+	console.log("COUNT RACKS FUNCTION!!!")
+	var user_coordinate = {
+		  'type': 'Feature',
+		  'properties': {
+		    'marker-color': '#0f0'
+		  },
+		  'geometry': {
+		    'type': 'Point',
+		    'coordinates': [location.latlng.lng, location.latlng.lat]
+		  }
+		};
+
+	var user_location_buffer = turf.buffer(user_coordinate, 0.5, 'miles').features[0]
+
+	$.getJSON("data/racks.geojson", function (data) {
+		$.each(data, function(key, val) {
+			if (key === 'features') {
+				$.each(val, function(idx, point){
+					if (turf.inside(point, user_location_buffer)){
+						count += 1;
+					}
+				});
+			}
+		});
+		var content = "<p>There are " + count + " bike racks within 1/2 mile.";
+		$(".iteration_" + iteration + "_bike_racks").append(content);
+	});
+}
