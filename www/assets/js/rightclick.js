@@ -162,7 +162,7 @@ function showAddress (e) {
 		url: requestUrl,
 		success: function(data) {
 			//return the formatted location 
-			var displayPoint, displayAddress;
+			var displayPoint, displayAddress, extendedDisplayPoint;
 			for (var i = 0; i < data.features.length; i++) {
 				var featureprops = data.features[i].properties;
 				//get the first osmway layer 
@@ -173,6 +173,7 @@ function showAddress (e) {
 					if (jQuery.isEmptyObject(featureAddress)) {
 						//when the exact location isn't provided, set the name of the point of interest, if available
 						displayPoint = featureprops.name;
+						extendedDisplayPoint = displayPoint + ", " + featureprops.local_admin + ", " + featureprops.admin1_abbr + " ("+featureprops.neighborhood+")";
 					}
 					else {
 						//when the exact location is provided, all details are available, set the address as point of interest name, and location details
@@ -199,6 +200,13 @@ function showAddress (e) {
 				break;
 				}
 			};
+
+			if(address ===undefined) {
+				//this would happen if the responses from the geocoder only provided osmway layers and no openaddress layers
+				//in this case, use the extended point of interest display
+				address = extendedDisplayPoint;
+			};
+
 			$(".right_click_instructions").hide();
 			$('.error').remove(); 
 
