@@ -151,67 +151,73 @@ var marker_array = [];
 
 function showAddress (e) {
 	iteration++; // keep track of the number of times the user has requested an Access Index this session
-	var geocodeService = new L.esri.Geocoding.Services.Geocoding();
+	var address,
+  	cords = e.latlng;
+	latitude = e.latlng.lat,
+	longitude = e.latlng.lng,
+	requestUrl = "https://pelias.mapzen.com/reverse?lat="+latitude+"&lon="+longitude+"&size=10&layers=osmway,openaddresses";
 
-  	//Todo: figure out what happens when error is thrown by esri.
-    geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
-
-      //enclose here, if result is undefined,
-      //else 
-      //If error shown,
-      //Print error: try again
-      /*
-      console.log("error: " + error + "," + "result: " + result);
-
-      if (e === error) {
-      	alert("No address for this location :( Try again!");
-      	console.log("here");
-		};
-		*/
-		//var address_error = result.address.Match_addr;
-
-		if (result === undefined) {
-			/*We will not be using ESRI so this can be disabled*/
-			console.log("error in match address");
-			/*
-			$('#features').append('<div class="panel-heading error" style="background-color: red;"> No Address Found :( Try Again! </div>');
-			*/
-			//add div here
-		} else {
+	$.ajax({
+		type: "GET",
+		url: requestUrl,
+		success: function(data) {
+			//return the formatted location 
+			var displayPoint, displayAddress;
+			for (var i = 0; i < data.features.length; i++) {
+				var featureprops = data.features[i].properties;
+				//get the first osmway layer 
+				if (featureprops.layer === "osmway") {
+					//osmway refers to the point of interest such as a park or school name
+					//sometimes it also has the exact location (number, street name) as well 
+					var featureAddress = featureprops.address;
+					if (jQuery.isEmptyObject(featureAddress)) {
+						//when the exact location isn't provided, set the name of the point of interest, if available
+						displayPoint = featureprops.name;
+					}
+					else {
+						//when the exact location is provided, all details are available, set the address as point of interest name, and location details
+						displayAddress = featureAddress.number + " " + featureAddress.street + ", " + featureprops.local_admin + ", " + featureprops.admin1_abbr + " ("+featureprops.neighborhood+")";
+						displayPoint = featureprops.name;
+						address = displayPoint + ", " + displayAddress;
+					}
+				break;
+				}
+			};
+			for (var i = 0; i < data.features.length; i++) {
+				var featureprops = data.features[i].properties;
+				//get the first openaddress layer
+				//this loop is only useful when the osmway could not provide the full address but just the point of interest name
+				if (featureprops.layer === "openaddresses" && address === undefined) {
+					displayAddress = featureprops.text;
+					if (displayPoint === undefined) {
+						//with no point of interest name, simply display the location addrress
+						address = displayAddress + " ("+featureprops.neighborhood+")";;
+					}
+					else {
+						address = displayPoint + ", " + displayAddress + " ("+featureprops.neighborhood+")";;
+					}
+				break;
+				}
+			};
 			$(".right_click_instructions").hide();
 			$('.error').remove(); 
 
-			$('#features .sidebar-table').append('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + result.address.Match_addr + '</h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div><div class="iteration_' + iteration + '_bike_racks"></div></div>');
+			$('#features .sidebar-table').append('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + address + '</h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div><div class="iteration_' + iteration + '_bike_racks"></div></div>');
 			
-               var marker = L.marker(result.latlng);
+            var marker = L.marker(cords);
 			marker.addTo(map);
-			marker.bindPopup(result.address.Match_addr);
+			marker.bindPopup(address);
 			marker.openPopup();
 			
 			marker_array.push(marker);
 			console.log(marker_array.length);
-			console.log(marker_array);
-			
+			console.log(marker_array);	
+		},
+		error: function() {
+		console.log("Error in match address");
+	    $('#features').append('<div class="panel-heading error" style="background-color: red;"> No Address Found :( Try Again! </div>');
 		}
-      //place marker & popup with address on coordinates selected
-      //L.marker([50.505, 30.57], {icon: myIcon}).addTo(map);
-      //add a class here.
-      //bindPopup(add a class here)
-
-
-      //add to marker arrays
-
-      //chaining, can do one at a time
-      //var marker = L.marker(result.latlng);
-      // marker.  
-
-      //
-      //L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup();
-
-      //can I group all of these pop-ups together and then erase them at the same time?
-    });
-
-
+	});
 	// Other Access Index functions
 	findNearbyDivvyWithoutRed(e);
 	findNearestBikeLanes(e);
