@@ -211,7 +211,13 @@ function showAddress (e) {
 			$('.error').remove(); 
 
 			
-            var marker = L.marker(cords);
+            var numberMarker = L.AwesomeMarkers.icon({
+				icon: '',
+				markerColor: 'darkblue',
+				prefix: 'fa',
+				html: (iteration)
+				});
+            var marker = L.marker(cords, {icon: numberMarker});
 			marker.addTo(map);
 			marker.bindPopup(address);
 			marker.openPopup();
