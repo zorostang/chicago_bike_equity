@@ -1,8 +1,8 @@
 /* jshint unused: false */
 /* global console, map, divvyStations, L, turf, $ */
 
-	var lines = [];
-	var nearestLayer, nearest, point, initialMarker, iteration = 0, bikeLanesData, nearbyBikeLanesLayer, hypertensionData;
+var lines = [];
+var nearestLayer, nearest, point, initialMarker, iteration = 0, bikeLanesData, nearbyBikeLanesLayer, hypertensionData;
 
 function findNearbyDivvy(e) {
 	'use strict';
@@ -210,7 +210,6 @@ function showAddress (e) {
 			$(".right_click_instructions").hide();
 			$('.error').remove(); 
 
-			$('#features .sidebar-table').prepend('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + address + '</h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div><div class="iteration_' + iteration + '_bike_racks"></div></div>');
 			
             var marker = L.marker(cords);
 			marker.addTo(map);
@@ -219,7 +218,8 @@ function showAddress (e) {
 			
 			marker_array.push(marker);
 			console.log(marker_array.length);
-			console.log(marker_array);	
+			console.log(marker_array);
+			$('.iteration_' + iteration + '_address').html(address);
 		},
 		error: function() {
 		console.log("Error in match address");
@@ -227,6 +227,7 @@ function showAddress (e) {
 		}
 	});
 	// Other Access Index functions
+	$('#features .sidebar-table').prepend('<div class="panel-heading coordinate iteration_' + iteration + '"><h4 class="iteration_' + iteration + '_address"> </h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div><div class="iteration_' + iteration + '_bike_racks"></div></div>');
 	findNearbyDivvyWithoutRed(e);
 	findNearestBikeLanes(e);
 	findHypertension(e);
@@ -268,7 +269,7 @@ function findNearestBikeLanes(e) {
 			} else {
 				var content = "<p>There are no bike lanes within 1/2 mile</p>";
 			}
-			$(".iteration_" + iteration + "_bike_lanes").append(content);
+			appendIteration("_bike_lanes", content);
 			
 			// see if any of them are protected or buffered bike lanes
 			$.each(data.features, function(i, v) {
@@ -312,10 +313,7 @@ function findHypertension(e) {
 			console.log(value);
 			var extra = (value < 20 ? "(this is comparatively low)" : "(this is comparatively high)");
 			var content = "<p>The estimated hypertension prevalence in ZIP code " + zip_code + " for 2006-2012 is <b>" + value + " percent</b> " + extra + "</p>";
-			$('.iteration_' + iteration + '_bike_lanes').append(content);
-			
-			// Turn on the hypertension layer
-			
+			appendIteration("_hypertension", content);
 		})
 		.fail(function() {
 			console.log("Cartodb: There was an error retrieving hypertension_url");
@@ -340,7 +338,6 @@ function countRacksWithinOneMileSquareOfLocation(location){
 
 	var count = 0;
 
-	console.log("COUNT RACKS FUNCTION!!!")
 	var user_coordinate = {
 		  'type': 'Feature',
 		  'properties': {
@@ -365,6 +362,10 @@ function countRacksWithinOneMileSquareOfLocation(location){
 			}
 		});
 		var content = "<p>There are " + count + " bike racks within 1/2 mile.";
-		$(".iteration_" + iteration + "_bike_racks").append(content);
+		appendIteration("_bike_racks", content)
 	});
+}
+
+function appendIteration(name, content){
+	$(".iteration_" + iteration + name).append(content);
 }
