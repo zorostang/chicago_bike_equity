@@ -212,7 +212,13 @@ function showAddress (e) {
 
 			$('#features .sidebar-table').prepend('<div class="panel-heading coordinate iteration_' + iteration + '"><h4>'  + address + '</h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div><div class="iteration_' + iteration + '_bike_racks"></div></div>');
 			
-            var marker = L.marker(cords);
+            var numberMarker = L.AwesomeMarkers.icon({
+				icon: '',
+				markerColor: 'darkblue',
+				prefix: 'fa',
+				html: (iteration)
+				});
+            var marker = L.marker(cords, {icon: numberMarker});
 			marker.addTo(map);
 			marker.bindPopup(address);
 			marker.openPopup();
