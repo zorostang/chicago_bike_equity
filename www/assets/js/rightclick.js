@@ -321,7 +321,6 @@ function countRacksWithinOneMileSquareOfLocation(location){
 
 	var count = 0;
 
-	console.log("COUNT RACKS FUNCTION!!!")
 	var user_coordinate = {
 		  'type': 'Feature',
 		  'properties': {
