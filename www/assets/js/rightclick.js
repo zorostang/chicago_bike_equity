@@ -331,9 +331,12 @@ function findHypertension(e) {
 $("#clear-access-index").click(function() {
   $('.coordinate').remove(); 
 
-  for (var i = marker_array.length - 1; i >= 0; i--) {
+  for (var i = 0; i < marker_array.length; i++) {
   	map.removeLayer(marker_array[i]); 
   };
+
+  //reset the iteration back to zero
+  iteration = 0;
   //add in remove popups
 
   //Q: do I need a return
