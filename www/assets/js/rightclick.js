@@ -246,15 +246,15 @@ function showAddress (e) {
 
 function refocusCallbackGenerator(iteration, address, marker){
 	return function(){
-		refocus(iteration);
-		marker.openPopup();
+		refocus(iteration, marker);
 	};
 }
 
-function refocus(iteration){
-	e = clickedAddresses[iteration];
+function refocus(iteration, marker){
+	var e = clickedAddresses[iteration];
 	findNearbyDivvyWithoutRed(e);
 	findNearestBikeLanes(e, false);
+	marker.openPopup();
 }
 
 function findNearestBikeLanes(e, shouldAppendDescriptionToSidebar) {
