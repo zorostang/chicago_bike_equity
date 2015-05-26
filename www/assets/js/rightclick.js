@@ -3,6 +3,7 @@
 
 var lines = [];
 var nearestLayer, nearest, point, initialMarker, iteration = 0, bikeLanesData, nearbyBikeLanesLayer, hypertensionData;
+var clickedAddresses = [];
 
 function findNearbyDivvy(e) {
 	'use strict';
@@ -87,7 +88,6 @@ function findNearbyDivvyWithoutRed(e) {
 
 	var divvyStationsFC = divvyStations.toGeoJSON();
 
-
 	if (initialMarker) {
 		initialMarker.setLatLng([e.latlng.lat, e.latlng.lng]);
 		initialMarker.update();
@@ -99,8 +99,6 @@ function findNearbyDivvyWithoutRed(e) {
 	nearestLayer = L.geoJson(null, {
 		onEachFeature: onEachDivvyStation
 	});
-	
-	
 
 	for (var x = 0; x < 5; x++) {
 		var nextNearest = turf.nearest( point, divvyStationsFC );
@@ -151,6 +149,7 @@ var marker_array = [];
 
 function showAddress (e) {
 	iteration++; // keep track of the number of times the user has requested an Access Index this session
+	clickedAddresses[iteration] = e;
 	var address,
   	cords = e.latlng;
 	latitude = e.latlng.lat,
@@ -225,7 +224,12 @@ function showAddress (e) {
 			marker_array.push(marker);
 			console.log(marker_array.length);
 			console.log(marker_array);
+
 			$('.iteration_' + iteration + '_address').html(address);
+			$('#address' + iteration).css('cursor','pointer');
+			$('#address' + iteration).css('color','blue');
+			$('#address' + iteration).css('text-decoration','underline;');
+			$('#address' + iteration).click(refocusCallbackGenerator(iteration, address, marker));
 		},
 		error: function() {
 		console.log("Error in match address");
@@ -233,14 +237,27 @@ function showAddress (e) {
 		}
 	});
 	// Other Access Index functions
-	$('#features .sidebar-table').prepend('<div class="panel-heading coordinate iteration_' + iteration + '"><h4 class="iteration_' + iteration + '_address"> </h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div><div class="iteration_' + iteration + '_bike_racks"></div></div>');
+	$('#features .sidebar-table').prepend('<div class="panel-heading coordinate iteration_' + iteration + '"><h4 class="iteration_' + iteration + '_address" id="address'+iteration+'"> </h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div><div class="iteration_' + iteration + '_bike_racks"></div></div>');
 	findNearbyDivvyWithoutRed(e);
-	findNearestBikeLanes(e);
+	findNearestBikeLanes(e, true);
 	findHypertension(e);
 	countRacksWithinOneMileSquareOfLocation(e);
 }
 
-function findNearestBikeLanes(e) {
+function refocusCallbackGenerator(iteration, address, marker){
+	return function(){
+		refocus(iteration);
+		marker.openPopup();
+	};
+}
+
+function refocus(iteration){
+	e = clickedAddresses[iteration];
+	findNearbyDivvyWithoutRed(e);
+	findNearestBikeLanes(e, false);
+}
+
+function findNearestBikeLanes(e, shouldAppendDescriptionToSidebar) {
 	console.log("Going to find nearest bike lanes");
 	bikelane_query_url = "https://stevevance.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT *, st_distance(st_transform(st_setsrid(st_makepoint(" + e.latlng.lng + ", " + e.latlng.lat + "), 4326), 3435), st_transform(the_geom, 3435)) as distance FROM bike_routes_12_19_14_excl_recommended b where st_dwithin(st_transform(st_setsrid(st_makepoint(" + e.latlng.lng + ", " + e.latlng.lat + "), 4326), 3435), st_transform(the_geom, 3435), 2640)";
 
@@ -275,26 +292,28 @@ function findNearestBikeLanes(e) {
 			} else {
 				var content = "<p>There are no bike lanes within 1/2 mile</p>";
 			}
-			appendIteration("_bike_lanes", content);
+
+			if (shouldAppendDescriptionToSidebar){
+				appendIteration("_bike_lanes", content);
 			
-			// see if any of them are protected or buffered bike lanes
-			$.each(data.features, function(i, v) {
-				if(v.properties.type == "8") {
-					bikeLanesCount.protected++;
+				// see if any of them are protected or buffered bike lanes
+				$.each(data.features, function(i, v) {
+					if(v.properties.type == "8") {
+						bikeLanesCount.protected++;
+					}
+					if(v.properties.type == "9") {
+						bikeLanesCount.buffered++;
+					}
+				});
+				
+				// if there are protected/buffered, print the counts
+				if(bikeLanesCount.protected > 0) {
+					$("ul.iteration_" + iteration + ".bike_lanes_list").append("<li>" + bikeLanesCount.protected + " are protected bike lanes</li>");
 				}
-				if(v.properties.type == "9") {
-					bikeLanesCount.buffered++;
-				}
-			});
-			
-			// if there are protected/buffered, print the counts
-			if(bikeLanesCount.protected > 0) {
-				$("ul.iteration_" + iteration + ".bike_lanes_list").append("<li>" + bikeLanesCount.protected + " are protected bike lanes</li>");
+				if(bikeLanesCount.buffered > 0) {
+					$("ul.iteration_" + iteration + ".bike_lanes_list").append("<li>" + bikeLanesCount.buffered + " are buffered bike lanes</li>");
+				}	
 			}
-			if(bikeLanesCount.buffered > 0) {
-				$("ul.iteration_" + iteration + ".bike_lanes_list").append("<li>" + bikeLanesCount.buffered + " are buffered bike lanes</li>");
-			}
-			
 		})
 		.fail(function() {
 			console.log("Cartodb: There was an error retrieving bikelane_query_url");
