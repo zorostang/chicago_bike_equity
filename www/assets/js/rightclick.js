@@ -4,6 +4,7 @@
 var lines = [];
 var nearestLayer, nearest, point, initialMarker, iteration = 0, bikeLanesData, nearbyBikeLanesLayer, hypertensionData;
 var clickedAddresses = [];
+var marker_array = [];
 
 function findNearbyDivvy(e) {
 	'use strict';
@@ -51,10 +52,10 @@ function findNearbyDivvy(e) {
 		divvyStationsFC = turf.remove(divvyStationsFC, 'ID', id);
 		nearestLayer.addData(nextNearest);
 
-		if (lines[x]) {
+		if (lines[x]) { //if we already put down a line update it
 			lines[x].setLatLngs([[nextNearest.geometry.coordinates[1], nextNearest.geometry.coordinates[0]], [e.latlng.lat, e.latlng.lng]]);
 			setDistanceLabel(lines[x]);
-		} else {
+		} else { //otherwise create it 
 			lines[x] = L.polyline([[nextNearest.geometry.coordinates[1], nextNearest.geometry.coordinates[0]], [e.latlng.lat, e.latlng.lng]]);
 			setDistanceLabel(lines[x]).addTo(map);
 		}
@@ -94,6 +95,8 @@ function findNearbyDivvyWithoutRed(e) {
 	} else {
 		initialMarker = L.marker([e.latlng.lat, e.latlng.lng]);
 		initialMarker.addTo(map);
+		//add initialMarker to marker array
+		marker_array.push(initialMarker);
 	}
 
 	nearestLayer = L.geoJson(null, {
@@ -106,12 +109,12 @@ function findNearbyDivvyWithoutRed(e) {
 		divvyStationsFC = turf.remove(divvyStationsFC, 'ID', id);
 		nearestLayer.addData(nextNearest);
 
-		if (lines[x]) {
+		if (lines[x]) { 
 			lines[x].setLatLngs([[nextNearest.geometry.coordinates[1], nextNearest.geometry.coordinates[0]], [e.latlng.lat, e.latlng.lng]]);
-			setDistanceLabel(lines[x]);
+			setDistanceLabel(lines[x]).addTo(map); //distance label gets updated
 		} else {
 			lines[x] = L.polyline([[nextNearest.geometry.coordinates[1], nextNearest.geometry.coordinates[0]], [e.latlng.lat, e.latlng.lng]]);
-			setDistanceLabel(lines[x]).addTo(map);
+			setDistanceLabel(lines[x]).addTo(map); //distance label gets added
 		}
 	}
 	nearestLayer.addTo(map);
@@ -139,7 +142,7 @@ function showCoordinates (e) {
 }
 */
 
-var marker_array = [];
+
 
 //showAddress: uses reverse geocoding to shows address of coordinates clicked
 //				utilizes "Esri Leaflet" plug-in
@@ -261,6 +264,10 @@ function findNearestBikeLanes(e, shouldAppendDescriptionToSidebar) {
 	console.log("Going to find nearest bike lanes");
 	bikelane_query_url = "https://stevevance.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT *, st_distance(st_transform(st_setsrid(st_makepoint(" + e.latlng.lng + ", " + e.latlng.lat + "), 4326), 3435), st_transform(the_geom, 3435)) as distance FROM bike_routes_12_19_14_excl_recommended b where st_dwithin(st_transform(st_setsrid(st_makepoint(" + e.latlng.lng + ", " + e.latlng.lat + "), 4326), 3435), st_transform(the_geom, 3435), 2640)";
 
+	if(map.hasLayer(nearbyBikeLanesLayer)) {
+		nearbyBikeLanesLayer.clearLayers();
+	}
+
 	$.getJSON(bikelane_query_url, function (data) {
 	    	console.log("Cartodb: Working to retrieve bikelane_query_url");
 		})
@@ -278,9 +285,7 @@ function findNearestBikeLanes(e, shouldAppendDescriptionToSidebar) {
 			// print the number of bike lanes nearby
 			if(bikeLanesCount.total > 0) {
 				var content = "<p>There are " + bikeLanesCount.total + " bike lanes within 1/2 mile</p><ul class='iteration_" + iteration + " bike_lanes_list'></ul>";
-				if(map.hasLayer(nearbyBikeLanesLayer)) {
-					nearbyBikeLanesLayer.clearLayers();
-				}
+
 				nearbyBikeLanesLayer = L.geoJson(bikeLanesData, {
 					style: function (feature) {
 				        return {color: "#ff0084", weight: 9};
@@ -348,11 +353,30 @@ function findHypertension(e) {
 //Q: Should I move this to the app.js file?
 //Clear Access Index comparison when clear-access-index button is clicked
 $("#clear-access-index").click(function() {
+	//remove everything appended to the sidebar div
   $('.coordinate').remove(); 
+
 
   for (var i = 0; i < marker_array.length; i++) {
   	map.removeLayer(marker_array[i]); 
   };
+
+  //removes layer 5 of markers for nearest divvy stations
+  if(map.hasLayer(nearestLayer) ) {
+	map.removeLayer(nearestLayer);
+   }
+
+   //remove blue distance lines connected to markers
+   var k = 0; 
+   for(k=0; k < 5; k++){
+   		map.removeLayer(lines[k]);
+   		console.log("lines" + k);
+   }
+
+   	//remove pink/red bike lanes
+	if(map.hasLayer(nearbyBikeLanesLayer)) {
+		nearbyBikeLanesLayer.clearLayers();
+	}
 
   //reset the iteration back to zero
   iteration = 0;
