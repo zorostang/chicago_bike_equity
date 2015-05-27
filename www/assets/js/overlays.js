@@ -1,5 +1,33 @@
 /* jshint unused: false */
-/* global L, $, turf */
+/* global L, $, turf, console */
+
+function BikeCountsLayer(map) {
+  'use strict';
+  var self = this;
+
+  $.getJSON('data/bikecounts.json').then(function (data) {
+    console.log('Got the bike counts!');
+    self.locationArr = data.locations;
+    $.each(self.locationArr, function (key, value) {
+      var marker = L.marker([value.latitude, value.longitude])
+        .bindPopup('<div id="bikecounts"></div>', {
+          minWidth: 600
+        })
+        .on('popupopen', function (e) {
+          // "value" is bound to this closure correctly; iterate through it to get the best data
+
+          $('#bikecounts').html('<pre>' + JSON.stringify(value) + '</pre>');
+        })
+        .addTo(map);
+      // build the popup (highcharts or some other library)
+    });
+  }, function (jqXHR, errText, err) {
+    console.log('There was an error! ' + errText);
+    console.log(JSON.stringify(err));
+    throw err;
+  });
+}
+
 
 /*
  * Initializes and populates the population overlay layer.

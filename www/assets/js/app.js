@@ -326,12 +326,13 @@ map = L.map("map", {
 		callback: findNearbyDivvy
   },{
     text: "Show Access Index",
-    callback: showAddress 
+    callback: showAddress
   }]
 });
 
 var bikelanesLayer = new BikeLanesLayer(map);
 var populationLayer = new PopulationLayer(map);
+var bikecountsLayer = new BikeCountsLayer(map);
 
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e) {
