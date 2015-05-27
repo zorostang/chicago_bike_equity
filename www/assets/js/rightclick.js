@@ -175,11 +175,13 @@ function showAddress (e) {
 					if (jQuery.isEmptyObject(featureAddress)) {
 						//when the exact location isn't provided, set the name of the point of interest, if available
 						displayPoint = featureprops.name;
-						extendedDisplayPoint = displayPoint + ", " + featureprops.local_admin + ", " + featureprops.admin1_abbr + " ("+featureprops.neighborhood+")";
+						//extendedDisplayPoint = displayPoint + ", " + featureprops.local_admin + ", " + featureprops.admin1_abbr + " ("+featureprops.neighborhood+")";
+						extendedDisplayPoint = displayPoint + ", " + featureprops.local_admin + ", " + featureprops.admin1_abbr;
 					}
 					else {
 						//when the exact location is provided, all details are available, set the address as point of interest name, and location details
-						displayAddress = featureAddress.number + " " + featureAddress.street + ", " + featureprops.local_admin + ", " + featureprops.admin1_abbr + " ("+featureprops.neighborhood+")";
+						//displayAddress = featureAddress.number + " " + featureAddress.street + ", " + featureprops.local_admin + ", " + featureprops.admin1_abbr + " ("+featureprops.neighborhood+")";
+						displayAddress = featureAddress.number + " " + featureAddress.street + ", " + featureprops.local_admin + ", " + featureprops.admin1_abbr;
 						displayPoint = featureprops.name;
 						address = displayPoint + ", " + displayAddress;
 					}
@@ -194,10 +196,12 @@ function showAddress (e) {
 					displayAddress = featureprops.text;
 					if (displayPoint === undefined) {
 						//with no point of interest name, simply display the location addrress
-						address = displayAddress + " ("+featureprops.neighborhood+")";;
+						//address = displayAddress + " ("+featureprops.neighborhood+")";;
+						address = displayAddress;
 					}
 					else {
-						address = displayPoint + ", " + displayAddress + " ("+featureprops.neighborhood+")";;
+						//address = displayPoint + ", " + displayAddress + " ("+featureprops.neighborhood+")";;
+						address = displayPoint + ", " + displayAddress;
 					}
 				break;
 				}
@@ -228,7 +232,7 @@ function showAddress (e) {
 			console.log(marker_array.length);
 			console.log(marker_array);
 
-			$('.iteration_' + iteration + '_address').html(address);
+			$('.iteration_' + iteration + '_address').html(iteration + ".) " + address);
 			$('#address' + iteration).css('cursor','pointer');
 			$('#address' + iteration).css('color','blue');
 			$('#address' + iteration).css('text-decoration','underline;');
@@ -377,6 +381,7 @@ $("#clear-access-index").click(function() {
 	if(map.hasLayer(nearbyBikeLanesLayer)) {
 		nearbyBikeLanesLayer.clearLayers();
 	}
+  marker_array = []; 
 
   //reset the iteration back to zero
   iteration = 0;
