@@ -31,7 +31,8 @@
             extraClasses: '',
             icon: 'home',
             markerColor: 'blue',
-            iconColor: 'white'
+            iconColor: 'white',
+            html: ""
         },
 
         initialize: function (options) {
@@ -42,9 +43,9 @@
             var div = document.createElement('div'),
                 options = this.options;
 
-            if (options.icon) {
+            //if (options.icon) {this has been commented out for slow roll chicago 
                 div.innerHTML = this._createInner();
-            }
+            //}
 
             if (options.bgPos) {
                 div.style.backgroundPosition =
@@ -76,7 +77,9 @@
                 }
             }
 
-            return "<i " + iconColorStyle + "class='" + options.extraClasses + " " + options.prefix + " " + iconClass + " " + iconSpinClass + " " + iconColorClass + "'></i>";
+            return "<i " + iconColorStyle + "class='" + options.extraClasses + " " 
+            + options.prefix + " " + iconClass + " " + iconSpinClass + " " 
+            + iconColorClass + "'>" + options.html + "</i>";
         },
 
         _setIconStyles: function (img, name) {

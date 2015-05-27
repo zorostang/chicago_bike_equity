@@ -1,4 +1,9 @@
-html, body, #container {
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+#container {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -10,7 +15,9 @@ input[type="radio"], input[type="checkbox"] {
   margin: 0;
 }
 #sidebar {
+  overflow:hidden;
   width: 250px;
+  /*set on page load*/
   height: 100%;
   max-width: 100%;
   float: left;
@@ -38,7 +45,10 @@ input[type="radio"], input[type="checkbox"] {
   border-radius: 0px;
   -webkit-box-shadow: none;
     box-shadow: none;
+    /*height: 100%;*/
 }
+
+
 #sidebar-hide-btn {
   margin-top: -2px;
 }
@@ -62,11 +72,13 @@ input[type="radio"], input[type="checkbox"] {
 .sidebar-table {
   position: absolute;
   width: 100%;
+  /*height:100%;*/
   top: 103px;
   bottom: 0px;
   overflow: auto;
 }
 
+/*button to "Clear Indices"*/
 .clear-access-button-wrapper {
   width: 100%;
   position: absolute;
@@ -76,7 +88,7 @@ input[type="radio"], input[type="checkbox"] {
 .clear-access-button {
     position: relative;
     width: 110px;
-    left: 30%;
+    left: 25%;
 }
 
 .leaflet-control-layers label {
