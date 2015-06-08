@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Chicago Bike Equity Project</title>
-    
-    <script src="assets/js/load.js"></script>
+
+     <script src="assets/js/load.js"></script>
     <link href="assets/css/load.css" rel="stylesheet" />
-    
+
   </head>
 
   <body>
@@ -44,8 +44,8 @@
         </div><!--/.navbar-collapse -->
       </div>
     </div>
-      
-     
+
+
     <div id="container">
       <div id="sidebar">
         <div class="sidebar-wrapper">
@@ -81,7 +81,7 @@
       </div>
       <div id="map"></div>
     </div>
-    
+
     <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -97,7 +97,7 @@
             </ul>
             <div class="tab-content" id="aboutTabsContent">
               <div class="tab-pane fade active in" id="about">
-                <p>Someone please refine this and fill the blanks...The goal of this project is to ... and the goal of this map is to measure the impact of. This project will calculate Chicago's Bicylcle Access Index. What is a Bicycle Access Index? A Bicycle Access Index gauges the impact of bicyling on a given area. This project is brought to you by <i><a href="http://www.slowrollchicago.org/">Slow Roll Chicago</a></i>.</p>  
+                <p>Someone please refine this and fill the blanks...The goal of this project is to ... and the goal of this map is to measure the impact of. This project will calculate Chicago's Bicylcle Access Index. What is a Bicycle Access Index? A Bicycle Access Index gauges the impact of bicyling on a given area. This project is brought to you by <i><a href="http://www.slowrollchicago.org/">Slow Roll Chicago</a></i>.</p>
               </div>
               <div id="github" class="tab-pane fade text-danger">
                 <p>The data provided on this site is for informational and planning purposes only.</p>
@@ -231,7 +231,35 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-      
+
+    <div style="display: none;">
+      <div id="bikeCountTemplate">
+        <table>
+          <tr>
+            <th colspan="12">
+              2015
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <td>Jan</td>
+              <td>Feb</td>
+              <td>Mar</td>
+              <td>Apr</td>
+              <td>May</td>
+              <td>Jun</td>
+              <td>Jul</td>
+              <td>Aug</td>
+              <td>Sep</td>
+              <td>Oct</td>
+              <td>Nov</td>
+              <td>Dev</td>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.css">
@@ -243,7 +271,7 @@
     <link rel="stylesheet" href="assets/css/leaflet.label.css">
     <link rel="stylesheet" href="assets/css/leaflet.contextmenu.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    
+
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon-120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon-152.png">
@@ -256,6 +284,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     <script src="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
@@ -274,5 +303,7 @@
     <script src="assets/js/overlays.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/leaflet.label.js"></script>
+    <script src="assets/js/lodash.min.js"></script>
+    <script src="assets/js/moment.min.js"></script>
   </body>
 </html>

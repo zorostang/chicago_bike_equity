@@ -323,13 +323,18 @@ map = L.map("map", {
 	contextmenu: true,
 	contextmenuWidth: 200,
 	contextmenuItems: [{
-		    text: "Get Access Index",
-		    callback: showAddress
-	  }]
+		text: "Find nearby Divvy stations",
+		callback: findNearbyDivvy
+  },
+  {
+    text: "Get Access Index",
+    callback: showAddress
+  }]
 });
 
 var bikelanesLayer = new BikeLanesLayer(map);
 var populationLayer = new PopulationLayer(map);
+var bikecountsLayer = new BikeCountsLayer(map);
 var hypertensionLayer = new HypertensionLayer(map);
 
 /* Layer control listeners that allow for a single markerClusters layer */
