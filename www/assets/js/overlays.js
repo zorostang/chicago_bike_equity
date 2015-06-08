@@ -10,16 +10,48 @@ function BikeCountsLayer(map) {
     self.locationArr = data.locations;
     $.each(self.locationArr, function (key, value) {
       var marker = L.marker([value.latitude, value.longitude])
-        .bindPopup('<div id="bikecounts"></div>', {
+        .bindPopup('<canvas id="bikecounts" width="600" height="400"></canvas>', {
           minWidth: 600
         })
         .on('popupopen', function (e) {
           // "value" is bound to this closure correctly; iterate through it to get the best data
+          var orderedDates = _.sortByOrder(value.dateCounts, function (x) {
+            return moment(x.date, 'YYYYMMDD').unix();
+          });
+          var data = {
+            labels: _.map(orderedDates, function (x) {
+                var retVal = moment(x.date, 'YYYYMMDD').format('MMMM YYYY');
+                if (x.note) {
+                  retVal += ' (' + x.note + ')';
+                }
+                return retVal;
+              }),
+            datasets: [
+              {
+                data: _.map(orderedDates, function (x) {
+                  return _.add(x.counts.maleAM, x.counts.malePM);
+                }),
+                fillColor: 'blue',
+                strokeColor: 'blue',
+                highlightFill: 'blue',
+                highlightStroke: 'blue'
+              },
+              {
+                data: _.map(orderedDates, function (x) {
+                  return _.add(x.counts.femaleAM, x.counts.femalePM);
+                }),
+                fillColor: 'pink',
+                strokeColor: 'pink',
+                highlightFill: 'pink',
+                highlightStroke: 'pink'
+              }
+            ]
+          }
 
-          $('#bikecounts').html('<pre>' + JSON.stringify(value) + '</pre>');
+          var ctx = document.getElementById("bikecounts").getContext('2d');
+          var chart = new Chart(ctx).Bar(data);
         })
         .addTo(map);
-      // build the popup (highcharts or some other library)
     });
   }, function (jqXHR, errText, err) {
     console.log('There was an error! ' + errText);
