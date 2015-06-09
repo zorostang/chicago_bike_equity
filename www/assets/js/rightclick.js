@@ -212,9 +212,10 @@ function showAddress (e) {
 				//in this case, use the extended point of interest display
 				address = extendedDisplayPoint;
 			};
-
+			
+			$("#clear-access-index").removeClass("hidden"); // show the Start Over button
 			$(".right_click_instructions").hide();
-			$('.error').remove(); 
+			$('.error').remove();
 
 			
             var numberMarker = L.AwesomeMarkers.icon({
@@ -232,7 +233,7 @@ function showAddress (e) {
 			console.log(marker_array.length);
 			console.log(marker_array);
 
-			$('.iteration_' + iteration + '_address').html(iteration + ".) " + address);
+			$('.iteration_' + iteration + '_address').html(iteration + ". " + address);
 			$('#address' + iteration).css('cursor','pointer');
 			$('#address' + iteration).css('color','blue');
 			$('#address' + iteration).css('text-decoration','underline;');
@@ -243,8 +244,11 @@ function showAddress (e) {
 	    $('#features').append('<div class="panel-heading error" style="background-color: red;"> No Address Found :( Try Again! </div>');
 		}
 	});
-	// Other Access Index functions
+	// Create an empty shell for the Access Index results to go into
 	$('#features .sidebar-table').prepend('<div class="panel-heading coordinate iteration_' + iteration + '"><h4 class="iteration_' + iteration + '_address" id="address'+iteration+'"> </h4><div class="iteration_' + iteration + '_bike_lanes"></div><div class="iteration_' + iteration + '_hypertension"></div><div class="iteration_' + iteration + '_bike_racks"></div></div>');
+	
+	
+	// Other Access Index functions
 	findNearbyDivvyWithoutRed(e);
 	findNearestBikeLanes(e, true);
 	findHypertension(e);
@@ -288,7 +292,7 @@ function findNearestBikeLanes(e, shouldAppendDescriptionToSidebar) {
 			
 			// print the number of bike lanes nearby
 			if(bikeLanesCount.total > 0) {
-				var content = "<p>There are " + bikeLanesCount.total + " bike lanes within 1/2 mile</p><ul class='iteration_" + iteration + " bike_lanes_list'></ul>";
+				var content = "<p>Bike lanes: " + bikeLanesCount.total + " within 1/2 mile</p><ul class='iteration_" + iteration + " bike_lanes_list'></ul>";
 
 				nearbyBikeLanesLayer = L.geoJson(bikeLanesData, {
 					style: function (feature) {
@@ -346,7 +350,7 @@ function findHypertension(e) {
 			
 			console.log(value);
 			var extra = (value < 20 ? "(this is comparatively low)" : "(this is comparatively high)");
-			var content = "<p>The estimated hypertension prevalence in ZIP code " + zip_code + " for 2006-2012 is <b>" + value + " percent</b> " + extra + "</p>";
+			var content = "<p>Estimated <b><abbr title='high blood pressure'>hypertension</abbr></b> prevalence in ZIP code " + zip_code + " for 2006-2012 is <b>" + value + " percent</b></p>";
 			appendIteration("_hypertension", content);
 		})
 		.fail(function() {
@@ -418,7 +422,7 @@ function countRacksWithinOneMileSquareOfLocation(location){
 				});
 			}
 		});
-		var content = "<p>There are " + count + " bike racks within 1/2 mile.";
+		var content = "<p>Bike parking: " + count + " racks within 1/2 mile";
 		appendIteration("_bike_racks", content)
 	});
 }

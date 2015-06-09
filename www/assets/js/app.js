@@ -144,6 +144,14 @@ var mapquestHYB = L.layerGroup([L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sa
   attribution: 'Labels courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
 })]);
 
+var streets = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic3RldmV2YW5jZSIsImEiOiJqRVdYSnFjIn0.cmW3_zqwZpvcwPYc_C2SPQ', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        detectRetina: true,
+        maxZoom: 20,
+        maxNativeZoom: 19,
+        maptiks_id: 'mapbox_streets'
+    });
+
 /* Overlay Layers */
 var highlight = L.geoJson(null);
 var highlightStyle = {
@@ -317,19 +325,20 @@ map = L.map("map", {
 	maxZoom: 19,
 	minZoom: 8,
 	center: [41.87982, -87.63161],
-	layers: [mapquestOSM, markerClusters, highlight],
+	layers: [streets, markerClusters, highlight],
 	zoomControl: false,
 	attributionControl: false,
 	contextmenu: true,
 	contextmenuWidth: 200,
-	contextmenuItems: [{
+	contextmenuItems: [
+	/*{
 		text: "Find nearby Divvy stations",
 		callback: findNearbyDivvy
-  },
-  {
-    text: "Get Access Index",
-    callback: showAddress
-  }]
+	  },*/
+	  {
+	    text: "Get Access Index",
+	    callback: showAddress
+	  }]
 });
 
 var bikelanesLayer = new BikeLanesLayer(map);
@@ -439,8 +448,8 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-  "Street Map": mapquestOSM,
-	"Regional Bikeways": bikelanesOSM,
+  "Street Map": streets,
+	//"Regional Bikeways": bikelanesOSM,
 	//"Satellite": mapquestOAM,
 	"Satellite": mapquestHYB
 };
