@@ -1,1214 +1,1360 @@
 {
-  "locations": [{
-		"location": "18th at Canal",
-    "latitude": "41.857655",
-    "longitude": "-87.638935",
-    "dateCounts": [
-    	{
-    		"date": "20140909",
-  		"counts": {
-  			"maleAM": 80,
-  			"malePM": 132,
-  			"femaleAM": 33,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20140801",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
-  		}
-  	},{
-  		"date": "20141021",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 79,
-  			"femaleAM": 28,
-  			"femalePM": 23
-  		}
-  	},{
-  		"date": "20140415",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 60,
-  			"femaleAM": 6,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20130814",
-  		"counts": {
-  			"maleAM": 75,
-  			"malePM": 91,
-  			"femaleAM": 34,
-  			"femalePM": 39
-  		}
-  	},{
-  		"date": "20130417",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": null,
-  			"femaleAM": 24,
-  			"femalePM": null
-  		},
-  		"note": "AM only"
-  	},{
-  		"date": "20141125",
-  		"counts": {
-  			"maleAM": 30,
-  			"malePM": 15,
-  			"femaleAM": 4,
-  			"femalePM": 6
-  		}
-  	},{
-  		"date": "20140610",
-  		"counts": {
-  			"maleAM": 49,
-  			"malePM": 119,
-  			"femaleAM": 18,
-  			"femalePM": 41
-  		}
-  	},{
-  		"date": "20141216",
-  		"counts": {
-  			"maleAM": 5,
-  			"malePM": 22,
-  			"femaleAM": 5,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20140708",
-  		"counts": {
-  			"maleAM": 65,
-  			"malePM": 141,
-  			"femaleAM": 23,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140218",
-  		"counts": {
-  			"maleAM": 9,
-  			"malePM": 7,
-  			"femaleAM": 3,
-  			"femalePM": 5
-  		},
-  		"note": "1 hour count"
-  	},{
-  		"date": "20140520",
-  		"counts": {
-  			"maleAM": 68,
-  			"malePM": 124,
-  			"femaleAM": 28,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140121",
-  		"counts": {
-  			"maleAM": 4,
-  			"malePM": 5,
-  			"femaleAM": 1,
-  			"femalePM": 1
-  		}
-  	},{
-  		"date": "20130910",
-  		"counts": {
-  			"maleAM": 81,
-  			"malePM": 93,
-  			"femaleAM": 32,
-  			"femalePM": 28
-  		}
-  	},{
-  		"date": "20140318",
-  		"counts": {
-  			"maleAM": 25,
-  			"malePM": 50,
-  			"femaleAM": 11,
-  			"femalePM": 14
-  		}
-  	},{
-  		"date": "20130710",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 133,
-  			"femaleAM": 41,
-  			"femalePM": 63
-  		}
-  	},{
-  		"date": "20130213",
-  		"counts": {
-  			"maleAM": 28,
-  			"malePM": 19,
-  			"femaleAM": 13,
-  			"femalePM": 18
-  		}
-  	},{
-  		"date": "20130613",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 83,
-  			"femaleAM": 27,
-  			"femalePM": 40
-  		}
-  	},{
-  		"date": "20131112",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 20,
-  			"femaleAM": 7,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20130315",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 26,
-  			"femaleAM": 19,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20131008",
-  		"counts": {
-  			"maleAM": 69,
-  			"malePM": 91,
-  			"femaleAM": 29,
-  			"femalePM": 35
-  		}
-  	},{
-  		"date": "20130109",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": 23,
-  			"femaleAM": 16,
-  			"femalePM": 12
-  		}
-  	},{
-  		"date": "20130515",
-  		"counts": {
-  			"maleAM": 60,
-  			"malePM": 110,
-  			"femaleAM": 25,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20131210",
-  		"counts": {
-  			"maleAM": 6,
-  			"malePM": 11,
-  			"femaleAM": 1,
-  			"femalePM": 2
-  		},
-  		"note": "1 hour count"
-  	}]
-  },
-  {
-		"location": "Clark at Lincoln",
-    "latitude": "41.915614",
-    "longitude": "-87.634344",
-    "dateCounts": [
-    	{
-    		"date": "20140909",
-  		"counts": {
-  			"maleAM": 80,
-  			"malePM": 132,
-  			"femaleAM": 33,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20140801",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
-  		}
-  	},{
-  		"date": "20141021",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 79,
-  			"femaleAM": 28,
-  			"femalePM": 23
-  		}
-  	},{
-  		"date": "20140415",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 60,
-  			"femaleAM": 6,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20130814",
-  		"counts": {
-  			"maleAM": 75,
-  			"malePM": 91,
-  			"femaleAM": 34,
-  			"femalePM": 39
-  		}
-  	},{
-  		"date": "20130417",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": null,
-  			"femaleAM": 24,
-  			"femalePM": null
-  		},
-  		"note": "AM only"
-  	},{
-  		"date": "20141125",
-  		"counts": {
-  			"maleAM": 30,
-  			"malePM": 15,
-  			"femaleAM": 4,
-  			"femalePM": 6
-  		}
-  	},{
-  		"date": "20140610",
-  		"counts": {
-  			"maleAM": 49,
-  			"malePM": 119,
-  			"femaleAM": 18,
-  			"femalePM": 41
-  		}
-  	},{
-  		"date": "20141216",
-  		"counts": {
-  			"maleAM": 5,
-  			"malePM": 22,
-  			"femaleAM": 5,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20140708",
-  		"counts": {
-  			"maleAM": 65,
-  			"malePM": 141,
-  			"femaleAM": 23,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140218",
-  		"counts": {
-  			"maleAM": 9,
-  			"malePM": 7,
-  			"femaleAM": 3,
-  			"femalePM": 5
-  		},
-  		"note": "1 hour count"
-  	},{
-  		"date": "20140520",
-  		"counts": {
-  			"maleAM": 68,
-  			"malePM": 124,
-  			"femaleAM": 28,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140121",
-  		"counts": {
-  			"maleAM": 4,
-  			"malePM": 5,
-  			"femaleAM": 1,
-  			"femalePM": 1
-  		}
-  	},{
-  		"date": "20130910",
-  		"counts": {
-  			"maleAM": 81,
-  			"malePM": 93,
-  			"femaleAM": 32,
-  			"femalePM": 28
-  		}
-  	},{
-  		"date": "20140318",
-  		"counts": {
-  			"maleAM": 25,
-  			"malePM": 50,
-  			"femaleAM": 11,
-  			"femalePM": 14
-  		}
-  	},{
-  		"date": "20130710",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 133,
-  			"femaleAM": 41,
-  			"femalePM": 63
-  		}
-  	},{
-  		"date": "20130213",
-  		"counts": {
-  			"maleAM": 28,
-  			"malePM": 19,
-  			"femaleAM": 13,
-  			"femalePM": 18
-  		}
-  	},{
-  		"date": "20130613",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 83,
-  			"femaleAM": 27,
-  			"femalePM": 40
-  		}
-  	},{
-  		"date": "20131112",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 20,
-  			"femaleAM": 7,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20130315",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 26,
-  			"femaleAM": 19,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20131008",
-  		"counts": {
-  			"maleAM": 69,
-  			"malePM": 91,
-  			"femaleAM": 29,
-  			"femalePM": 35
-  		}
-  	},{
-  		"date": "20130109",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": 23,
-  			"femaleAM": 16,
-  			"femalePM": 12
-  		}
-  	},{
-  		"date": "20130515",
-  		"counts": {
-  			"maleAM": 60,
-  			"malePM": 110,
-  			"femaleAM": 25,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20131210",
-  		"counts": {
-  			"maleAM": 6,
-  			"malePM": 11,
-  			"femaleAM": 1,
-  			"femalePM": 2
-  		},
-  		"note": "1 hour count"
-  	}]
-  },
-  {
-    "location": "Jackson at Halsted",
-    "latitude": "41.877955",
-    "longitude": "-87.647233",
-    "dateCounts": [
-    	{
-    		"date": "20140909",
-  		"counts": {
-  			"maleAM": 80,
-  			"malePM": 132,
-  			"femaleAM": 33,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20140801",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
-  		}
-  	},{
-  		"date": "20141021",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 79,
-  			"femaleAM": 28,
-  			"femalePM": 23
-  		}
-  	},{
-  		"date": "20140415",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 60,
-  			"femaleAM": 6,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20130814",
-  		"counts": {
-  			"maleAM": 75,
-  			"malePM": 91,
-  			"femaleAM": 34,
-  			"femalePM": 39
-  		}
-  	},{
-  		"date": "20130417",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": null,
-  			"femaleAM": 24,
-  			"femalePM": null
-  		},
-  		"note": "AM only"
-  	},{
-  		"date": "20141125",
-  		"counts": {
-  			"maleAM": 30,
-  			"malePM": 15,
-  			"femaleAM": 4,
-  			"femalePM": 6
-  		}
-  	},{
-  		"date": "20140610",
-  		"counts": {
-  			"maleAM": 49,
-  			"malePM": 119,
-  			"femaleAM": 18,
-  			"femalePM": 41
-  		}
-  	},{
-  		"date": "20141216",
-  		"counts": {
-  			"maleAM": 5,
-  			"malePM": 22,
-  			"femaleAM": 5,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20140708",
-  		"counts": {
-  			"maleAM": 65,
-  			"malePM": 141,
-  			"femaleAM": 23,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140218",
-  		"counts": {
-  			"maleAM": 9,
-  			"malePM": 7,
-  			"femaleAM": 3,
-  			"femalePM": 5
-  		},
-  		"note": "1 hour count"
-  	},{
-  		"date": "20140520",
-  		"counts": {
-  			"maleAM": 68,
-  			"malePM": 124,
-  			"femaleAM": 28,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140121",
-  		"counts": {
-  			"maleAM": 4,
-  			"malePM": 5,
-  			"femaleAM": 1,
-  			"femalePM": 1
-  		}
-  	},{
-  		"date": "20130910",
-  		"counts": {
-  			"maleAM": 81,
-  			"malePM": 93,
-  			"femaleAM": 32,
-  			"femalePM": 28
-  		}
-  	},{
-  		"date": "20140318",
-  		"counts": {
-  			"maleAM": 25,
-  			"malePM": 50,
-  			"femaleAM": 11,
-  			"femalePM": 14
-  		}
-  	},{
-  		"date": "20130710",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 133,
-  			"femaleAM": 41,
-  			"femalePM": 63
-  		}
-  	},{
-  		"date": "20130213",
-  		"counts": {
-  			"maleAM": 28,
-  			"malePM": 19,
-  			"femaleAM": 13,
-  			"femalePM": 18
-  		}
-  	},{
-  		"date": "20130613",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 83,
-  			"femaleAM": 27,
-  			"femalePM": 40
-  		}
-  	},{
-  		"date": "20131112",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 20,
-  			"femaleAM": 7,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20130315",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 26,
-  			"femaleAM": 19,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20131008",
-  		"counts": {
-  			"maleAM": 69,
-  			"malePM": 91,
-  			"femaleAM": 29,
-  			"femalePM": 35
-  		}
-  	},{
-  		"date": "20130109",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": 23,
-  			"femaleAM": 16,
-  			"femalePM": 12
-  		}
-  	},{
-  		"date": "20130515",
-  		"counts": {
-  			"maleAM": 60,
-  			"malePM": 110,
-  			"femaleAM": 25,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20131210",
-  		"counts": {
-  			"maleAM": 6,
-  			"malePM": 11,
-  			"femaleAM": 1,
-  			"femalePM": 2
-  		},
-  		"note": "1 hour count"
-  	}]
-  },
-  {
-    "location": "King at 31st",
-    "latitude": "41.838430",
-    "longitude": "-87.617309",
-    "dateCounts": [
-    	{
-    		"date": "20140909",
-  		"counts": {
-  			"maleAM": 80,
-  			"malePM": 132,
-  			"femaleAM": 33,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20140801",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
-  		}
-  	},{
-  		"date": "20141021",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 79,
-  			"femaleAM": 28,
-  			"femalePM": 23
-  		}
-  	},{
-  		"date": "20140415",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 60,
-  			"femaleAM": 6,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20130814",
-  		"counts": {
-  			"maleAM": 75,
-  			"malePM": 91,
-  			"femaleAM": 34,
-  			"femalePM": 39
-  		}
-  	},{
-  		"date": "20130417",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": null,
-  			"femaleAM": 24,
-  			"femalePM": null
-  		},
-  		"note": "AM only"
-  	},{
-  		"date": "20141125",
-  		"counts": {
-  			"maleAM": 30,
-  			"malePM": 15,
-  			"femaleAM": 4,
-  			"femalePM": 6
-  		}
-  	},{
-  		"date": "20140610",
-  		"counts": {
-  			"maleAM": 49,
-  			"malePM": 119,
-  			"femaleAM": 18,
-  			"femalePM": 41
-  		}
-  	},{
-  		"date": "20141216",
-  		"counts": {
-  			"maleAM": 5,
-  			"malePM": 22,
-  			"femaleAM": 5,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20140708",
-  		"counts": {
-  			"maleAM": 65,
-  			"malePM": 141,
-  			"femaleAM": 23,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140218",
-  		"counts": {
-  			"maleAM": 9,
-  			"malePM": 7,
-  			"femaleAM": 3,
-  			"femalePM": 5
-  		},
-  		"note": "1 hour count"
-  	},{
-  		"date": "20140520",
-  		"counts": {
-  			"maleAM": 68,
-  			"malePM": 124,
-  			"femaleAM": 28,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140121",
-  		"counts": {
-  			"maleAM": 4,
-  			"malePM": 5,
-  			"femaleAM": 1,
-  			"femalePM": 1
-  		}
-  	},{
-  		"date": "20130910",
-  		"counts": {
-  			"maleAM": 81,
-  			"malePM": 93,
-  			"femaleAM": 32,
-  			"femalePM": 28
-  		}
-  	},{
-  		"date": "20140318",
-  		"counts": {
-  			"maleAM": 25,
-  			"malePM": 50,
-  			"femaleAM": 11,
-  			"femalePM": 14
-  		}
-  	},{
-  		"date": "20130710",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 133,
-  			"femaleAM": 41,
-  			"femalePM": 63
-  		}
-  	},{
-  		"date": "20130213",
-  		"counts": {
-  			"maleAM": 28,
-  			"malePM": 19,
-  			"femaleAM": 13,
-  			"femalePM": 18
-  		}
-  	},{
-  		"date": "20130613",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 83,
-  			"femaleAM": 27,
-  			"femalePM": 40
-  		}
-  	},{
-  		"date": "20131112",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 20,
-  			"femaleAM": 7,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20130315",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 26,
-  			"femaleAM": 19,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20131008",
-  		"counts": {
-  			"maleAM": 69,
-  			"malePM": 91,
-  			"femaleAM": 29,
-  			"femalePM": 35
-  		}
-  	},{
-  		"date": "20130109",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": 23,
-  			"femaleAM": 16,
-  			"femalePM": 12
-  		}
-  	},{
-  		"date": "20130515",
-  		"counts": {
-  			"maleAM": 60,
-  			"malePM": 110,
-  			"femaleAM": 25,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20131210",
-  		"counts": {
-  			"maleAM": 6,
-  			"malePM": 11,
-  			"femaleAM": 1,
-  			"femalePM": 2
-  		},
-  		"note": "1 hour count"
-  	}]
-  },
-  {
-    "location": "Lake at Damen",
-    "latitude": "41.884987",
-    "longitude": "-87.676732",
-    "dateCounts": [
-    	{
-    		"date": "20140909",
-  		"counts": {
-  			"maleAM": 80,
-  			"malePM": 132,
-  			"femaleAM": 33,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20140801",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
-  		}
-  	},{
-  		"date": "20141021",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 79,
-  			"femaleAM": 28,
-  			"femalePM": 23
-  		}
-  	},{
-  		"date": "20140415",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 60,
-  			"femaleAM": 6,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20130814",
-  		"counts": {
-  			"maleAM": 75,
-  			"malePM": 91,
-  			"femaleAM": 34,
-  			"femalePM": 39
-  		}
-  	},{
-  		"date": "20130417",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": null,
-  			"femaleAM": 24,
-  			"femalePM": null
-  		},
-  		"note": "AM only"
-  	},{
-  		"date": "20141125",
-  		"counts": {
-  			"maleAM": 30,
-  			"malePM": 15,
-  			"femaleAM": 4,
-  			"femalePM": 6
-  		}
-  	},{
-  		"date": "20140610",
-  		"counts": {
-  			"maleAM": 49,
-  			"malePM": 119,
-  			"femaleAM": 18,
-  			"femalePM": 41
-  		}
-  	},{
-  		"date": "20141216",
-  		"counts": {
-  			"maleAM": 5,
-  			"malePM": 22,
-  			"femaleAM": 5,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20140708",
-  		"counts": {
-  			"maleAM": 65,
-  			"malePM": 141,
-  			"femaleAM": 23,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140218",
-  		"counts": {
-  			"maleAM": 9,
-  			"malePM": 7,
-  			"femaleAM": 3,
-  			"femalePM": 5
-  		},
-  		"note": "1 hour count"
-  	},{
-  		"date": "20140520",
-  		"counts": {
-  			"maleAM": 68,
-  			"malePM": 124,
-  			"femaleAM": 28,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140121",
-  		"counts": {
-  			"maleAM": 4,
-  			"malePM": 5,
-  			"femaleAM": 1,
-  			"femalePM": 1
-  		}
-  	},{
-  		"date": "20130910",
-  		"counts": {
-  			"maleAM": 81,
-  			"malePM": 93,
-  			"femaleAM": 32,
-  			"femalePM": 28
-  		}
-  	},{
-  		"date": "20140318",
-  		"counts": {
-  			"maleAM": 25,
-  			"malePM": 50,
-  			"femaleAM": 11,
-  			"femalePM": 14
-  		}
-  	},{
-  		"date": "20130710",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 133,
-  			"femaleAM": 41,
-  			"femalePM": 63
-  		}
-  	},{
-  		"date": "20130213",
-  		"counts": {
-  			"maleAM": 28,
-  			"malePM": 19,
-  			"femaleAM": 13,
-  			"femalePM": 18
-  		}
-  	},{
-  		"date": "20130613",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 83,
-  			"femaleAM": 27,
-  			"femalePM": 40
-  		}
-  	},{
-  		"date": "20131112",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 20,
-  			"femaleAM": 7,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20130315",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 26,
-  			"femaleAM": 19,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20131008",
-  		"counts": {
-  			"maleAM": 69,
-  			"malePM": 91,
-  			"femaleAM": 29,
-  			"femalePM": 35
-  		}
-  	},{
-  		"date": "20130109",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": 23,
-  			"femaleAM": 16,
-  			"femalePM": 12
-  		}
-  	},{
-  		"date": "20130515",
-  		"counts": {
-  			"maleAM": 60,
-  			"malePM": 110,
-  			"femaleAM": 25,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20131210",
-  		"counts": {
-  			"maleAM": 6,
-  			"malePM": 11,
-  			"femaleAM": 1,
-  			"femalePM": 2
-  		},
-  		"note": "1 hour count"
-  	}]
-  },
-  {
-    "location": "Milwaukee at Elston",
-    "latitude": "41.896989",
-    "longitude": "-87.656559",
-    "dateCounts": [
-    	{
-    		"date": "20140909",
-  		"counts": {
-  			"maleAM": 80,
-  			"malePM": 132,
-  			"femaleAM": 33,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20140801",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 121,
-  			"femaleAM": 18,
-  			"femalePM": 53
-  		}
-  	},{
-  		"date": "20141021",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 79,
-  			"femaleAM": 28,
-  			"femalePM": 23
-  		}
-  	},{
-  		"date": "20140415",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 60,
-  			"femaleAM": 6,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20130814",
-  		"counts": {
-  			"maleAM": 75,
-  			"malePM": 91,
-  			"femaleAM": 34,
-  			"femalePM": 39
-  		}
-  	},{
-  		"date": "20130417",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": null,
-  			"femaleAM": 24,
-  			"femalePM": null
-  		},
-  		"note": "AM only"
-  	},{
-  		"date": "20141125",
-  		"counts": {
-  			"maleAM": 30,
-  			"malePM": 15,
-  			"femaleAM": 4,
-  			"femalePM": 6
-  		}
-  	},{
-  		"date": "20140610",
-  		"counts": {
-  			"maleAM": 49,
-  			"malePM": 119,
-  			"femaleAM": 18,
-  			"femalePM": 41
-  		}
-  	},{
-  		"date": "20141216",
-  		"counts": {
-  			"maleAM": 5,
-  			"malePM": 22,
-  			"femaleAM": 5,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20140708",
-  		"counts": {
-  			"maleAM": 65,
-  			"malePM": 141,
-  			"femaleAM": 23,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140218",
-  		"counts": {
-  			"maleAM": 9,
-  			"malePM": 7,
-  			"femaleAM": 3,
-  			"femalePM": 5
-  		},
-  		"note": "1 hour count"
-  	},{
-  		"date": "20140520",
-  		"counts": {
-  			"maleAM": 68,
-  			"malePM": 124,
-  			"femaleAM": 28,
-  			"femalePM": 55
-  		}
-  	},{
-  		"date": "20140121",
-  		"counts": {
-  			"maleAM": 4,
-  			"malePM": 5,
-  			"femaleAM": 1,
-  			"femalePM": 1
-  		}
-  	},{
-  		"date": "20130910",
-  		"counts": {
-  			"maleAM": 81,
-  			"malePM": 93,
-  			"femaleAM": 32,
-  			"femalePM": 28
-  		}
-  	},{
-  		"date": "20140318",
-  		"counts": {
-  			"maleAM": 25,
-  			"malePM": 50,
-  			"femaleAM": 11,
-  			"femalePM": 14
-  		}
-  	},{
-  		"date": "20130710",
-  		"counts": {
-  			"maleAM": 74,
-  			"malePM": 133,
-  			"femaleAM": 41,
-  			"femalePM": 63
-  		}
-  	},{
-  		"date": "20130213",
-  		"counts": {
-  			"maleAM": 28,
-  			"malePM": 19,
-  			"femaleAM": 13,
-  			"femalePM": 18
-  		}
-  	},{
-  		"date": "20130613",
-  		"counts": {
-  			"maleAM": 57,
-  			"malePM": 83,
-  			"femaleAM": 27,
-  			"femalePM": 40
-  		}
-  	},{
-  		"date": "20131112",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 20,
-  			"femaleAM": 7,
-  			"femalePM": 5
-  		}
-  	},{
-  		"date": "20130315",
-  		"counts": {
-  			"maleAM": 20,
-  			"malePM": 26,
-  			"femaleAM": 19,
-  			"femalePM": 21
-  		}
-  	},{
-  		"date": "20131008",
-  		"counts": {
-  			"maleAM": 69,
-  			"malePM": 91,
-  			"femaleAM": 29,
-  			"femalePM": 35
-  		}
-  	},{
-  		"date": "20130109",
-  		"counts": {
-  			"maleAM": 33,
-  			"malePM": 23,
-  			"femaleAM": 16,
-  			"femalePM": 12
-  		}
-  	},{
-  		"date": "20130515",
-  		"counts": {
-  			"maleAM": 60,
-  			"malePM": 110,
-  			"femaleAM": 25,
-  			"femalePM": 46
-  		}
-  	},{
-  		"date": "20131210",
-  		"counts": {
-  			"maleAM": 6,
-  			"malePM": 11,
-  			"femaleAM": 1,
-  			"femalePM": 2
-  		},
-  		"note": "1 hour count"
-  	}]
-  }]
+  "locations": [
+    {
+      "location": "18th at Canal",
+      "latitude": "41.857655",
+      "longitude": "-87.638935",
+      "dateCounts": [
+        {
+          "date": "20140909",
+          "counts": {
+            "maleAM": 80,
+            "malePM": 132,
+            "femaleAM": 33,
+            "femalePM": 46
+          }
+        },
+        {
+          "date": "20140801",
+          "counts": {
+            "maleAM": 57,
+            "malePM": 121,
+            "femaleAM": 18,
+            "femalePM": 53
+          }
+        },
+        {
+          "date": "20141021",
+          "counts": {
+            "maleAM": 74,
+            "malePM": 79,
+            "femaleAM": 28,
+            "femalePM": 23
+          }
+        },
+        {
+          "date": "20140415",
+          "counts": {
+            "maleAM": 20,
+            "malePM": 60,
+            "femaleAM": 6,
+            "femalePM": 21
+          }
+        },
+        {
+          "date": "20130814",
+          "counts": {
+            "maleAM": 75,
+            "malePM": 91,
+            "femaleAM": 34,
+            "femalePM": 39
+          }
+        },
+        {
+          "date": "20130417",
+          "counts": {
+            "maleAM": 33,
+            "malePM": null,
+            "femaleAM": 24,
+            "femalePM": null
+          },
+          "note": "AM only"
+        },
+        {
+          "date": "20141125",
+          "counts": {
+            "maleAM": 30,
+            "malePM": 15,
+            "femaleAM": 4,
+            "femalePM": 6
+          }
+        },
+        {
+          "date": "20140610",
+          "counts": {
+            "maleAM": 49,
+            "malePM": 119,
+            "femaleAM": 18,
+            "femalePM": 41
+          }
+        },
+        {
+          "date": "20141216",
+          "counts": {
+            "maleAM": 5,
+            "malePM": 22,
+            "femaleAM": 5,
+            "femalePM": 5
+          }
+        },
+        {
+          "date": "20140708",
+          "counts": {
+            "maleAM": 65,
+            "malePM": 141,
+            "femaleAM": 23,
+            "femalePM": 55
+          }
+        },
+        {
+          "date": "20140218",
+          "counts": {
+            "maleAM": 9,
+            "malePM": 7,
+            "femaleAM": 3,
+            "femalePM": 5
+          },
+          "note": "1 hour count"
+        },
+        {
+          "date": "20140520",
+          "counts": {
+            "maleAM": 68,
+            "malePM": 124,
+            "femaleAM": 28,
+            "femalePM": 55
+          }
+        },
+        {
+          "date": "20140121",
+          "counts": {
+            "maleAM": 4,
+            "malePM": 5,
+            "femaleAM": 1,
+            "femalePM": 1
+          }
+        },
+        {
+          "date": "20130910",
+          "counts": {
+            "maleAM": 81,
+            "malePM": 93,
+            "femaleAM": 32,
+            "femalePM": 28
+          }
+        },
+        {
+          "date": "20140318",
+          "counts": {
+            "maleAM": 25,
+            "malePM": 50,
+            "femaleAM": 11,
+            "femalePM": 14
+          }
+        },
+        {
+          "date": "20130710",
+          "counts": {
+            "maleAM": 74,
+            "malePM": 133,
+            "femaleAM": 41,
+            "femalePM": 63
+          }
+        },
+        {
+          "date": "20130213",
+          "counts": {
+            "maleAM": 28,
+            "malePM": 19,
+            "femaleAM": 13,
+            "femalePM": 18
+          }
+        },
+        {
+          "date": "20130613",
+          "counts": {
+            "maleAM": 57,
+            "malePM": 83,
+            "femaleAM": 27,
+            "femalePM": 40
+          }
+        },
+        {
+          "date": "20131112",
+          "counts": {
+            "maleAM": 20,
+            "malePM": 20,
+            "femaleAM": 7,
+            "femalePM": 5
+          }
+        },
+        {
+          "date": "20130315",
+          "counts": {
+            "maleAM": 20,
+            "malePM": 26,
+            "femaleAM": 19,
+            "femalePM": 21
+          }
+        },
+        {
+          "date": "20131008",
+          "counts": {
+            "maleAM": 69,
+            "malePM": 91,
+            "femaleAM": 29,
+            "femalePM": 35
+          }
+        },
+        {
+          "date": "20130109",
+          "counts": {
+            "maleAM": 33,
+            "malePM": 23,
+            "femaleAM": 16,
+            "femalePM": 12
+          }
+        },
+        {
+          "date": "20130515",
+          "counts": {
+            "maleAM": 60,
+            "malePM": 110,
+            "femaleAM": 25,
+            "femalePM": 46
+          }
+        },
+        {
+          "date": "20131210",
+          "counts": {
+            "maleAM": 6,
+            "malePM": 11,
+            "femaleAM": 1,
+            "femalePM": 2
+          },
+          "note": "1 hour count"
+        }
+      ]
+    },
+    {
+      "location": "Clark at Lincoln",
+      "latitude": "41.915614",
+      "longitude": "-87.634344",
+      "dateCounts": [
+        {
+          "date": "20140909",
+          "counts": {
+            "maleAM": 290,
+            "malePM": 538,
+            "femaleAM": 114,
+            "femalePM": 232
+          }
+        },
+        {
+          "date": "20140801",
+          "counts": {
+            "maleAM": 565,
+            "malePM": 517,
+            "femaleAM": 225,
+            "femalePM": 282
+          }
+        },
+        {
+          "date": "20141021",
+          "counts": {
+            "maleAM": 276,
+            "malePM": 328,
+            "femaleAM": 120,
+            "femalePM": 139
+          }
+        },
+        {
+          "date": "20140415",
+          "counts": {
+            "maleAM": 92,
+            "malePM": 86,
+            "femaleAM": 42,
+            "femalePM": 47
+          }
+        },
+        {
+          "date": "20130814",
+          "counts": {
+            "maleAM": 457,
+            "malePM": 473,
+            "femaleAM": 210,
+            "femalePM": 218
+          }
+        },
+        {
+          "date": "20130417",
+          "counts": {
+            "maleAM": 134,
+            "malePM": null,
+            "femaleAM": 48,
+            "femalePM": null
+          },
+          "note": "AM only"
+        },
+        {
+          "date": "20141125",
+          "counts": {
+            "maleAM": 91,
+            "malePM": 56,
+            "femaleAM": 8,
+            "femalePM": 23
+          }
+        },
+        {
+          "date": "20140610",
+          "counts": {
+            "maleAM": 327,
+            "malePM": 466,
+            "femaleAM": 140,
+            "femalePM": 201
+          }
+        },
+        {
+          "date": "20141216",
+          "counts": {
+            "maleAM": 85,
+            "malePM": 58,
+            "femaleAM": 2,
+            "femalePM": 21
+          }
+        },
+        {
+          "date": "20140708",
+          "counts": {
+            "maleAM": 224,
+            "malePM": 377,
+            "femaleAM": 95,
+            "femalePM": 211
+          }
+        },
+        {
+          "date": "20140218",
+          "counts": {
+            "maleAM": 23,
+            "malePM": 35,
+            "femaleAM": 8,
+            "femalePM": 18
+          },
+          "note": "1 hour count"
+        },
+        {
+          "date": "20140520",
+          "counts": {
+            "maleAM": 417,
+            "malePM": 479,
+            "femaleAM": 234,
+            "femalePM": 198
+          }
+        },
+        {
+          "date": "20140121",
+          "counts": {
+            "maleAM": 23,
+            "malePM": 16,
+            "femaleAM": 4,
+            "femalePM": 5
+          }
+        },
+        {
+          "date": "20130910",
+          "counts": {
+            "maleAM": 429,
+            "malePM": 406,
+            "femaleAM": 126,
+            "femalePM": 155
+          }
+        },
+        {
+          "date": "20140318",
+          "counts": {
+            "maleAM": 251,
+            "malePM": 230,
+            "femaleAM": 85,
+            "femalePM": 83
+          }
+        },
+        {
+          "date": "20130710",
+          "counts": {
+            "maleAM": 389,
+            "malePM": 384,
+            "femaleAM": 171,
+            "femalePM": 167
+          }
+        },
+        {
+          "date": "20130213",
+          "counts": {
+            "maleAM": 145,
+            "malePM": 137,
+            "femaleAM": 39,
+            "femalePM": 39
+          }
+        },
+        {
+          "date": "20130613",
+          "counts": {
+            "maleAM": 419,
+            "malePM": 431,
+            "femaleAM": 193,
+            "femalePM": 196
+          }
+        },
+        {
+          "date": "20131112",
+          "counts": {
+            "maleAM": 88,
+            "malePM": 82,
+            "femaleAM": 33,
+            "femalePM": 24
+          }
+        },
+        {
+          "date": "20130315",
+          "counts": {
+            "maleAM": 88,
+            "malePM": 91,
+            "femaleAM": 42,
+            "femalePM": 29
+          }
+        },
+        {
+          "date": "20131008",
+          "counts": {
+            "maleAM": 470,
+            "malePM": 402,
+            "femaleAM": 203,
+            "femalePM": 174
+          }
+        },
+        {
+          "date": "20130109",
+          "counts": {
+            "maleAM": 170,
+            "malePM": 160,
+            "femaleAM": 42,
+            "femalePM": 60
+          }
+        },
+        {
+          "date": "20130515",
+          "counts": {
+            "maleAM": 418,
+            "malePM": 362,
+            "femaleAM": 215,
+            "femalePM": 173
+          }
+        },
+        {
+          "date": "20131210",
+          "counts": {
+            "maleAM": 31,
+            "malePM": 38,
+            "femaleAM": 6,
+            "femalePM": 7
+          },
+          "note": "1 hour count"
+        }
+      ]
+    },
+    {
+      "location": "Jackson at Halsted",
+      "latitude": "41.877955",
+      "longitude": "-87.647233",
+      "dateCounts": [
+        {
+          "date": "20140909",
+          "counts": {
+            "maleAM": 186,
+            "malePM": 125,
+            "femaleAM": 57,
+            "femalePM": 36
+          }
+        },
+        {
+          "date": "20140801",
+          "counts": {
+            "maleAM": 186,
+            "malePM": 190,
+            "femaleAM": 47,
+            "femalePM": 71
+          }
+        },
+        {
+          "date": "20141021",
+          "counts": {
+            "maleAM": 152,
+            "malePM": 128,
+            "femaleAM": 48,
+            "femalePM": 32
+          }
+        },
+        {
+          "date": "20140415",
+          "counts": {
+            "maleAM": 41,
+            "malePM": 70,
+            "femaleAM": 21,
+            "femalePM": 10
+          }
+        },
+        {
+          "date": "20130814",
+          "counts": {
+            "maleAM": 213,
+            "malePM": 171,
+            "femaleAM": 77,
+            "femalePM": 67
+          }
+        },
+        {
+          "date": "20130417",
+          "counts": {
+            "maleAM": 84,
+            "malePM": null,
+            "femaleAM": 24,
+            "femalePM": null
+          },
+          "note": "AM only"
+        },
+        {
+          "date": "20141125",
+          "counts": {
+            "maleAM": 31,
+            "malePM": 44,
+            "femaleAM": 6,
+            "femalePM": 7
+          }
+        },
+        {
+          "date": "20140610",
+          "counts": {
+            "maleAM": 145,
+            "malePM": 138,
+            "femaleAM": 40,
+            "femalePM": 38
+          }
+        },
+        {
+          "date": "20141216",
+          "counts": {
+            "maleAM": 25,
+            "malePM": 44,
+            "femaleAM": 10,
+            "femalePM": 16
+          }
+        },
+        {
+          "date": "20140708",
+          "counts": {
+            "maleAM": 192,
+            "malePM": 188,
+            "femaleAM": 64,
+            "femalePM": 74
+          }
+        },
+        {
+          "date": "20140218",
+          "counts": {
+            "maleAM": 11,
+            "malePM": 25,
+            "femaleAM": 4,
+            "femalePM": 3
+          },
+          "note": "1 hour count"
+        },
+        {
+          "date": "20140520",
+          "counts": {
+            "maleAM": 154,
+            "malePM": 144,
+            "femaleAM": 52,
+            "femalePM": 45
+          }
+        },
+        {
+          "date": "20140121",
+          "counts": {
+            "maleAM": 17,
+            "malePM": 16,
+            "femaleAM": 2,
+            "femalePM": 2
+          }
+        },
+        {
+          "date": "20130910",
+          "counts": {
+            "maleAM": 220,
+            "malePM": 166,
+            "femaleAM": 59,
+            "femalePM": 66
+          }
+        },
+        {
+          "date": "20140318",
+          "counts": {
+            "maleAM": 93,
+            "malePM": 62,
+            "femaleAM": 23,
+            "femalePM": 18
+          }
+        },
+        {
+          "date": "20130710",
+          "counts": {
+            "maleAM": 160,
+            "malePM": 242,
+            "femaleAM": 56,
+            "femalePM": 87
+          }
+        },
+        {
+          "date": "20130213",
+          "counts": {
+            "maleAM": 68,
+            "malePM": 76,
+            "femaleAM": 18,
+            "femalePM": 19
+          }
+        },
+        {
+          "date": "20130613",
+          "counts": {
+            "maleAM": 233,
+            "malePM": 178,
+            "femaleAM": 80,
+            "femalePM": 58
+          }
+        },
+        {
+          "date": "20131112",
+          "counts": {
+            "maleAM": 50,
+            "malePM": 40,
+            "femaleAM": 13,
+            "femalePM": 12
+          }
+        },
+        {
+          "date": "20130315",
+          "counts": {
+            "maleAM": 52,
+            "malePM": 68,
+            "femaleAM": 18,
+            "femalePM": 15
+          }
+        },
+        {
+          "date": "20131008",
+          "counts": {
+            "maleAM": 212,
+            "malePM": 175,
+            "femaleAM": 70,
+            "femalePM": 62
+          }
+        },
+        {
+          "date": "20130109",
+          "counts": {
+            "maleAM": 93,
+            "malePM": 82,
+            "femaleAM": 22,
+            "femalePM": 21
+          }
+        },
+        {
+          "date": "20130515",
+          "counts": {
+            "maleAM": 109,
+            "malePM": 120,
+            "femaleAM": 52,
+            "femalePM": 35
+          }
+        },
+        {
+          "date": "20131210",
+          "counts": {
+            "maleAM": 21,
+            "malePM": 19,
+            "femaleAM": 9,
+            "femalePM": 5
+          },
+          "note": "1 hour count"
+        }
+      ]
+    },
+    {
+      "location": "King at 31st",
+      "latitude": "41.838430",
+      "longitude": "-87.617309",
+      "dateCounts": [
+        {
+          "date": "20140909",
+          "counts": {
+            "maleAM": 42,
+            "malePM": 75,
+            "femaleAM": 11,
+            "femalePM": 24
+          }
+        },
+        {
+          "date": "20140801",
+          "counts": {
+            "maleAM": 39,
+            "malePM": 88,
+            "femaleAM": 13,
+            "femalePM": 32
+          }
+        },
+        {
+          "date": "20141021",
+          "counts": {
+            "maleAM": 24,
+            "malePM": 40,
+            "femaleAM": 7,
+            "femalePM": 9
+          }
+        },
+        {
+          "date": "20140415",
+          "counts": {
+            "maleAM": 15,
+            "malePM": 18,
+            "femaleAM": 2,
+            "femalePM": 4
+          }
+        },
+        {
+          "date": "20130814",
+          "counts": {
+            "maleAM": 52,
+            "malePM": 82,
+            "femaleAM": 34,
+            "femalePM": 34
+          }
+        },
+        {
+          "date": "20130417",
+          "counts": {
+            "maleAM": 11,
+            "malePM": null,
+            "femaleAM": 3,
+            "femalePM": null
+          },
+          "note": "AM only"
+        },
+        {
+          "date": "20141125",
+          "counts": {
+            "maleAM": 7,
+            "malePM": 6,
+            "femaleAM": 1,
+            "femalePM": 1
+          }
+        },
+        {
+          "date": "20140610",
+          "counts": {
+            "maleAM": 37,
+            "malePM": 94,
+            "femaleAM": 9,
+            "femalePM": 24
+          }
+        },
+        {
+          "date": "20141216",
+          "counts": {
+            "maleAM": 5,
+            "malePM": 4,
+            "femaleAM": 0,
+            "femalePM": 2
+          }
+        },
+        {
+          "date": "20140708",
+          "counts": {
+            "maleAM": 29,
+            "malePM": 79,
+            "femaleAM": 9,
+            "femalePM": 39
+          }
+        },
+        {
+          "date": "20140218",
+          "counts": {
+            "maleAM": 3,
+            "malePM": 0,
+            "femaleAM": 0,
+            "femalePM": 0
+          },
+          "note": "1 hour count"
+        },
+        {
+          "date": "20140520",
+          "counts": {
+            "maleAM": 39,
+            "malePM": 107,
+            "femaleAM": 14,
+            "femalePM": 27
+          }
+        },
+        {
+          "date": "20140121",
+          "counts": {
+            "maleAM": 3,
+            "malePM": 0,
+            "femaleAM": 3,
+            "femalePM": 0
+          }
+        },
+        {
+          "date": "20130910",
+          "counts": {
+            "maleAM": 54,
+            "malePM": 106,
+            "femaleAM": 11,
+            "femalePM": 15
+          }
+        },
+        {
+          "date": "20140318",
+          "counts": {
+            "maleAM": 10,
+            "malePM": 2,
+            "femaleAM": 8,
+            "femalePM": 1
+          }
+        },
+        {
+          "date": "20130710",
+          "counts": {
+            "maleAM": 34,
+            "malePM": 87,
+            "femaleAM": 19,
+            "femalePM": 42
+          }
+        },
+        {
+          "date": "20130213",
+          "counts": {
+            "maleAM": 6,
+            "malePM": 18,
+            "femaleAM": 0,
+            "femalePM": 2
+          }
+        },
+        {
+          "date": "20130613",
+          "counts": {
+            "maleAM": 36,
+            "malePM": 77,
+            "femaleAM": 15,
+            "femalePM": 33
+          }
+        },
+        {
+          "date": "20131112",
+          "counts": {
+            "maleAM": 7,
+            "malePM": 17,
+            "femaleAM": 2,
+            "femalePM": 2
+          }
+        },
+        {
+          "date": "20130315",
+          "counts": {
+            "maleAM": 6,
+            "malePM": 14,
+            "femaleAM": 0,
+            "femalePM": 0
+          }
+        },
+        {
+          "date": "20131008",
+          "counts": {
+            "maleAM": 38,
+            "malePM": 80,
+            "femaleAM": 7,
+            "femalePM": 15
+          }
+        },
+        {
+          "date": "20130109",
+          "counts": {
+            "maleAM": 6,
+            "malePM": 16,
+            "femaleAM": 0,
+            "femalePM": 5
+          }
+        },
+        {
+          "date": "20130515",
+          "counts": {
+            "maleAM": 24,
+            "malePM": 67,
+            "femaleAM": 8,
+            "femalePM": 27
+          }
+        },
+        {
+          "date": "20131210",
+          "counts": {
+            "maleAM": 0,
+            "malePM": 2,
+            "femaleAM": 0,
+            "femalePM": 0
+          },
+          "note": "1 hour count"
+        }
+      ]
+    },
+    {
+      "location": "Lake at Damen",
+      "latitude": "41.884987",
+      "longitude": "-87.676732",
+      "dateCounts": [
+        {
+          "date": "20140909",
+          "counts": {
+            "maleAM": 121,
+            "malePM": 142,
+            "femaleAM": 63,
+            "femalePM": 58
+          }
+        },
+        {
+          "date": "20140801",
+          "counts": {
+            "maleAM": 118,
+            "malePM": 139,
+            "femaleAM": 64,
+            "femalePM": 68
+          }
+        },
+        {
+          "date": "20141021",
+          "counts": {
+            "maleAM": 114,
+            "malePM": null,
+            "femaleAM": 51,
+            "femalePM": null
+          }
+        },
+        {
+          "date": "20140415",
+          "counts": {
+            "maleAM": 39,
+            "malePM": 61,
+            "femaleAM": 14,
+            "femalePM": 26
+          }
+        },
+        {
+          "date": "20130814",
+          "counts": {
+            "maleAM": 85,
+            "malePM": 62,
+            "femaleAM": 34,
+            "femalePM": 34
+          }
+        },
+        {
+          "date": "20130417",
+          "counts": {
+            "maleAM": 32,
+            "malePM": null,
+            "femaleAM": 17,
+            "femalePM": null
+          },
+          "note": "AM only"
+        },
+        {
+          "date": "20141125",
+          "counts": {
+            "maleAM": 21,
+            "malePM": 20,
+            "femaleAM": 7,
+            "femalePM": 6
+          }
+        },
+        {
+          "date": "20140610",
+          "counts": {
+            "maleAM": 58,
+            "malePM": 62,
+            "femaleAM": 28,
+            "femalePM": 30
+          }
+        },
+        {
+          "date": "20141216",
+          "counts": {
+            "maleAM": 29,
+            "malePM": 25,
+            "femaleAM": 10,
+            "femalePM": 6
+          }
+        },
+        {
+          "date": "20140708",
+          "counts": {
+            "maleAM": 45,
+            "malePM": 61,
+            "femaleAM": 16,
+            "femalePM": 18
+          }
+        },
+        {
+          "date": "20140218",
+          "counts": {
+            "maleAM": 21,
+            "malePM": 0,
+            "femaleAM": 6,
+            "femalePM": 0
+          },
+          "note": "1 hour count"
+        },
+        {
+          "date": "20140520",
+          "counts": {
+            "maleAM": 76,
+            "malePM": 92,
+            "femaleAM": 34,
+            "femalePM": 44
+          }
+        },
+        {
+          "date": "20140121",
+          "counts": {
+            "maleAM": 14,
+            "malePM": 9,
+            "femaleAM": 4,
+            "femalePM": 5
+          }
+        },
+        {
+          "date": "20130910",
+          "counts": {
+            "maleAM": 139,
+            "malePM": 152,
+            "femaleAM": 45,
+            "femalePM": 60
+          }
+        },
+        {
+          "date": "20140318",
+          "counts": {
+            "maleAM": 27,
+            "malePM": 68,
+            "femaleAM": 19,
+            "femalePM": 23
+          }
+        },
+        {
+          "date": "20130710",
+          "counts": {
+            "maleAM": 112,
+            "malePM": 132,
+            "femaleAM": 66,
+            "femalePM": 65
+          }
+        },
+        {
+          "date": "20130213",
+          "counts": {
+            "maleAM": 50,
+            "malePM": 47,
+            "femaleAM": 11,
+            "femalePM": 12
+          }
+        },
+        {
+          "date": "20130613",
+          "counts": {
+            "maleAM": 108,
+            "malePM": 104,
+            "femaleAM": 53,
+            "femalePM": 63
+          }
+        },
+        {
+          "date": "20131112",
+          "counts": {
+            "maleAM": 18,
+            "malePM": 22,
+            "femaleAM": 14,
+            "femalePM": 10
+          }
+        },
+        {
+          "date": "20130315",
+          "counts": {
+            "maleAM": 35,
+            "malePM": 35,
+            "femaleAM": 14,
+            "femalePM": 14
+          }
+        },
+        {
+          "date": "20131008",
+          "counts": {
+            "maleAM": 69,
+            "malePM": 70,
+            "femaleAM": 35,
+            "femalePM": 28
+          }
+        },
+        {
+          "date": "20130109",
+          "counts": {
+            "maleAM": 41,
+            "malePM": 49,
+            "femaleAM": 13,
+            "femalePM": 13
+          }
+        },
+        {
+          "date": "20130515",
+          "counts": {
+            "maleAM": 104,
+            "malePM": 121,
+            "femaleAM": 60,
+            "femalePM": 62
+          }
+        },
+        {
+          "date": "20131210",
+          "counts": {
+            "maleAM": 10,
+            "malePM": 11,
+            "femaleAM": 1,
+            "femalePM": 2
+          },
+          "note": "1 hour count"
+        }
+      ]
+    },
+    {
+      "location": "Milwaukee at Elston",
+      "latitude": "41.896989",
+      "longitude": "-87.656559",
+      "dateCounts": [
+        {
+          "date": "20140909",
+          "counts": {
+            "maleAM": 821,
+            "malePM": 843,
+            "femaleAM": 396,
+            "femalePM": 317
+          }
+        },
+        {
+          "date": "20140801",
+          "counts": {
+            "maleAM": 826,
+            "malePM": 785,
+            "femaleAM": 296,
+            "femalePM": 309
+          }
+        },
+        {
+          "date": "20141021",
+          "counts": {
+            "maleAM": 694,
+            "malePM": 657,
+            "femaleAM": 258,
+            "femalePM": 200
+          }
+        },
+        {
+          "date": "20140415",
+          "counts": {
+            "maleAM": 236,
+            "malePM": 246,
+            "femaleAM": 65,
+            "femalePM": 63
+          }
+        },
+        {
+          "date": "20130814",
+          "counts": {
+            "maleAM": 839,
+            "malePM": 776,
+            "femaleAM": 360,
+            "femalePM": 301
+          }
+        },
+        {
+          "date": "20130417",
+          "counts": {
+            "maleAM": 275,
+            "malePM": null,
+            "femaleAM": 88,
+            "femalePM": null
+          },
+          "note": "AM only"
+        },
+        {
+          "date": "20141125",
+          "counts": {
+            "maleAM": 193,
+            "malePM": 127,
+            "femaleAM": 55,
+            "femalePM": 50
+          }
+        },
+        {
+          "date": "20140610",
+          "counts": {
+            "maleAM": 594,
+            "malePM": 742,
+            "femaleAM": 173,
+            "femalePM": 264
+          }
+        },
+        {
+          "date": "20141216",
+          "counts": {
+            "maleAM": 193,
+            "malePM": 189,
+            "femaleAM": 50,
+            "femalePM": 42
+          }
+        },
+        {
+          "date": "20140708",
+          "counts": {
+            "maleAM": 945,
+            "malePM": 715,
+            "femaleAM": 467,
+            "femalePM": 281
+          }
+        },
+        {
+          "date": "20140218",
+          "counts": {
+            "maleAM": 32,
+            "malePM": 84,
+            "femaleAM": 9,
+            "femalePM": 18
+          },
+          "note": "1 hour count"
+        },
+        {
+          "date": "20140520",
+          "counts": {
+            "maleAM": 753,
+            "malePM": 688,
+            "femaleAM": 284,
+            "femalePM": 211
+          }
+        },
+        {
+          "date": "20140121",
+          "counts": {
+            "maleAM": 50,
+            "malePM": 57,
+            "femaleAM": 16,
+            "femalePM": 15
+          }
+        },
+        {
+          "date": "20130910",
+          "counts": {
+            "maleAM": 720,
+            "malePM": 587,
+            "femaleAM": 290,
+            "femalePM": 217
+          }
+        },
+        {
+          "date": "20140318",
+          "counts": {
+            "maleAM": 363,
+            "malePM": 327,
+            "femaleAM": 130,
+            "femalePM": 91
+          }
+        },
+        {
+          "date": "20130710",
+          "counts": {
+            "maleAM": 812,
+            "malePM": 776,
+            "femaleAM": 341,
+            "femalePM": 302
+          }
+        },
+        {
+          "date": "20130213",
+          "counts": {
+            "maleAM": 303,
+            "malePM": 249,
+            "femaleAM": 94,
+            "femalePM": 73
+          }
+        },
+        {
+          "date": "20130613",
+          "counts": {
+            "maleAM": 805,
+            "malePM": 729,
+            "femaleAM": 330,
+            "femalePM": 309
+          }
+        },
+        {
+          "date": "20131112",
+          "counts": {
+            "maleAM": 161,
+            "malePM": 113,
+            "femaleAM": 45,
+            "femalePM": 32
+          }
+        },
+        {
+          "date": "20130315",
+          "counts": {
+            "maleAM": 233,
+            "malePM": 246,
+            "femaleAM": 75,
+            "femalePM": 53
+          }
+        },
+        {
+          "date": "20131008",
+          "counts": {
+            "maleAM": 872,
+            "malePM": 804,
+            "femaleAM": 382,
+            "femalePM": 312
+          }
+        },
+        {
+          "date": "20130109",
+          "counts": {
+            "maleAM": 341,
+            "malePM": 310,
+            "femaleAM": 131,
+            "femalePM": 129
+          }
+        },
+        {
+          "date": "20130515",
+          "counts": {
+            "maleAM": 814,
+            "malePM": 703,
+            "femaleAM": 332,
+            "femalePM": 290
+          }
+        },
+        {
+          "date": "20131210",
+          "counts": {
+            "maleAM": 76,
+            "malePM": 87,
+            "femaleAM": 13,
+            "femalePM": 24
+          },
+          "note": "1 hour count"
+        }
+      ]
+    }
+  ]
 }

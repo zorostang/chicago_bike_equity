@@ -1,5 +1,65 @@
 /* jshint unused: false */
-/* global L, $, turf */
+/* global L, $, turf, console */
+
+function BikeCountsLayer(map) {
+  'use strict';
+  var self = this;
+
+  $.getJSON('data/bikecounts.json').then(function (data) {
+    console.log('Got the bike counts!');
+    self.locationArr = data.locations;
+    $.each(self.locationArr, function (key, value) {
+      var marker = L.marker([value.latitude, value.longitude])
+        .bindPopup('<canvas id="bikecounts" width="600" height="400"></canvas>', {
+          minWidth: 600
+        })
+        .on('popupopen', function (e) {
+          // "value" is bound to this closure correctly; iterate through it to get the best data
+          var orderedDates = _.sortByOrder(value.dateCounts, function (x) {
+            return moment(x.date, 'YYYYMMDD').unix();
+          });
+          var data = {
+            labels: _.map(orderedDates, function (x) {
+                var retVal = moment(x.date, 'YYYYMMDD').format('MMMM YYYY');
+                if (x.note) {
+                  retVal += ' (' + x.note + ')';
+                }
+                return retVal;
+              }),
+            datasets: [
+              {
+                data: _.map(orderedDates, function (x) {
+                  return _.add(x.counts.maleAM, x.counts.malePM);
+                }),
+                fillColor: 'blue',
+                strokeColor: 'blue',
+                highlightFill: 'blue',
+                highlightStroke: 'blue'
+              },
+              {
+                data: _.map(orderedDates, function (x) {
+                  return _.add(x.counts.femaleAM, x.counts.femalePM);
+                }),
+                fillColor: 'pink',
+                strokeColor: 'pink',
+                highlightFill: 'pink',
+                highlightStroke: 'pink'
+              }
+            ]
+          }
+
+          var ctx = document.getElementById("bikecounts").getContext('2d');
+          var chart = new Chart(ctx).Bar(data);
+        })
+        .addTo(map);
+    });
+  }, function (jqXHR, errText, err) {
+    console.log('There was an error! ' + errText);
+    console.log(JSON.stringify(err));
+    throw err;
+  });
+}
+
 
 /*
  * Initializes and populates the population overlay layer.
@@ -243,58 +303,17 @@ function BikeLanesLayer(map) {
   );
 
   var bikeLaneTypes = Object.freeze({
+  	PROTECTED: '8',
+    BUFFERED: '9',
     STANDARD: '1',
     SHAREDLANE: ['2','13','3'],
     GREENWAY: '45',
-    TRAIL: ['5','7'],
-    PROTECTED: '8',
-    BUFFERED: '9'
+    TRAIL: ['5','7']
   });
 
   this.layer = L.geoJson(null, {
     style: function (feature) {
-      if (feature.properties.TYPE === bikeLaneTypes.STANDARD) {
-        return {
-          color: bikeLaneColors.bikelane,
-          weight: 3,
-          opacity: bikeLaneColors.opacity
-        };
-      }
-      if ($.inArray(feature.properties.TYPE, bikeLaneTypes.SHAREDLANE)) {
-        return {
-          color: bikeLaneColors.bikelane,
-          weight: 2,
-          opacity: 0
-        };
-      }
-      if (feature.properties.TYPE === bikeLaneTypes.GREENWAY) {
-        return {
-          color: bikeLaneColors.bikelane,
-          weight: 4,
-          opacity: bikeLaneColors.opacity
-        };
-      }
-      if ($.inArray(feature.properties.TYPE, bikeLaneTypes.TRAIL)) {
-        return {
-          color: bikeLaneColors.trail,
-          weight: 6,
-          opacity: bikeLaneColors.opacity
-        };
-      }
-      if (feature.properties.TYPE === bikeLaneTypes.PROTECTED) {
-        return {
-          color: bikeLaneColors.trail,
-          weight: 6,
-          opacity: bikeLaneColors.opacity
-        };
-      }
-      if (feature.properties.TYPE === bikeLaneTypes.BUFFERED) {
-        return {
-          color: bikeLaneColors.bikelane,
-          weight: 5,
-          opacity: bikeLaneColors.opacity
-        };
-      }
+    	return bikeLaneStyler(feature);
     },
     onEachFeature: function (feature, layer) {
       if (feature.properties) {
@@ -330,4 +349,57 @@ function BikeLanesLayer(map) {
   $.getJSON('data/bike_routes_12-19-14_excl_recommended.geojson', function (data) {
     self.layer.addData(data);
   });
+}
+
+function bikeLaneStyler(feature) {
+	var style = {};
+	switch(feature.properties.TYPE) {
+		case "8": // protected
+			style = {
+				color: "#00570E",
+				weight: 5,
+				opacity: 0.8
+			  }
+		  break;
+		case "9": // buffered
+			style = {
+				color: "#00D624",
+				weight: 6,
+				opacity: 0.8
+			  }
+		  break;
+		case "5":
+		case "7": // trails
+			style = {
+				color: "#00570E",
+				weight: 6,
+				opacity: 0.8
+			  }
+		  break;
+		case "2":
+		case "13":
+		case "3": // sharrows
+			style = {
+				color: "#00570E",
+				weight: 0,
+				opacity: 0
+			  }
+		  break;
+		case "1": // conventional lanes
+			style = {
+				color: "#00D624",
+				weight: 4,
+				opacity: 0.8
+			  }
+		  break;
+		case "45": // neighborhood greenway
+			style = {
+				color: "#00570E",
+				weight: 4,
+				opacity: 0.8
+			  }
+		  break;
+	} // end switch
+	
+	return style;
 }
